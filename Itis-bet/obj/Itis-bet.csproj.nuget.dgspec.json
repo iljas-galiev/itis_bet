@@ -1,30 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/Users/tiffka/RiderProjects/Itis-bet/Itis-bet/Itis-bet.csproj": {}
+    "D:\\GitHUB\\itis_bet\\Itis-bet\\Itis-bet.csproj": {}
   },
   "projects": {
-    "/Users/tiffka/RiderProjects/Itis-bet/Itis-bet/Itis-bet.csproj": {
+    "D:\\GitHUB\\itis_bet\\Itis-bet\\Itis-bet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/tiffka/RiderProjects/Itis-bet/Itis-bet/Itis-bet.csproj",
+        "projectUniqueName": "D:\\GitHUB\\itis_bet\\Itis-bet\\Itis-bet.csproj",
         "projectName": "Itis-bet",
-        "projectPath": "/Users/tiffka/RiderProjects/Itis-bet/Itis-bet/Itis-bet.csproj",
-        "packagesPath": "/Users/tiffka/.nuget/packages/",
-        "outputPath": "/Users/tiffka/RiderProjects/Itis-bet/Itis-bet/obj/",
+        "projectPath": "D:\\GitHUB\\itis_bet\\Itis-bet\\Itis-bet.csproj",
+        "packagesPath": "C:\\Users\\strel\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHUB\\itis_bet\\Itis-bet\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/tiffka/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\strel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -35,8 +37,32 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.3, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.3, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL.Design": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -55,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/Users/tiffka/.dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
