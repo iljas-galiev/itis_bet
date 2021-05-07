@@ -17,20 +17,27 @@ a:hover,a:active,a:focus{
 content{
     padding-top:60px;
     padding-bottom:60px;
+
 }
 .menu {
 }
 .menu-header {
     min-width: 100%;
+    margin-bottom: 20px;
+}
+.menu-header-text {
+    border-bottom: 1px solid #d7d7d7;
 }
 h1, h2, h3, h4, h5 {
     line-height: 26px;
     letter-spacing: 0.05em;
     color: #151515;
     text-transform: uppercase;
-    border-bottom: 1px solid #d7d7d7;
-    margin-bottom: 20px;
     min-width: 100%;
+}
+.menu-header h5 {
+    position: relative;
+    padding-left: 15px;
 }
 .menu a {
     color: #151515;
@@ -171,5 +178,33 @@ img {
 }
 .blog-post-content * {
     margin-top: 25px;
+}
+.menu li{
+    padding-left: 20px;
+}
+.menu ul{
+    position: relative;
+}
+.menu li::before {
+    position: absolute;
+    position: relative;
+    display: inline-block;
+    top: -1px;
+    left: -20px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    content: '';
+    background: #d7d7d7;
+}
+
+.menu-header h5::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    bottom: 3px;
+    left: 0;
+    border-left: 4px solid #64b000;
+    pointer-events: auto;
 }
 
