@@ -1,0 +1,39 @@
+﻿@{ 
+    ViewData["Title"] = "Название статьи";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 col-sm-12 content">
+            <div class="blog-post">
+                <div class="badge badge-secondary">
+                    News
+                </div>
+                <h3 class="blog-post-title">
+                    THE WEEK IN SPORTS BETTING: PENN NATIONAL PULLS AN ‘MGM’
+                </h3>
+                <div class="blog-post-header">
+                    <div class="blog-post-author">
+                        <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="63" height="63">
+                        <p class="post-author">Katrin Burns</p>
+                    </div>
+                    <div class="blog-post-meta">
+                        <time class="blog-post-time" datetime="2020"><span class="icon mdi mdi-clock"></span>April 15, 2020</time>
+                        <div class="blog-post-comment"><span class="icon mdi mdi-comment-outline"></span>345</div>
+                        <div class="blog-post-view"><span class="icon fl-justicons-visible6"></span>234</div>
+                    </div>
+                </div>
+                <div class="blog-post-content">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenati</p>
+                    <img src="~/images/blog-post-1-683x407.jpg" alt="" width="763" height="407">
+                    <div class="blog-post-share">
+                        <p>Поделиться</p>
+                        <ul class="group">
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @await Html.PartialAsync("_GetBlogPostMenu")
+    </div>
+</div>
