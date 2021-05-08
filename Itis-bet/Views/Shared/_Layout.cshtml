@@ -16,32 +16,44 @@
 
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ITIS_Bet</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Personal">Personal</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="BlogPost">Blog Post</a>
-                        </li>
-                    </ul>
+    <header class="navbar-dark">
+        <div class="navbar-wrap">
+            <nav>
+                <div class="navbar-panel navbar-darker">
+                    <button class="navbar-toggle">
+
+                    </button>
+                    <div class="container navbar-panel-inner">
+                        <div class="navbar-panel-item navbar-panel-item-left">
+                            <ul class="list-inline">
+                                <li>
+                                    <a href="#" class="link link-classic">Главная</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="navbar-panel-item navbar-panel-item-right">
+                            <ul class="list-inline list-inline-bordered">
+                                <li>
+                                    <div>
+                                        <select class="select-inline select-inline-dark">
+                                            <option value="En" selected>En</option>
+                                            <option value="Ru">Ru</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-        </nav>
+                <div class="navbar-main">
+
+                </div>
+                <div class="navbar-bottom">
+
+                </div>
+            </nav>
+        </div>
     </header>
     <content class="container">
         @RenderBody()
