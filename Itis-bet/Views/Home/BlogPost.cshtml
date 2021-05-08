@@ -19,20 +19,128 @@
                     <div class="blog-post-meta">
                         <time class="blog-post-time" datetime="2020"><span class="icon mdi mdi-clock"></span>April 15, 2020</time>
                         <div class="blog-post-comment"><span class="icon mdi mdi-comment-outline"></span>345</div>
-                        <div class="blog-post-view"><span class="icon fl-justicons-visible6"></span>234</div>
+                        <div class="blog-post-view"><i class="icon far fa-eye"></i>234</div>
                     </div>
                 </div>
                 <div class="blog-post-content">
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenati</p>
                     <img src="~/images/blog-post-1-683x407.jpg" alt="" width="763" height="407">
                     <div class="blog-post-share">
-                        <p>Поделиться</p>
-                        <ul class="group">
-                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <p>Поделиться новостью</p>
+                        <ul class="share_ul">
+                            <li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
+            <section class="comments">
+                <div class="menu-header">
+                    <div class="menu-header-text">
+                        <h5>Комментарии</h5>
+                    </div>
+                </div>
+                <div class="comments-content">
+                    <ul class="comments-ul">
+                        <li class="comment">
+                            <div class="comment-content">
+                                <div class="comment-avatar">
+                                    <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="63" height="63" />
+                                </div>
+                                <div class="comment-body">
+                                    <div class="comment-info">
+                                        <div class="commentator-name">
+                                            <h5>Имя комментатора</h5>
+                                        </div>
+                                        <div class="comment-date">
+                                            <p>25.05.2021</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-text">
+                                        Очень важный комментарий. Очень важный комментарий. Очень важный комментарий. Очень важный комментарий. Очень важный комментарий.
+                                        Очень важный комментарий. Очень важный комментарий. Очень важный комментарий.
+                                    </div>
+                                    <div class="comment-buttons">
+                                        <a class="reply-to" href="#createComment">
+                                            <span class="icon mdi mdi-comment-outline"></span>
+                                            Ответить
+                                        </a>
+                                    </div>
+                                    <div class="comment-content">
+                                        <div class="comment-avatar">
+                                            <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="63" height="63" />
+                                        </div>
+                                        <div class="comment-body sub-comment">
+                                            <div class="comment-info">
+                                                <div class="commentator-name">
+                                                    <h5>Имя комментатора</h5>
+                                                </div>
+                                                <div class="comment-date">
+                                                    <p>25.05.2021</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="comment-text">
+                                                Очень важный комментарий. Очень важный комментарий. Очень важный комментарий. Очень важный комментарий. Очень важный комментарий.
+                                                Очень важный комментарий. Очень важный комментарий. Очень важный комментарий.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="comment">
+                            <div class="comment-content">
+                                <div class="comment-avatar">
+                                    <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="63" height="63" />
+                                </div>
+                                <div class="comment-body">
+                                    <div class="comment-info">
+                                        <div class="commentator-name">
+                                            <h5>Имя комментатора</h5>
+                                        </div>
+                                        <div class="comment-date">
+                                            <p>25.05.2021</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-text">
+                                        Очень важный комментарий. Очень важный комментарий. Очень важный комментарий. Очень важный комментарий. Очень важный комментарий.
+                                        Очень важный комментарий. Очень важный комментарий. Очень важный комментарий.
+                                    </div>
+                                    <div class="comment-buttons">
+                                        <a class="reply-to" href="#createComment">
+                                            <span class="icon mdi mdi-comment-outline"></span>
+                                            Ответить
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="comment-content create-comment" id="createComment">
+                        <div class="comment-avatar">
+                            <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="63" height="63" />
+                        </div>
+                        <div class="comment-body">
+                            <div class="comment-info">
+                                <div class="commentator-name">
+                                    <h5>Имя комментатора</h5>
+                                </div>
+                            </div>
+
+                            <form>
+                                <div class="form-wrap">
+                                    <textarea class="form-control" placeholder="Введите ваш комментарий"></textarea>
+                                </div>
+                                <div class="form-wrap">
+                                    <input class="primary-btn" type="submit" value="Отправить комментарий" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
         @await Html.PartialAsync("_GetBlogPostMenu")
     </div>
