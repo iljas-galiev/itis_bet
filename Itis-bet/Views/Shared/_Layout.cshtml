@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
           integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
     <header class="navbar-dark">
@@ -21,7 +21,6 @@
             <nav>
                 <div class="navbar-panel navbar-darker">
                     <button class="navbar-toggle">
-
                     </button>
                     <div class="container navbar-panel-inner">
                         <div class="navbar-panel-item navbar-panel-item-left">
@@ -33,13 +32,11 @@
                         </div>
                         <div class="navbar-panel-item navbar-panel-item-right">
                             <ul class="list-inline list-inline-bordered">
-                                <li>
-                                    <div>
-                                        <select class="select-inline select-inline-dark">
-                                            <option value="En" selected>En</option>
-                                            <option value="Ru">Ru</option>
-                                        </select>
-                                    </div>
+                                <li class="select-inline-dark">
+                                    <select class="select-inline-dark select">
+                                        <option value="en" selected>en</option>
+                                        <option value="ru" selected>ru</option>
+                                    </select>
                                 </li>
                             </ul>
                         </div>
@@ -67,6 +64,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

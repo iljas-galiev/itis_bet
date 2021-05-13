@@ -1,3 +1,5 @@
-﻿function toggleMenu(){
-    $('#menu').toggle()
-}
+﻿$(document).ready(function () {
+    $('.select').select2({
+        placeholder:"asds",
+    });
+});
