@@ -452,11 +452,15 @@ content > .container{
 .navbar-panel-item-right {
     position: relative;
     z-index: 1;
+    display:flex;
+    justify-content: flex-end;
 }
 .list-inline-bordered > li {
     position: relative;
     vertical-align: middle;
     display: inline-block;
+    padding: 0px 12px;
+    box-sizing:border-box;
 }
 .list-inline-bordered > li:not(:last-child)::after {
     content: '';
@@ -554,6 +558,207 @@ content > .container{
 .select2-results>*{
     display:flex;
     flex-direction:column;
-    align-items:start;
-    
+    align-items:start;   
+}
+.badge-primary {
+    color: #fff;
+    background-color: #64b000;
+}
+.navbar-panel .badge-primary:hover{
+    background-color:#383838!important;
+    color:white!important;
+}
+.fa-icon {
+    color: #64b000;
+    position: relative;
+    top: -1px;
+    vertical-align: middle;
+    font-size: 1.33em;
+    color: #64b000;
+    transition: .22s;
+    font-weight:700;
+}
+
+.color-white{
+    color:white!important;
+}
+.color-green{
+    color:#64b000!important;
+}
+
+
+
+
+@media (min-width: 576px) {
+    .header-container {
+        max-width: 540px;
+    }
+}
+@media (min-width: 768px) {
+    .header-container {
+        max-width: 720px;
+    }
+}
+@media (min-width: 992px) {
+    .header-container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1200px) {
+    .header-container {
+        max-width: 1200px;
+    }
+}
+.header-container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.navbar-main-container {
+    position: relative;
+    align-items: center;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+     
+}
+.brand-logo-dark{
+    display:none;
+}
+.navbar-classic.navbar-static .search {
+    max-width: 315px;
+    margin-left: auto;
+    width: 100%;
+}
+.search-wrap {
+    position: relative;
+    display:flex;
+    justify-content:space-between;
+    margin: 15px 0px;
+
+
+}
+.search {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-label {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    padding-left: 19px;
+    padding-right: 19px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    pointer-events: none;
+    text-align: left;
+    z-index: 1;
+    transition: .25s;
+    will-change: transform;
+    transform: translateY(-50%);
+    margin-bottom:0px;
+}
+.form-input {
+    display: block;
+    width: 100%;
+    min-height: 60px;
+    padding: 17px 19px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #9b9b9b;
+    background-color: #fff;
+    background-image: none;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    transition: .3s ease-in-out;
+    border: 1px solid #e1e1e1;
+}
+.navbar-search, .form-input {
+    color: #707279;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    min-height: 50px;
+    padding-right: 50px;
+    display:flex;
+    align-items:center;
+}
+
+.navbar-search-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
+    outline-offset: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+input,button{
+    outline:none!important;
+}
+.search-form-submit {
+    top: 0px;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 20px;
+    color: #ccc;
+    transition: .33s;
+    height:50px;
+    margin-top:15px;
+}
+.search-form-submit:active, .search-form-submit:focus{
+    border:none;
+    background:none;
+}
+.navbar-search-form-input, .search-form-submit {
+    background: #484848;
+    border-color: #484848;
+}
+.navbar-search-form-input {
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.search-form-submit {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+.navbar-nav{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+}
+.navbar-main-bottom{
+    padding:20px 0px;
+}
+.nav-link {
+    font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .075em;
+    text-transform: uppercase;
+    color: #fff!important;
+    line-height: 1.2;
+}
+.navbar-nav .active>a{
+    color:#64b000!important;
+}
+.navbar-main-top{
+    padding:9px 0px;
+}
+.nav-item+.nav-item{
+    margin-left:47px;
 }
