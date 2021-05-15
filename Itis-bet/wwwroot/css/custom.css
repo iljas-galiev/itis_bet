@@ -991,3 +991,156 @@ header button:active, header button:focus {
     border: none;
     background: none;
 }
+login{
+   
+}
+registration{
+
+}
+.log-reg-container {
+    margin-top:60px;
+    margin-bottom:80px;
+    background-color: #fff;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:570px;
+}
+.log-reg-container .header{
+    background-color:#35363c;
+    display:flex;
+    justify-content:space-between;
+    padding:20px 30px;
+}
+.log-reg-container .header h5{
+    text-transform:uppercase;
+    color:#fff;
+    margin-bottom:0;
+    min-width:0px;
+}
+.log-reg-container .header h5::before{
+    display:none;
+}
+.switch{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+.switch >*{
+    margin-left:15px;
+}
+.switch-text span {
+    color: #6b6b6e;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+}
+.switch-btn {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 43px;
+    height: 17px;
+    background-color: #5e616e;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.circle {
+    position: absolute;
+    top: 50%;
+    left: -4px;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    will-change: transform;
+    transition: all .1s linear;
+}
+.circle:before{
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #64b000;
+    transform: translate(-50%, -50%);
+    transition: all .2s ease-in-out;
+}
+.circle:hover:before{  
+    width: 16px;
+    height: 16px;   
+}
+.switch-pos-right{
+    right:-4px;
+    left:unset;
+}
+.regLogForm{
+    padding:40px 25px;
+}
+.checkbox-wrap{
+    display:flex;
+    align-items:center;
+    margin-top: 20px;
+    position:relative;
+}
+.checkbox-custom {
+    position: absolute;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    outline: none !important;
+    cursor: pointer;
+    position: absolute;
+    left: -100vw;
+    top: -100vh;
+    float: left;
+    visibility: hidden;
+}
+    .checkbox-custom + span {
+        top: 1px;
+        left: 0;
+        width: 21px;
+        height: 21px;
+        margin: 0;
+        border: 1px solid #e1e1e1;
+        position: absolute;
+        left: 0;
+        outline: none;
+        cursor: pointer;
+        margin-right:10px;
+    }
+.checkbox-custom+span:after{
+    content: '\e876';
+    font-family: "Material Icons";
+    position: absolute;
+    top: -1px;
+    left: 1px;
+    font-size: 18px;
+    line-height: 18px;
+    color: #64b000;
+    transition: .22s;
+    display:none;
+}
+.checkbox-custom+span.checked:after{
+    display:inline-block;
+}
+.log-reg-container .primary-btn-lg {
+    width: 100%;
+    margin-top:20px;
+}
+.checkbox-custom-label{
+    padding-left:31px;
+    cursor:pointer;
+    margin-bottom:0px;
+}
+login{
+    display:none;
+}
+registration{
+    display:none;
+}
+login.active, registration.active{
+    display:block;
+}

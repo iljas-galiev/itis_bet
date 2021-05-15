@@ -57,3 +57,33 @@ document.getElementById('navbarCollapseToggler').addEventListener('click', funct
 
     }
 });
+document.getElementById('logRegSwitch').addEventListener('click', function () {
+    if ($('#logRegSwitchCircle').hasClass('switch-pos-right')) {
+        $('#logRegSwitchCircle').removeClass('switch-pos-right')
+    }
+    else {
+        $('#logRegSwitchCircle').addClass('switch-pos-right')
+    }
+    if ($('login').hasClass('active')) {
+        $('login').removeClass('active');
+        $('registration').addClass('active');
+    }
+    else {
+        $('registration').removeClass('active');
+        $('login').addClass('active');
+    }
+});
+function checkCustomCheckBox() {
+    if ($('#rememberMeCheckBox').hasClass('checked')) {
+        $('#hiddenCheckbox').prop('checked', false);
+        $('#rememberMeCheckBox').removeClass('checked')
+        console.log('1')
+    }
+    else {
+        $('#hiddenCheckbox').prop('checked', true);
+        $('#rememberMeCheckBox').addClass('checked');
+        console.log('2')
+    }
+}
+document.getElementById('rememberMeCheckBox').addEventListener('click', function () { checkCustomCheckBox() });
+document.getElementById('rememberMeText').addEventListener('click', function () { checkCustomCheckBox() });

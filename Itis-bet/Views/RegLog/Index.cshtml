@@ -1,0 +1,80 @@
+﻿
+    <registration class="log-reg-container active" itemid="log">
+        <div class="header">
+            <h5>Регистрация</h5>
+            <div class="switch">
+                <div class="switch-text">
+                    <span>
+                        Зарегистрироваться
+                    </span>
+                </div>
+                <div class="switch-btn" id="logRegSwitch">
+                    <span class="circle" id="logRegSwitchCircle">
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <form class="regLogForm">
+                <div class="form-wrap">
+                    <input class="form-control" type="text" placeholder="Почта" />
+                </div>
+                <div class="form-wrap">
+                    <input class="form-control"  type="text" placeholder="Имя" />
+                </div>
+                <div class="form-wrap">
+                    <input class="form-control"  type="tel" placeholder="Телефон" />
+                </div>
+                <div class="form-wrap">
+                    <input class="form-control"  type="password" placeholder="Пароль" />
+                </div>
+                <div class="form-wrap">
+                    <input class="form-control"  type="password" placeholder="Повторите пароль" />
+                </div>                
+                <button class="btn primary-btn primary-btn-lg" type="submit">
+                    Зарегистрироваться
+                </button>
+            </form>
+        </div>
+    </registration>
+    <login class="log-reg-container" itemid="reg">
+        <div class="header">
+            <h5>Вход</h5>
+            <div class="switch">
+                <div class="switch-text">
+                    <span>
+                        Войти
+                    </span>
+                </div>
+                <div class="switch-btn" id="logRegSwitch">
+                    <span class="circle" id="logRegSwitchCircle">
+
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <form class="regLogForm">               
+                <div class="form-wrap">
+                    <input class="form-control" type="text" placeholder="Имя" />
+                </div>
+                <div class="form-wrap">
+                    <input class="form-control" type="password" placeholder="Пароль" />
+                </div>
+                <div class="checkbox-wrap">
+                    <label class="checkbox-custom-label" id="checkboxCustomLabel">
+                        <input class="checkbox-custom" id="hiddenCheckbox" type="checkbox" />
+                        <span id="rememberMeCheckBox"></span>
+                        <span id="rememberMeText">
+                            Запомнить меня
+                        </span>
+                    </label>
+                </div>
+                <button class="btn primary-btn primary-btn-lg" type="submit">
+                    Войти
+                </button>
+            </form>
+        </div>
+    </login>
+
