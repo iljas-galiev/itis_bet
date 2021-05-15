@@ -67,10 +67,14 @@ document.getElementById('logRegSwitch').addEventListener('click', function () {
     if ($('login').hasClass('active')) {
         $('login').removeClass('active');
         $('registration').addClass('active');
+        $('#regLogHeader').text('Регистрация')
+        $('#regLogSubText').text('Вход')
     }
     else {
         $('registration').removeClass('active');
         $('login').addClass('active');
+        $('#regLogSubText').text('Регистрация')
+        $('#regLogHeader').text('Вход')
     }
 });
 function checkCustomCheckBox() {
