@@ -10,6 +10,9 @@ body {
     letter-spacing: 0.025em;
     box-sizing:content-box;
 }
+nav{
+    position:relative;
+}
 ul{
     margin:0px;
     padding:0;
@@ -398,8 +401,10 @@ header {
 content > .container{
     padding-top:60px;
 }
-.navbar-panel{
+.navbar-panel {
     padding: 0px 15px;
+    display: flex;
+    align-items:center;
 }
 .navbar-panel-inner {
     position: relative;
@@ -684,7 +689,7 @@ content > .container{
     padding-top: 9px;
     padding-bottom: 9px;
     min-height: 50px;
-    padding-right: 50px;
+    padding-right: 38px;
     display:flex;
     align-items:center;
 }
@@ -701,8 +706,11 @@ content > .container{
     align-items: center;
     justify-content: center;
 }
-input,button{
-    outline:none!important;
+.navbar-search{
+    padding-right:0px;
+}
+input, button {
+    outline: none !important;
 }
 .search-form-submit {
     top: 0px;
@@ -722,7 +730,7 @@ input,button{
 }
 .search-form-submit:active, .search-form-submit:focus{
     border:none;
-    background:none;
+    background: #484848;
 }
 .navbar-search-form-input, .search-form-submit {
     background: #484848;
@@ -761,4 +769,225 @@ input,button{
 }
 .nav-item+.nav-item{
     margin-left:47px;
+}
+.header-fixed{
+    position:fixed;
+    width:100vw;
+    top:0;
+    z-index:500;
+}
+@media screen and (max-width: 1200px){
+    .navbar-main-top{
+        display:none;
+    }
+    .navbar-main-bottom {
+        display: none;
+    }
+    .navbar-wrap{
+        height:46px!important;
+    }
+    .navbar-toggle {
+        display: inline-block;
+        position: relative;
+        width: 46px;
+        height: 46px;
+        line-height: 46px;
+        cursor: pointer;
+        color: #b7b7b7;
+        background-color: transparent;
+        border: none;
+    }
+    .navbar-toggle span, .navbar-toggle span::after, .navbar-toggle span:before {
+        width: 30px;
+        height: 4px;
+        background-color: #b7b7b7;
+        backface-visibility: hidden;
+        border-radius: 3px;
+        position: relative;
+        display: block;
+        margin: auto;
+        transition: .3s all ease;
+    }
+    .navbar-toggle span::before, .navbar-toggle span::after  {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: -10px;
+        transition: .3s all ease;
+    }
+    .navbar-toggle.active span {
+        background: transparent;
+    }
+    .navbar-toggle span::after {
+        top: 10px;
+    }
+    .navbar-toggle.active span::before {
+        transform: rotate( 45deg );
+        transform-origin: 50% 50%;
+        top: 0;
+    }
+    .navbar-toggle.active span::after {
+        transform: rotate( -45deg );
+        transform-origin: 50% 50%;
+        top: 0;
+    }
+    .navbar-panel-inner{
+        flex-direction:row;
+        justify-content:flex-end;
+    }
+    .navbar-panel-item{
+        width:auto;
+        padding: 5px 0px;
+    }
+    .navbar-panel-item-left{
+        display:flex;
+        flex-direction:row;
+        justify-content:end;
+    }
+    .navbar-collapse-toggle {
+        display: block;
+        max-width: 50px;
+        z-index: 1091;
+        position: relative;
+        width: 46px;
+        height: 46px;
+        line-height: 46px;
+        cursor: pointer;
+        color: #b7b7b7;
+    }
+    .navbar-collapse-toggle span, .navbar-collapse-toggle span::after, .navbar-collapse-toggle span:before{
+        position: absolute;
+        width: 5.75px;
+        height: 5.75px;
+        line-height: 5.75px;
+        text-align: center;
+        background: #b7b7b7;
+        left: 50%;
+        margin-left: -2.875px;
+        border-radius: 50%;
+        transition: .3s all ease;
+        
+    }
+    .navbar-collapse-toggle span{
+        top: 50%;
+        margin-top: -2.875px;
+    }
+    .navbar-collapse-toggle span::after{
+        top: 100%;
+        margin-top: 2.875px;
+        content: '';
+    }
+    .navbar-collapse-toggle span:before{
+        bottom: 100%;
+        margin-bottom: 2.875px;
+        content: '';
+    }
+    .navbar-collapse-toggle.active span{
+        transform: scale(0.7);
+    }
+    .navbar-collapse-toggle.active span:before{
+        transform: translateY(17.25px);
+    }
+    .navbar-collapse-toggle.active span:after{
+        transform: translateY(-17.25px);
+    }
+    #headerRight{
+        display:none;
+    }
+    .navbar-panel-inner{
+        padding-right:0px;
+        margin-right:-10px;
+    }
+    .navbar-main.active{
+        display:flex;
+        flex-direction:column;
+        position:fixed;
+        width:300px;
+        top:56px;
+        bottom:0;
+        z-index:2000;
+        background-color:#383838;
+    }
+    .navbar-panel{
+        position:fixed;
+        width:100%;
+        top:0px;
+        z-index:1000;
+    }
+    .navbar-main-top .navbar-main-container{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+    .navbar-main-top.active {
+        display: flex;
+    }
+    .navbar-main-bottom.active {
+        display: flex;
+        padding: 10px 0px;
+        background: #383838;
+    }
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        width: 100%;
+    }
+    .navbar-nav .active>a{
+        color:#fff!important;
+        
+    }
+    .nav-item {
+        margin-left: 0px !important;
+        display: inline-block;
+        width: 100%;
+        padding: 9px 0px;
+        margin:2px 0px;
+    }
+    .nav-item:hover {
+        background-color:#64b000;
+    }
+    .navbar-main-bottom .header-container{
+        margin:0;
+        padding:0;
+    }
+    .nav-link {
+        padding: 9px 18px !important;
+        font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: .075em;
+        text-transform: uppercase;
+        color: #fff !important;
+        line-height: 1.2;
+        display: inline-block;
+    }
+    .nav-link, .nav-link:hover{
+        color:white!important;
+    }
+    .nav-item.active {
+        background-color:#64b000;
+        
+    }
+    #headerRight.active{
+        display:flex;
+        position:fixed;
+        top:56px;
+        width:100%;
+        background-color:#383838;
+        left:0;
+        right:0;
+        padding:15px 20px;
+        justify-content:flex-end;
+    }
+    #headerRight.active ul{
+        padding: 2px 0px;
+    }
+    #headerRight.active #sign-in-text{
+        display:none;
+    }
+}
+header button:active, header button:focus {
+    border: none;
+    background: none;
 }

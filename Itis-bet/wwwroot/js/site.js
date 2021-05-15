@@ -10,3 +10,50 @@ function coloriseSignInIcon(iconClass, textClass) {
     $('#sign-in-icon').addClass(iconClass);
     $('#sign-in-text').addClass(textClass);
 }
+window.addEventListener('scroll', function () {
+    elem = this.document.getElementById('fixibleHeader');
+    y = elem.getBoundingClientRect().top;
+    console.log(y)
+    console.log(pageYOffset)
+    if (y == 0 & pageYOffset < 130) {
+        $('#fixibleHeader').removeClass('header-fixed')
+    }
+    if (y <= 0 & this.pageYOffset>130) {
+        $('#fixibleHeader').addClass('header-fixed')
+    }
+});
+document.getElementById('navbarToggler').addEventListener('click', function () {
+    if ($('#navbarToggler').hasClass('active')) {
+        $('#navbarToggler').removeClass('active');
+        $('#headerMain').removeClass('active');
+        $('#navbar-main-container').removeClass('active');
+        $('#navbar-main-top').removeClass('active');
+        $('#fixibleHeader').removeClass('active');
+    }
+    else {
+        $('#navbarCollapseToggler').removeClass('active');
+        $('#headerRight').removeClass('active');
+        $('#navbarToggler').addClass('active');
+        $('#headerMain').addClass('active');
+        $('#navbar-main-container').addClass('active');
+        $('#navbar-main-top').addClass('active');
+        $('#fixibleHeader').addClass('active');
+    }
+});
+document.getElementById('navbarCollapseToggler').addEventListener('click', function () {
+    if ($('#navbarCollapseToggler').hasClass('active')) {
+        $('#navbarCollapseToggler').removeClass('active');
+        $('#headerRight').removeClass('active');
+        
+    }
+    else {
+        $('#navbarToggler').removeClass('active');
+        $('#headerMain').removeClass('active');
+        $('#navbar-main-container').removeClass('active');
+        $('#navbar-main-top').removeClass('active');
+        $('#fixibleHeader').removeClass('active');
+        $('#navbarCollapseToggler').addClass('active');
+        $('#headerRight').addClass('active');
+
+    }
+});
