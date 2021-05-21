@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Itis_bet.Controllers
 {
-    public class RegLogController : Controller
+    public class AccountController : Controller
     {
         public IActionResult Index()
         {
