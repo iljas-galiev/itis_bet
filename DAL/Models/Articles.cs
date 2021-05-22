@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Itis_bet.Models
+namespace Itis_bet.DAL.Models
 {
     public class Articles
     {
@@ -19,5 +19,6 @@ namespace Itis_bet.Models
 
         [DataType(DataType.ImageUrl)]
         public string Picture { get; set; }
+        public ICollection<Comments> comments { get; set; }
     }
 }

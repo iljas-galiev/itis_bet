@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace Itis_bet.Models
+namespace Itis_bet.DAL.Models
 {
     public partial class ITISbetContext : 
             IdentityDbContext<Users,IdentityRole<Guid>,Guid>

@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Itis_bet.Models
+namespace Itis_bet.DAL.Models
 {
     public class UsersBets
     {

@@ -1,4 +1,5 @@
-﻿using Itis_bet.Models;
+﻿using Itis_bet.DAL.Models;
+using Itis_bet.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,11 +13,14 @@ namespace ITIS_Bet.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly  ITISbetContext _dbContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ITISbetContext context, ILogger<HomeController> logger)
         {
+            _dbContext = context;
             _logger = logger;
         }
+
 
         public IActionResult Index()
         {
