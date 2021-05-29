@@ -1,0 +1,52 @@
+@model Itis_bet.DAL.Models.Articles
+
+<div class="container">
+    <div class="row row-30">
+        <div class="blog-post">
+                <!-- Badge-->
+                <div class="badge badge-secondary">News</div>
+                
+                <h3 class="blog-post-title">@Model.Header</h3>
+                
+                <div class="blog-post-header">
+                  
+                    <div class="blog-post-author">
+                      <img class="img-circle" src="@Model.Picture" alt="" width="63" height="63">
+                    </div>
+
+                    <div class="blog-post-meta">
+                      <time class="blog-post-time" datetime="2020"><span class="icon mdi mdi-clock"></span>@Model.PublishedAt</time>
+                      <div class="blog-post-comment"><span class="icon mdi mdi-comment-outline"></span>@Model.Comments.Count</div>
+                      <div class="blog-post-view"><span class="icon fl-justicons-visible6"></span>@{new Random().Next(10, 300)}</div>
+                    </div>
+                  
+                </div>
+                
+                <div class="blog-post-author-quote">
+                  <p>@Model.Description</p>
+                </div>
+                
+                <div class="blog-post-share">
+                  <p>Share this post</p>
+                  <ul class="group">
+                    <li><a class="icon fa-facebook" href="#"></a></li>
+                    <li><a class="icon fa-twitter" href="#"></a></li>
+                    <li><a class="icon fa-google-plus" href="#"></a></li>
+                    <li><a class="icon fa-instagram" href="#"></a></li>
+                  </ul>
+                </div>
+                
+                <div class="blog-post-content">
+                  <p>@Model.Content</p>
+                  <!-- Quote Default-->
+                  <article class="quote-default">
+                    <div class="quote-default-text">
+                      <p class="q">This week in sports betting proved to be very unpredictable</p>
+                    </div>
+                  </article>
+                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate e.</p>
+                </div>
+                
+              </div>
+    </div>
+</div>
