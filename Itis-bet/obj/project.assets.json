@@ -8176,39 +8176,40 @@
     ]
   },
   "packageFolders": {
-    "/Users/Marshall483/.nuget/packages/": {},
-    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "C:\\Users\\jows1\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Marshall483/Documents/sources/repos/itis_bet/Itis-bet/Itis-bet.csproj",
+      "projectUniqueName": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\Itis-bet.csproj",
       "projectName": "Itis-bet",
-      "projectPath": "/Users/Marshall483/Documents/sources/repos/itis_bet/Itis-bet/Itis-bet.csproj",
-      "packagesPath": "/Users/Marshall483/.nuget/packages/",
-      "outputPath": "/Users/Marshall483/Documents/sources/repos/itis_bet/Itis-bet/obj/",
+      "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\Itis-bet.csproj",
+      "packagesPath": "C:\\Users\\jows1\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/Marshall483/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\jows1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "/Users/Marshall483/Documents/sources/repos/itis_bet/BLL/BLL.csproj": {
-              "projectPath": "/Users/Marshall483/Documents/sources/repos/itis_bet/BLL/BLL.csproj"
+            "C:\\Users\\jows1\\source\\repos\\itis_bet\\BLL\\BLL.csproj": {
+              "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\BLL\\BLL.csproj"
             },
-            "/Users/Marshall483/Documents/sources/repos/itis_bet/DAL/DAL.csproj": {
-              "projectPath": "/Users/Marshall483/Documents/sources/repos/itis_bet/DAL/DAL.csproj"
+            "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj"
             }
           }
         }
@@ -8221,7 +8222,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
@@ -8252,12 +8252,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.8, 3.1.8]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -8266,7 +8260,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
