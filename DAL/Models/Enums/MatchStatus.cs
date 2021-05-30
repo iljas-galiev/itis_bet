@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Itis_bet.Models.Enums
+namespace DAL.Models.Enums
 {
     public enum MatchStatus
     {

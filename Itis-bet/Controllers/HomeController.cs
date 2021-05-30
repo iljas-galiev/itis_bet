@@ -1,5 +1,4 @@
-﻿using Itis_bet.DAL.Models;
-using Itis_bet.Models;
+﻿using DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;

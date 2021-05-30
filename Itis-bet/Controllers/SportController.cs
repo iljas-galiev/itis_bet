@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Itis_bet.DAL.Models;
-using Itis_bet.Models.Enums;
+using DAL.Models;
+using DAL.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

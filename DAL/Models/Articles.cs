@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Itis_bet.Models.Enums;
+using DAL.Models.Enums;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Itis_bet.DAL.Models
+namespace DAL.Models
 {
     public class Articles
     {
@@ -28,7 +29,9 @@ namespace Itis_bet.DAL.Models
         [Required (ErrorMessage = "Its a consonance, post without content! ")]
         public string Content { get; set; }
         
+        /* !!! Auto Generated, please dont configure selfly. !!! */
         [DataType(DataType.Date)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime PublishedAt { get; set; }
         
         [Required]

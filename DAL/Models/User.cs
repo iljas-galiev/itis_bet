@@ -7,35 +7,49 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace Itis_bet.DAL.Models
+
+namespace DAL.Models
 {
-    [Table(name: "Users")]
-    public class User:IdentityUser<Guid>
+    public class User : IdentityUser
     {
-        string email;
-        bool verificated;
-        string passport;
-        bool canBetting;
-        string avatar;
-        decimal money;
+        [Key]
+        [DataType(DataType.EmailAddress)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public override string Email { get; set; }
 
-        [Column(name: "Email")]
-        public string Email { get; set; }
+        public Guid ProfileId { get; set; }
+        public UserProfile Profile { get; set; }
 
-        [Column(name: "Verificated")]
-        public bool Verificated { get { return verificated; } set { verificated = value; } }
+        public Guid  PassportId { get; set; }
+        public Passport Passport { get; set; }
 
-        [Column(name: "Passport")]
-        public string Passport { get { return passport; } set { passport = value; } }
+        public IEnumerable<Comments> Comments { get; set; }
 
-        [Column(name: "CanBetting")]
-        public bool CanBetting { get { return canBetting; } set { canBetting = value; } }      
-        [Column(name: "Avatar")]
-        public string Avatar { get { return avatar; } set { avatar = value; } }
+    }
+    
+    public class UserProfile
+    {
+        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+        public User User { get; set; }
 
-        [Column(name: "Money")]
-        public decimal Money { get { return money; } set { money = value; } }
+        public uint Money { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public bool CanBet { get; set; }
+    }
 
+    public class Passport
+    {
+        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+        public User User { get; set; }
+
+        public string Name { get; set; }
+        public string LastName { get; set; }
+
+        public string Serial { get; set; }
+        public string Number { get; set; }
+        public string Issued { get; set; }
     }
 }

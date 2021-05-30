@@ -1,4 +1,4 @@
-﻿using Itis_bet.Models.Enums;
+﻿using DAL.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Itis_bet.DAL.Models
+namespace DAL.Models
 {
     [Table("Matches")]
     public class Matches
