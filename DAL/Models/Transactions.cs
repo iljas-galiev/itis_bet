@@ -15,7 +15,7 @@ namespace Itis_bet.DAL.Models
 
         public Guid User_Id { get; set; }
         [ForeignKey("User_Id")]
-        public Users User { get; set; }
+        public User User { get; set; }
 
         [Required]
         public TransactionType Type { get; set; } 

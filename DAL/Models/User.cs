@@ -10,7 +10,7 @@ using System.ComponentModel;
 namespace Itis_bet.DAL.Models
 {
     [Table(name: "Users")]
-    public class Users:IdentityUser<Guid>
+    public class User:IdentityUser<Guid>
     {
         string email;
         bool verificated;

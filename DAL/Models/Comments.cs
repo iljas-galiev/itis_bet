@@ -14,7 +14,7 @@ namespace Itis_bet.DAL.Models
 
         public Guid User_Id { get; set; }
         [ForeignKey("User_Id")]
-        public Users User { get; set; }
+        public User User { get; set; }
 
         public Guid Article_Id { get; set; }
         [ForeignKey("Article_Id")]

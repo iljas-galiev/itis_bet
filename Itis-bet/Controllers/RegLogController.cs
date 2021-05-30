@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Itis_bet.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,27 @@ namespace Itis_bet.Controllers
 {
     public class RegLogController : Controller
     {
-        public IActionResult Index()
+        private readonly UserManager<User> _userManager;
+
+        public RegLogController(UserManager<User> manager) =>
+            _userManager = manager;
+
+        [HttpGet]
+        public IActionResult Index() =>
+            View();
+
+        [HttpPost]
+        public IActionResult Reg()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Log() =>
+
+
+        [HttpPost]
+        public IActionResult LogOut()
         {
             return View();
         }

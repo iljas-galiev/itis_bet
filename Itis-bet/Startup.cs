@@ -29,7 +29,7 @@ namespace Itis_bet
         services.AddDbContext<ITISbetContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("ITISBet")));
         
-        services.AddIdentityCore<Users>()
+        services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<ITISbetContext>();
             
             services.AddControllersWithViews();
