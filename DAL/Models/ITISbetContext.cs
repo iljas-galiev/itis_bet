@@ -10,7 +10,7 @@ namespace DAL.Models
 { 
     public partial class ITISbetContext : IdentityDbContext<User>
     {
-        // public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Matches> Matches { get; set; }
         public DbSet<Articles> Articles { get; set; }
         public DbSet<Comments> Comments { get; set; }
@@ -25,10 +25,13 @@ namespace DAL.Models
         public ITISbetContext(DbContextOptions<ITISbetContext> options)
             : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
             if (!optionsBuilder.IsConfigured)
                 optionsBuilder.UseNpgsql("ITISBet");
-            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
