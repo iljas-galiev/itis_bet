@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using DAL.Models.Enums;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Models
@@ -40,8 +37,9 @@ namespace DAL.Models
         
         public ICollection<Comments> Comments { get; set; }
 
-        [BindNever] 
-        public bool IsCommented => 
-            Comments.Count != 0;
+        [NotMapped]
+        public bool IsCommented =>
+            this.Comments != null && this.Comments.Count != 0;
     }
 }
+
