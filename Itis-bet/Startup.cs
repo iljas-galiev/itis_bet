@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL;
 using DAL.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,11 +27,7 @@ namespace Itis_bet
 
         public void ConfigureServices(IServiceCollection services)
         {
-        services.AddDbContext<ITISbetContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("ITISBet")));
-        
-        services.AddIdentityCore<User>()
-                .AddEntityFrameworkStores<ITISbetContext>();
+            services.ConfigureDataAccess(Configuration);
             
             services.AddControllersWithViews();
         }

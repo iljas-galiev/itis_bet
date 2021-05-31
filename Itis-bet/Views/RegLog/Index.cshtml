@@ -20,7 +20,7 @@
     <registration class="active">
 
         @{
-            using (Html.BeginForm("RegLog", "Reg", FormMethod.Post))
+            using (Html.BeginForm("Reg", "RegLog", FormMethod.Post))
             {
                 @Html.ValidationMessage("UniqEmailError")
 
@@ -82,7 +82,7 @@
     <login>
 
         @{
-            using (Html.BeginForm("RegLog", "Log", FormMethod.Post))
+            using (Html.BeginForm("Log", "RegLog", FormMethod.Post))
             {
 
                 <div class="form-wrap">
@@ -109,9 +109,6 @@
 
             }
         }
-
-        <form class="regLogForm">
-        </form>
 
     </login>
 

@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DAL.Migrations
 {
-    [DbContext(typeof(ITISbetContext))]
+    [DbContext(typeof(Database))]
     [Migration("20210529133500_artictes")]
     partial class artictes
     {

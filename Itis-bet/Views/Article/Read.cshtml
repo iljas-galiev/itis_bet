@@ -1,121 +1,122 @@
 @model DAL.Models.Articles
 
 <div class="container">
-    <div class="row row-30">
-        <div class="blog-post">
-            <!-- Badge-->
-            <div class="badge badge-secondary">News</div>
+<div class="row row-30">
+    <div class="blog-post">
+        <!-- Badge-->
+        <div class="badge badge-secondary">News</div>
 
-            <h3 class="blog-post-title">@Model.Header</h3>
+        <h3 class="blog-post-title">@Model.Header</h3>
 
-            <div class="blog-post-header">
+        <div class="blog-post-header">
 
-                <div class="blog-post-author">
-                    <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="63" height="63">
-                </div>
-
-                <div class="blog-post-meta">
-                    <time class="blog-post-time" datetime="2020"><span class="icon mdi mdi-clock"></span>@Model.PublishedAt</time>
-                    <div class="blog-post-comment"><span class="icon mdi mdi-comment-outline"></span>@Model.Comments.Count</div>
-                    <div class="blog-post-view"><span class="icon fl-justicons-visible6"></span>@{new Random().Next(10, 300);}</div>
-                </div>
-
+            <div class="blog-post-author">
+                <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="63" height="63">
             </div>
 
-            <div class="blog-post-author-quote">
-                <p>@Model.Description</p>
-            </div>
-
-            <div class="blog-post-share">
-                <p>Share this post</p>
-                <!-- Sharing here -->
-            </div>
-
-            <div class="blog-post-content">
-                <img src="@Model.Picture" alt="" width="683" height="407" style=" width: auto;">
-                <p>@Model.Content</p>
-                <!-- Quote Default-->
-                <article class="quote-default">
-                    <div class="quote-default-text">
-                        <p class="q">This week in sports betting proved to be very unpredictable</p>
-                    </div>
-                </article>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate e.</p>
+            <div class="blog-post-meta">
+                <time class="blog-post-time" datetime="2020"><span class="icon mdi mdi-clock"></span>@Model.PublishedAt</time>
+                <div class="blog-post-comment"><span class="icon mdi mdi-comment-outline"></span>@Model.Comments.Count</div>
+                <div class="blog-post-view"><span class="icon fl-justicons-visible6"></span>@{new Random().Next(10, 300);}</div>
             </div>
 
         </div>
 
-        <div class="blog-post-comments">
+        <div class="blog-post-author-quote">
+            <p>@Model.Description</p>
+        </div>
 
-           @if (Model.IsCommented)
-           {
-                <!-- Post Comment-->
-               foreach (var comment in Model.Comments)
-               {
-                    <div class="post-comment post-comment-parent">
+        <div class="blog-post-share">
+            <p>Share this post</p>
+            <!-- Sharing here -->
+        </div>
 
-                        <div class="post-comment-aside">
-                            <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="Sexy-image" width="69" height="69">
+        <div class="blog-post-content">
+            <img src="@Model.Picture" alt="" width="683" height="407" style=" width: auto;">
+            <p>@Model.Content</p>
+            <!-- Quote Default-->
+            <article class="quote-default">
+                <div class="quote-default-text">
+                    <p class="q">This week in sports betting proved to be very unpredictable</p>
+                </div>
+            </article>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate e.</p>
+        </div>
+
+    </div>
+
+    <div class="blog-post-comments">
+
+        @if (Model.IsCommented)
+        {
+            <!-- Post Comment-->
+            foreach (var comment in Model.Comments)
+            {
+                <div class="post-comment post-comment-parent">
+
+                    <div class="post-comment-aside">
+                        <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="Sexy-image" width="69" height="69">
+                    </div>
+
+                    <div class="post-comment-main">
+
+                        <div class="post-comment-header">
+                            <h5 class="author-name">Linda Peterson</h5>
+                            <time class="post-comment-time" datetime="2020">
+                                2 days ago
+                            </time>
                         </div>
 
-                        <div class="post-comment-main">
-
-                            <div class="post-comment-header">
-                                <h5 class="author-name">Linda Peterson</h5>
-                                <time class="post-comment-time" datetime="2020">
-                                    2 days ago
-                                </time>
-                            </div>
-
-                            <div class="post-comment-text">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nu.</p>
-                            </div>
-
+                        <div class="post-comment-text">
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nu.</p>
                         </div>
 
                     </div>
-               }
-           }
+
+                </div>
+            }
+        }
 
         <div class="blog-post" >
-          @{ 
-            if (User.Identity.IsAuthenticated)
-            {
+            @{ 
+                if (User.Identity.IsAuthenticated)
+                {
 
-                <!-- Coments form -->
-                <div class="comment-box">
+                    <!-- Coments form -->
+                    <div class="comment-box">
 
-                    <div class="comment-box-aside">
-                        <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="69" height="69">
+                        <div class="comment-box-aside">
+                            <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="69" height="69">
+                        </div>
+
+                        <div class="comment-box-main">
+
+                            <h5 class="comment-box-name">@User.Identity.Name</h5>
+
+                            <!-- RD Mailform-->
+                            <form class="rd-mailform comment-box-form" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
+
+                                <div class="form-wrap">
+                                    <label class="form-label rd-input-label" for="comment-message">Your comment</label>
+                                    <textarea class="form-input form-control-has-validation form-control-last-child" id="comment-message" name="message" data-constraints=""></textarea><span class="form-validation"></span>
+                                </div>
+
+                                <div class="form-button">
+                                    <button class="button button-primary" type="submit">Submit</button>
+                                </div>
+
+                            </form>
+
+                        </div>
+
                     </div>
-
-                    <div class="comment-box-main">
-
-                        <h5 class="comment-box-name">@User.Identity.Name</h5>
-
-                        <!-- RD Mailform-->
-                        <form class="rd-mailform comment-box-form" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
-
-                            <div class="form-wrap">
-                                <label class="form-label rd-input-label" for="comment-message">Your comment</label>
-                                <textarea class="form-input form-control-has-validation form-control-last-child" id="comment-message" name="message" data-constraints=""></textarea><span class="form-validation"></span>
-                            </div>
-
-                            <div class="form-button">
-                                <button class="button button-primary" type="submit">Submit</button>
-                            </div>
-
-                        </form>
-
-                    </div>
-
-                </div>
+                }
+                else
+                {
+                    <h2>You need to log in, to leave comment.</h2>
+                }
             }
-            else
-            {
-                <h2>You need to log in, to leave comment.</h2>
-            }
-         }
         </div>
     </div>
+</div>
 </div>

@@ -1,12 +1,7 @@
 ﻿using DAL.Models.Enums;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using DAL.Models.Enums;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DAL.Models
 {
@@ -20,7 +15,7 @@ namespace DAL.Models
         public User User { get; set; }
 
 
-        public Guid Bet_Id { get; set; }
+        public Guid BetId { get; set; }
         public Bets Bet { get; set; }
 
 

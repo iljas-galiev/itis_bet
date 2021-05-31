@@ -30,6 +30,7 @@ namespace DAL.Models
     public class UserProfile
     {
         public Guid Id { get; set; }
+        
         public Guid UserId { get; set; }
         public User User { get; set; }
 
@@ -42,6 +43,7 @@ namespace DAL.Models
     public class Passport
     {
         public Guid Id { get; set; }
+        
         public Guid UserId { get; set; }
         public User User { get; set; }
 

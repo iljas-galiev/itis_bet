@@ -6,15 +6,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL;
 
 namespace ITIS_Bet.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly  ITISbetContext _dbContext;
+        private readonly  Database _dbContext;
 
-        public HomeController(ITISbetContext context, ILogger<HomeController> logger)
+        public HomeController(Database context, ILogger<HomeController> logger)
         {
             _dbContext = context;
             _logger = logger;

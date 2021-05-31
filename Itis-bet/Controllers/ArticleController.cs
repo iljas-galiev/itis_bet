@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DAL;
 using DAL.Models;
 using DAL.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,9 @@ namespace Itis_bet.Controllers
 {  
     public class ArticleController : Controller
     {
-        private readonly ITISbetContext _db;
+        private readonly Database _db;
 
-        public ArticleController(ITISbetContext db) =>
+        public ArticleController(Database db) =>
             _db = db;
         
         [HttpGet]
