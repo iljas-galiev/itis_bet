@@ -2,7 +2,6 @@
 using MailKit.Net.Smtp;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using System;
 
 namespace Infrastructure.EmailNotifications
 {
@@ -27,7 +26,6 @@ namespace Infrastructure.EmailNotifications
 
         public async Task<bool> SendEmailAsync(string email, string subject, string message) =>
             await TrySend(BuildMessage(email, subject, message));
-
 
         private static async Task<bool> TrySend(MimeMessage emailMessage)
         {

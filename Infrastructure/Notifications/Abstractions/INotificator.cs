@@ -28,13 +28,13 @@ namespace Infrastructure.Notifications
 
     public interface INotificator<TResult>
     {
-        public Task<TResult> AboutRegistration(RegistrationReason reson, string email);
+        public Task<TResult> AboutRegistrationAsync(RegistrationReason reson, string email);
 
-        public Task<TResult> AboutSecurity(SecurityReason reson, string email);
+        public Task<TResult> AboutSecurityAsync(SecurityReason reson, string email);
 
-        public Task<TResult> AboutBet(BetReason reson, string email, UsersBets bet);
+        public Task<TResult> AboutBetAsync(BetReason reson, string email, UsersBets bet);
 
-        public Task<TResult> AboutTransaction(TransactionReason reson, string email, Transactions transaction);
+        public Task<TResult> AboutTransactionAsync(TransactionReason reson, string email, Transactions transaction);
 
     }
 }

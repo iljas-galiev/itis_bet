@@ -7,7 +7,7 @@ namespace Infrastructure
 {
     public static class Extentions
     {
-        public static IServiceCollection ConfigureDataAccess(this IServiceCollection services,
+        public static IServiceCollection ConfigureInfrastructure(this IServiceCollection services,
                     IConfiguration configuration)
         {
             services.AddSingleton<EmailSender>();

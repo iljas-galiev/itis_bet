@@ -38,16 +38,16 @@ namespace Infrastructure.EmailNotifications
 
         }
 
-        public Task<bool> AboutRegistration(RegistrationReason reason, string email) =>
+        public Task<bool> AboutRegistrationAsync(RegistrationReason reason, string email) =>
             _notifyAboutRegistration[reason].Invoke(email);
 
-        public Task<bool> AboutSecurity(SecurityReason reason, string email) =>
+        public Task<bool> AboutSecurityAsync(SecurityReason reason, string email) =>
             _notifyAboutSecurity[reason].Invoke(email);
 
-        public Task<bool> AboutBet(BetReason reason, string email, UsersBets bet) =>
+        public Task<bool> AboutBetAsync(BetReason reason, string email, UsersBets bet) =>
             _notifyAboutBet[reason].Invoke(email, bet);
 
-        public Task<bool> AboutTransaction(TransactionReason reason, string email, Transactions transaction) =>
+        public Task<bool> AboutTransactionAsync(TransactionReason reason, string email, Transactions transaction) =>
             _notifyAboutTransaction[reason].Invoke(email, transaction);
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DAL;
 using DAL.Models;
+using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,8 +28,12 @@ namespace Itis_bet
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+
             services.ConfigureDataAccess(Configuration);
-            
+            services.ConfigureInfrastructure(Configuration);
+
+
             services.AddControllersWithViews();
         }
 
