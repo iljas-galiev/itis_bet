@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20210531191940_users")]
+    [Migration("20210602133020_users")]
     partial class users
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -97,14 +97,17 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("UserEmail")
+                    b.Property<string>("UserId")
                         .HasColumnType("text");
+
+                    b.Property<Guid?>("UserId1")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ArticleId");
 
-                    b.HasIndex("UserEmail");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Comments");
                 });
@@ -182,6 +185,9 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
                     b.ToTable("Passports");
                 });
 
@@ -203,8 +209,8 @@ namespace DAL.Migrations
                     b.Property<Guid?>("UserBetId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("UserEmail")
-                        .HasColumnType("text");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.Property<Guid?>("User_Bet_Id")
                         .HasColumnType("uuid");
@@ -213,15 +219,16 @@ namespace DAL.Migrations
 
                     b.HasIndex("UserBetId");
 
-                    b.HasIndex("UserEmail");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("DAL.Models.User", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
@@ -285,12 +292,6 @@ namespace DAL.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.HasIndex("PassportId")
-                        .IsUnique();
-
-                    b.HasIndex("ProfileId")
-                        .IsUnique();
-
                     b.ToTable("AspNetUsers");
                 });
 
@@ -311,6 +312,9 @@ namespace DAL.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Profiles");
                 });
@@ -340,22 +344,23 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("UserEmail")
-                        .HasColumnType("text");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BetId");
 
-                    b.HasIndex("UserEmail");
+                    b.HasIndex("UserId");
 
                     b.ToTable("UsersBets");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -378,7 +383,7 @@ namespace DAL.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -391,9 +396,8 @@ namespace DAL.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("text");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -402,7 +406,7 @@ namespace DAL.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -415,9 +419,8 @@ namespace DAL.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("text");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -426,7 +429,7 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("text");
@@ -437,9 +440,8 @@ namespace DAL.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("text");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -448,13 +450,13 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("text");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
-                    b.Property<string>("RoleId")
-                        .HasColumnType("text");
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -463,10 +465,10 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("text");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("text");
@@ -503,9 +505,20 @@ namespace DAL.Migrations
 
                     b.HasOne("DAL.Models.User", "User")
                         .WithMany("Comments")
-                        .HasForeignKey("UserEmail");
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("Article");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DAL.Models.Passport", b =>
+                {
+                    b.HasOne("DAL.Models.User", "User")
+                        .WithOne("Passport")
+                        .HasForeignKey("DAL.Models.Passport", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -518,30 +531,24 @@ namespace DAL.Migrations
 
                     b.HasOne("DAL.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserEmail");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
 
                     b.Navigation("UserBet");
                 });
 
-            modelBuilder.Entity("DAL.Models.User", b =>
+            modelBuilder.Entity("DAL.Models.UserProfile", b =>
                 {
-                    b.HasOne("DAL.Models.Passport", "Passport")
-                        .WithOne("User")
-                        .HasForeignKey("DAL.Models.User", "PassportId")
+                    b.HasOne("DAL.Models.User", "User")
+                        .WithOne("Profile")
+                        .HasForeignKey("DAL.Models.UserProfile", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DAL.Models.UserProfile", "Profile")
-                        .WithOne("User")
-                        .HasForeignKey("DAL.Models.User", "ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Passport");
-
-                    b.Navigation("Profile");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DAL.Models.UsersBets", b =>
@@ -554,23 +561,25 @@ namespace DAL.Migrations
 
                     b.HasOne("DAL.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserEmail");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Bet");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
                     b.HasOne("DAL.Models.User", null)
                         .WithMany()
@@ -579,7 +588,7 @@ namespace DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
                     b.HasOne("DAL.Models.User", null)
                         .WithMany()
@@ -588,9 +597,9 @@ namespace DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -603,7 +612,7 @@ namespace DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
                     b.HasOne("DAL.Models.User", null)
                         .WithMany()
@@ -617,19 +626,13 @@ namespace DAL.Migrations
                     b.Navigation("Comments");
                 });
 
-            modelBuilder.Entity("DAL.Models.Passport", b =>
-                {
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("DAL.Models.User", b =>
                 {
                     b.Navigation("Comments");
-                });
 
-            modelBuilder.Entity("DAL.Models.UserProfile", b =>
-                {
-                    b.Navigation("User");
+                    b.Navigation("Passport");
+
+                    b.Navigation("Profile");
                 });
 #pragma warning restore 612, 618
         }

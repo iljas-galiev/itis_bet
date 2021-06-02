@@ -15,8 +15,7 @@ namespace DAL.Models
         public Guid Id { get; set; }
 
 
-        public string UserEmail { get; set; }
-        [ForeignKey("UserEmail")]
+        public Guid UserId { get; set; }
         public User User { get; set; }
 
 

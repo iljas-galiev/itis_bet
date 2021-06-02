@@ -40,39 +40,15 @@ namespace DAL.Migrations
                 table: "UsersBets");
 
             migrationBuilder.DropIndex(
-                name: "IX_UsersBets_Bet_Id",
-                table: "UsersBets");
-
-            migrationBuilder.DropIndex(
                 name: "IX_Transactions_User_Bet_Id",
-                table: "Transactions");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Transactions_User_Id",
                 table: "Transactions");
 
             migrationBuilder.DropIndex(
                 name: "IX_Comments_Article_Id",
                 table: "Comments");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Comments_ReplyTo",
-                table: "Comments");
-
-            migrationBuilder.DropColumn(
-                name: "Bet_Id",
-                table: "UsersBets");
-
-            migrationBuilder.DropColumn(
-                name: "User_Id",
-                table: "Transactions");
-
             migrationBuilder.DropColumn(
                 name: "Article_Id",
-                table: "Comments");
-
-            migrationBuilder.DropColumn(
-                name: "ReplyTo",
                 table: "Comments");
 
             migrationBuilder.DropColumn(
@@ -98,22 +74,52 @@ namespace DAL.Migrations
             migrationBuilder.RenameColumn(
                 name: "User_Id",
                 table: "UsersBets",
+                newName: "UserId");
+
+            migrationBuilder.RenameColumn(
+                name: "Bet_Id",
+                table: "UsersBets",
                 newName: "BetId");
 
             migrationBuilder.RenameIndex(
                 name: "IX_UsersBets_User_Id",
                 table: "UsersBets",
+                newName: "IX_UsersBets_UserId");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_UsersBets_Bet_Id",
+                table: "UsersBets",
                 newName: "IX_UsersBets_BetId");
+
+            migrationBuilder.RenameColumn(
+                name: "User_Id",
+                table: "Transactions",
+                newName: "UserId");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_Transactions_User_Id",
+                table: "Transactions",
+                newName: "IX_Transactions_UserId");
 
             migrationBuilder.RenameColumn(
                 name: "User_Id",
                 table: "Comments",
                 newName: "ArticleId");
 
+            migrationBuilder.RenameColumn(
+                name: "ReplyTo",
+                table: "Comments",
+                newName: "UserId1");
+
             migrationBuilder.RenameIndex(
                 name: "IX_Comments_User_Id",
                 table: "Comments",
                 newName: "IX_Comments_ArticleId");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_Comments_ReplyTo",
+                table: "Comments",
+                newName: "IX_Comments_UserId1");
 
             migrationBuilder.RenameColumn(
                 name: "Match_Id",
@@ -125,12 +131,6 @@ namespace DAL.Migrations
                 table: "Bets",
                 newName: "IX_Bets_MatchId");
 
-            migrationBuilder.AddColumn<string>(
-                name: "UserEmail",
-                table: "UsersBets",
-                type: "text",
-                nullable: true);
-
             migrationBuilder.AddColumn<Guid>(
                 name: "UserBetId",
                 table: "Transactions",
@@ -138,32 +138,10 @@ namespace DAL.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "UserEmail",
-                table: "Transactions",
-                type: "text",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "UserEmail",
+                name: "UserId",
                 table: "Comments",
                 type: "text",
                 nullable: true);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "UserId",
-                table: "AspNetUserTokens",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(Guid),
-                oldType: "uuid");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Id",
-                table: "AspNetUsers",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(Guid),
-                oldType: "uuid");
 
             migrationBuilder.AddColumn<Guid>(
                 name: "PassportId",
@@ -178,54 +156,6 @@ namespace DAL.Migrations
                 type: "uuid",
                 nullable: false,
                 defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
-
-            migrationBuilder.AlterColumn<string>(
-                name: "RoleId",
-                table: "AspNetUserRoles",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(Guid),
-                oldType: "uuid");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "UserId",
-                table: "AspNetUserRoles",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(Guid),
-                oldType: "uuid");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "UserId",
-                table: "AspNetUserLogins",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(Guid),
-                oldType: "uuid");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "UserId",
-                table: "AspNetUserClaims",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(Guid),
-                oldType: "uuid");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Id",
-                table: "AspNetRoles",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(Guid),
-                oldType: "uuid");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "RoleId",
-                table: "AspNetRoleClaims",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(Guid),
-                oldType: "uuid");
 
             migrationBuilder.CreateTable(
                 name: "Passports",
@@ -242,6 +172,12 @@ namespace DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Passports", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Passports_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -256,12 +192,13 @@ namespace DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Profiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Profiles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UsersBets_UserEmail",
-                table: "UsersBets",
-                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transactions_UserBetId",
@@ -269,42 +206,16 @@ namespace DAL.Migrations
                 column: "UserBetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_UserEmail",
-                table: "Transactions",
-                column: "UserEmail");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_UserEmail",
-                table: "Comments",
-                column: "UserEmail");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_PassportId",
-                table: "AspNetUsers",
-                column: "PassportId",
+                name: "IX_Passports_UserId",
+                table: "Passports",
+                column: "UserId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_ProfileId",
-                table: "AspNetUsers",
-                column: "ProfileId",
+                name: "IX_Profiles_UserId",
+                table: "Profiles",
+                column: "UserId",
                 unique: true);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUsers_Passports_PassportId",
-                table: "AspNetUsers",
-                column: "PassportId",
-                principalTable: "Passports",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUsers_Profiles_ProfileId",
-                table: "AspNetUsers",
-                column: "ProfileId",
-                principalTable: "Profiles",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Bets_Matches_MatchId",
@@ -323,20 +234,20 @@ namespace DAL.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Comments_AspNetUsers_UserEmail",
+                name: "FK_Comments_AspNetUsers_UserId1",
                 table: "Comments",
-                column: "UserEmail",
+                column: "UserId1",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Transactions_AspNetUsers_UserEmail",
+                name: "FK_Transactions_AspNetUsers_UserId",
                 table: "Transactions",
-                column: "UserEmail",
+                column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Transactions_UsersBets_UserBetId",
@@ -347,12 +258,12 @@ namespace DAL.Migrations
                 onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_UsersBets_AspNetUsers_UserEmail",
+                name: "FK_UsersBets_AspNetUsers_UserId",
                 table: "UsersBets",
-                column: "UserEmail",
+                column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_UsersBets_Bets_BetId",
@@ -366,14 +277,6 @@ namespace DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUsers_Passports_PassportId",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUsers_Profiles_ProfileId",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropForeignKey(
                 name: "FK_Bets_Matches_MatchId",
                 table: "Bets");
 
@@ -382,11 +285,11 @@ namespace DAL.Migrations
                 table: "Comments");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Comments_AspNetUsers_UserEmail",
+                name: "FK_Comments_AspNetUsers_UserId1",
                 table: "Comments");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Transactions_AspNetUsers_UserEmail",
+                name: "FK_Transactions_AspNetUsers_UserId",
                 table: "Transactions");
 
             migrationBuilder.DropForeignKey(
@@ -394,7 +297,7 @@ namespace DAL.Migrations
                 table: "Transactions");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_UsersBets_AspNetUsers_UserEmail",
+                name: "FK_UsersBets_AspNetUsers_UserId",
                 table: "UsersBets");
 
             migrationBuilder.DropForeignKey(
@@ -408,43 +311,15 @@ namespace DAL.Migrations
                 name: "Profiles");
 
             migrationBuilder.DropIndex(
-                name: "IX_UsersBets_UserEmail",
-                table: "UsersBets");
-
-            migrationBuilder.DropIndex(
                 name: "IX_Transactions_UserBetId",
                 table: "Transactions");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Transactions_UserEmail",
-                table: "Transactions");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Comments_UserEmail",
-                table: "Comments");
-
-            migrationBuilder.DropIndex(
-                name: "IX_AspNetUsers_PassportId",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropIndex(
-                name: "IX_AspNetUsers_ProfileId",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
-                name: "UserEmail",
-                table: "UsersBets");
 
             migrationBuilder.DropColumn(
                 name: "UserBetId",
                 table: "Transactions");
 
             migrationBuilder.DropColumn(
-                name: "UserEmail",
-                table: "Transactions");
-
-            migrationBuilder.DropColumn(
-                name: "UserEmail",
+                name: "UserId",
                 table: "Comments");
 
             migrationBuilder.DropColumn(
@@ -456,19 +331,49 @@ namespace DAL.Migrations
                 table: "AspNetUsers");
 
             migrationBuilder.RenameColumn(
-                name: "BetId",
+                name: "UserId",
                 table: "UsersBets",
                 newName: "User_Id");
+
+            migrationBuilder.RenameColumn(
+                name: "BetId",
+                table: "UsersBets",
+                newName: "Bet_Id");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_UsersBets_UserId",
+                table: "UsersBets",
+                newName: "IX_UsersBets_User_Id");
 
             migrationBuilder.RenameIndex(
                 name: "IX_UsersBets_BetId",
                 table: "UsersBets",
-                newName: "IX_UsersBets_User_Id");
+                newName: "IX_UsersBets_Bet_Id");
+
+            migrationBuilder.RenameColumn(
+                name: "UserId",
+                table: "Transactions",
+                newName: "User_Id");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_Transactions_UserId",
+                table: "Transactions",
+                newName: "IX_Transactions_User_Id");
+
+            migrationBuilder.RenameColumn(
+                name: "UserId1",
+                table: "Comments",
+                newName: "ReplyTo");
 
             migrationBuilder.RenameColumn(
                 name: "ArticleId",
                 table: "Comments",
                 newName: "User_Id");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_Comments_UserId1",
+                table: "Comments",
+                newName: "IX_Comments_ReplyTo");
 
             migrationBuilder.RenameIndex(
                 name: "IX_Comments_ArticleId",
@@ -486,47 +391,11 @@ namespace DAL.Migrations
                 newName: "IX_Bets_Match_Id");
 
             migrationBuilder.AddColumn<Guid>(
-                name: "Bet_Id",
-                table: "UsersBets",
-                type: "uuid",
-                nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
-
-            migrationBuilder.AddColumn<Guid>(
-                name: "User_Id",
-                table: "Transactions",
-                type: "uuid",
-                nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
-
-            migrationBuilder.AddColumn<Guid>(
                 name: "Article_Id",
                 table: "Comments",
                 type: "uuid",
                 nullable: false,
                 defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
-
-            migrationBuilder.AddColumn<Guid>(
-                name: "ReplyTo",
-                table: "Comments",
-                type: "uuid",
-                nullable: true);
-
-            migrationBuilder.AlterColumn<Guid>(
-                name: "UserId",
-                table: "AspNetUserTokens",
-                type: "uuid",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AlterColumn<Guid>(
-                name: "Id",
-                table: "AspNetUsers",
-                type: "uuid",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
 
             migrationBuilder.AddColumn<string>(
                 name: "Avatar",
@@ -561,78 +430,15 @@ namespace DAL.Migrations
                 nullable: false,
                 defaultValue: false);
 
-            migrationBuilder.AlterColumn<Guid>(
-                name: "RoleId",
-                table: "AspNetUserRoles",
-                type: "uuid",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AlterColumn<Guid>(
-                name: "UserId",
-                table: "AspNetUserRoles",
-                type: "uuid",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AlterColumn<Guid>(
-                name: "UserId",
-                table: "AspNetUserLogins",
-                type: "uuid",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AlterColumn<Guid>(
-                name: "UserId",
-                table: "AspNetUserClaims",
-                type: "uuid",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AlterColumn<Guid>(
-                name: "Id",
-                table: "AspNetRoles",
-                type: "uuid",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.AlterColumn<Guid>(
-                name: "RoleId",
-                table: "AspNetRoleClaims",
-                type: "uuid",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UsersBets_Bet_Id",
-                table: "UsersBets",
-                column: "Bet_Id");
-
             migrationBuilder.CreateIndex(
                 name: "IX_Transactions_User_Bet_Id",
                 table: "Transactions",
                 column: "User_Bet_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_User_Id",
-                table: "Transactions",
-                column: "User_Id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Comments_Article_Id",
                 table: "Comments",
                 column: "Article_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_ReplyTo",
-                table: "Comments",
-                column: "ReplyTo");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Bets_Matches_Match_Id",

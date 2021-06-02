@@ -3,19 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel;
 
 
 namespace DAL.Models
 {
-    public class User : IdentityUser
+    public class User : IdentityUser<Guid>
     {
         [Key]
-        [DataType(DataType.EmailAddress)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string Id { get; set; }
+        public override Guid Id { get; set; }
 
         public Guid ProfileId { get; set; }
         public UserProfile Profile { get; set; }
@@ -26,12 +21,13 @@ namespace DAL.Models
         public IEnumerable<Comments> Comments { get; set; }
 
     }
-    
+
     public class UserProfile
     {
         public Guid Id { get; set; }
-        
+
         public Guid UserId { get; set; }
+        [ForeignKey("UserId")]
         public User User { get; set; }
 
         public uint Money { get; set; }
@@ -45,6 +41,7 @@ namespace DAL.Models
         public Guid Id { get; set; }
         
         public Guid UserId { get; set; }
+        [ForeignKey("UserId")]
         public User User { get; set; }
 
         public string Name { get; set; }

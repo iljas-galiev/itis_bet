@@ -3,13 +3,11 @@ using DAL.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-
-#nullable disable
 
 namespace DAL
 { 
-    public class Database : IdentityDbContext<User>
+    public class Database : 
+        IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
         public override DbSet<User> Users { get; set; }
         public DbSet<Matches> Matches { get; set; }

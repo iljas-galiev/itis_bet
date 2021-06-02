@@ -10,8 +10,8 @@ namespace DAL.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        public string UserEmail { get; set; }
-        [ForeignKey("UserEmail")]
+        public Guid UserId { get; set; }
+        [ForeignKey("UserId")]
         public User User { get; set; }
 
 
