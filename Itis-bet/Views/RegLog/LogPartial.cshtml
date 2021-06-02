@@ -22,14 +22,14 @@
 <login class="active">
 
     @{
-        using (Html.BeginForm("Log", "RegLog", FormMethod.Post, new { @class = "regLogForm"}))
+        using (Html.BeginForm("Log", "RegLog", FormMethod.Post, new { @class = "regLogForm" }))
         {
-
+            @Html.ValidationSummary(true);
             <div class="form-wrap">
                 <label asp-for="Email" , class="sr-only">Email</label>
 
                 <div>
-                    <input class="form-control" asp-for="Email" , type="email" placeholder="Email" required="">
+                    <input class="form-control" asp-for="Email" , type="email" placeholder="Email">
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                 <label asp-for="Password" , class="sr-only">Password</label>
 
                 <div>
-                    <input class="form-control" asp-for="Password" , type="password" placeholder="Password" required="">
+                    <input class="form-control" asp-for="Password" , type="password" placeholder="Password">
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
             </div>

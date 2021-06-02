@@ -22,10 +22,10 @@
             using (Html.BeginForm("Reg", "RegLog", FormMethod.Post,new {@class = "regLogForm" }))
             {
                 @Html.ValidationMessage("UniqEmailError")
-
+                @Html.ValidationSummary(true);
                 <div class="form-wrap">
                     <label asp-for="@Model.Login" , class="sr-only">Your login</label>
-                    <input class="form-control" asp-for="@Model.Login" , type="text" placeholder="Your login" required="">
+                    <input class="form-control" asp-for="@Model.Login" , type="text" placeholder="Your login">
                     <span asp-validation-for="@Model.Login" class="text-danger"></span>
 
                 </div>
@@ -34,7 +34,7 @@
                     <label asp-for="Email" , class="sr-only">Your email</label>
 
                     <div>
-                        <input class="form-control" asp-for="Email" , type="email" placeholder="Email" required="">
+                        <input class="form-control" asp-for="Email" , type="email" placeholder="Email">
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <label asp-for="Phone" , class="sr-only">Your phone</label>
 
                     <div>
-                        <input class="form-control" asp-for="Phone" , type="tel" placeholder="Phone" required="">
+                        <input class="form-control" asp-for="Phone" , type="tel" placeholder="Phone">
                         <span asp-validation-for="Phone" class="text-danger"></span>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                     <label asp-for="Password" , class="sr-only">Your password</label>
 
                     <div>
-                        <input class="form-control" asp-for="Password" , type="password" placeholder="Password" required="">
+                        <input class="form-control" asp-for="Password" , type="password" placeholder="Password">
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                     <label asp-for="PasswordConfirm" , class="sr-only">Again your password</label>
 
                     <div>
-                        <input class="form-control" asp-for="PasswordConfirm" , type="password" placeholder="Password" required="">
+                        <input class="form-control" asp-for="PasswordConfirm" , type="password" placeholder="Password">
                         <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
                     </div>
                 </div>
