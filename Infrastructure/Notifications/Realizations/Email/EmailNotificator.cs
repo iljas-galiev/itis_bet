@@ -2,48 +2,52 @@
 using Infrastructure.Notifications;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Infrastructure.EmailNotifications
 {
     class EmailNotificator : EmailNotificatorBase, INotificator<bool>
     {
-        protected readonly Dictionary<NotificationReson, Func<string, Task<bool>>> _notifyAboutRegistration;
-        protected readonly Dictionary<NotificationReson, Func<string, Task<bool>>> _notifyAboutSecurity;
-        protected readonly Dictionary<NotificationReson, Func<string, UsersBets, Task<bool>>> _notifyAboutBet;
-        protected readonly Dictionary<NotificationReson, Func<string, Transactions, Task<bool>>> _notifyAboutTransaction;
-
+        protected readonly Dictionary<RegistrationReason, Func<string, Task<bool>>> _notifyAboutRegistration;
+        protected readonly Dictionary<SecurityReason, Func<string, Task<bool>>> _notifyAboutSecurity;
+        protected readonly Dictionary<BetReason, Func<string, UsersBets, Task<bool>>> _notifyAboutBet;
+        protected readonly Dictionary<TransactionReason, Func<string, Transactions, Task<bool>>> _notifyAboutTransaction;
 
         public EmailNotificator(EmailSender sender) : base(sender) {
 
-            _notifyAboutRegistration = new Dictionary<NotificationReson, Func<string, Task<bool>>> {
-                { NotificationReson.RegistrationSucceeded, base.AboutRegistrationSucceeded}
+            _notifyAboutRegistration = new Dictionary<RegistrationReason, Func<string, Task<bool>>> {
+                { RegistrationReason.Succeeded, base.AboutRegistrationSucceeded}
             };
 
-            _notifyAboutBet = new Dictionary<NotificationReson, Func<string, UsersBets, Task<bool>>> {
-                { NotificationReson.BetApplyed, base.AboutBetApplyed },
-                { NotificationReson.BetLoosed, base.AboutBetLoosed},
-                { NotificationReson.BetApplyed, base.AboutBetApplyed }
+            _notifyAboutBet = new Dictionary<BetReason, Func<string, UsersBets, Task<bool>>> {
+                { BetReason.Applyed, base.AboutBetApplyed },
+                { BetReason.Winned, base.AboutBetWinned},
+                { BetReason.Loosed, base.AboutBetLoosed }
             };
 
-            _notifyAboutSecurity = new Dictionary<NotificationReson, Func<string, Task<bool>>>
+            _notifyAboutSecurity = new Dictionary<SecurityReason, Func<string, Task<bool>>>
             {
-                { NotificationReson.PassportUpdated, base.AboutPassportUpdated},
-                { NotificationReson.ProfileUpdated, base.AboutProfileUpdated}
+                { SecurityReason.PassportUpdated, base.AboutPassportUpdated},
+                { SecurityReason.ProfileUpdated, base.AboutProfileUpdated}
             };
 
-            _notifyAboutTransaction = new Dictionary<NotificationReson, Func<string, Transactions, Task<bool>>>
+            _notifyAboutTransaction = new Dictionary<TransactionReason, Func<string, Transactions, Task<bool>>>
             {
-                { NotificationReson.TransactionPassed, base.AboutTransactionPassed }
+                { TransactionReason.Passed, base.AboutTransactionPassed }
             };
 
         }
 
+        public Task<bool> AboutRegistration(RegistrationReason reason, string email) =>
+            _notifyAboutRegistration[reason].Invoke(email);
 
-        public async Task<bool> About(NotificationReson reson)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> AboutSecurity(SecurityReason reason, string email) =>
+            _notifyAboutSecurity[reason].Invoke(email);
+
+        public Task<bool> AboutBet(BetReason reason, string email, UsersBets bet) =>
+            _notifyAboutBet[reason].Invoke(email, bet);
+
+        public Task<bool> AboutTransaction(TransactionReason reason, string email, Transactions transaction) =>
+            _notifyAboutTransaction[reason].Invoke(email, transaction);
     }
 }
