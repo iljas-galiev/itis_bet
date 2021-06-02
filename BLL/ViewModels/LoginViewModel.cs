@@ -14,5 +14,7 @@ namespace BLL.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
+
+        public bool Remember { get; set; }
     }
 }

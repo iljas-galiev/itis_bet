@@ -103,6 +103,15 @@
                     </div>
                 </div>
 
+                <div class="form-wrap">
+                    <label asp-for="Item1.Remember" , class="sr-only">Remember?</label>
+
+                    <div>
+                        <input asp-for="Item1.Remember" , type="checkbox" placeholder="Password">
+                        <span asp-validation-for="Item1.Remember" class="text-danger"></span>
+                    </div>
+                </div>
+
                 <button class="btn primary-btn primary-btn-lg" type="submit">
                     Войти
                 </button>

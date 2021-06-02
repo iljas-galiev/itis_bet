@@ -20,7 +20,8 @@ namespace Itis_bet.Controllers
 
         [HttpGet]
         public IActionResult Index() =>
-            View();
+            View(new Tuple<LoginViewModel, RegisterViewModel>(
+                    new LoginViewModel(), new RegisterViewModel()));
 
         [HttpPost]
         public IActionResult Reg(RegisterViewModel regVM)
@@ -33,22 +34,36 @@ namespace Itis_bet.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Log(LoginViewModel logVM) =>
-            ModelState.IsValid
-                ? await _userManager.FindByEmailAsync(logVM.Email) != null
-                    ? _signInManager.SignInAsync(
-                           await _userManager.FindByEmailAsync(logVM.Email), false)
-                                .IsCompletedSuccessfully
-                                ? View("Loggined")
-                                : throw new ApplicationException()
-                : View("NotFound")
-            : View("Index", new Tuple<LoginViewModel, RegisterViewModel>(logVM, new RegisterViewModel()));
+        public async Task<IActionResult> Log(LoginViewModel logVM){
+            if (ModelState.IsValid){
+
+                var user = _userManager.FindByEmailAsync(logVM.Email);
+
+                if (user != null)
+                    return RedirectToAction("Reg", "RegLog");
+
+                var res = await _signInManager.PasswordSignInAsync(
+                    logVM.Email, logVM.Password, logVM.Remember, false);
+
+                if (res.Succeeded)
+                    return RedirectToAction("Index", "Profile");
+                else
+                    ModelState.AddModelError(string.Empty, "Incorrect login or password.");
+
+            }
+            return InvalidLoginRequest(logVM);
+        }
 
         [HttpPost]
-        public async Task<IActionResult> LogOut() =>
-             _signInManager.SignOutAsync()
-                    .IsCompletedSuccessfully
-                    ? View("Index")
-                    : View("Error");
+        public async Task<IActionResult> LogOut(){
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+        private IActionResult InvalidLoginRequest(LoginViewModel logVM) =>
+            View("Index", new Tuple<LoginViewModel, RegisterViewModel>(logVM, new RegisterViewModel()));
+
+        private IActionResult InvalidRegisterRequest(RegisterViewModel regVM) =>
+            View("Index", new Tuple<LoginViewModel, RegisterViewModel>(new LoginViewModel(), regVM));
     }
 }
