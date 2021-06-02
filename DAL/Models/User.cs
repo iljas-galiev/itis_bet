@@ -15,7 +15,7 @@ namespace DAL.Models
         [Key]
         [DataType(DataType.EmailAddress)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public override string Email { get; set; }
+        public string Id { get; set; }
 
         public Guid ProfileId { get; set; }
         public UserProfile Profile { get; set; }
