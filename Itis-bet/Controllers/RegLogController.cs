@@ -24,13 +24,11 @@ namespace Itis_bet.Controllers
                     new LoginViewModel(), new RegisterViewModel()));
 
         [HttpPost]
-        public IActionResult Reg(RegisterViewModel regVM)
-        {
-            if(!ModelState.IsValid)
-                View("Index", new Tuple<LoginViewModel, RegisterViewModel>(
-                    new LoginViewModel(), regVM));
+        public IActionResult Reg(RegisterViewModel regVM){
+            if (ModelState.IsValid){
 
-            throw new NotImplementedException();
+            }
+            return InvalidRegisterRequest(regVM);
         }
 
         [HttpPost]

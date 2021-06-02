@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bay6rA4Wld+Ay5jmB2Z0oGwbseVehcgDhsfr7nsz1vOFr+8+/2+wL36NWfedfD3csZTuhIJOf3GOssI84axiSQ==",
+  "dgSpecHash": "SMsUlXy8bd/jfU26ECMG842/SM6/leMwa7BYTJLWt6R8q0Jvl68pUltnsYTFAOKuUfueBUoSD2QZV90y/pwmSw==",
   "success": true,
   "projectFilePath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\Itis-bet.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\jows1\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.3\\microsoft.entityframeworkcore.tools.3.1.3.nupkg.sha512",
     "C:\\Users\\jows1\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\jows1\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
+    "C:\\Users\\jows1\\.nuget\\packages\\microsoft.extensions.configuration\\5.0.0\\microsoft.extensions.configuration.5.0.0.nupkg.sha512",
     "C:\\Users\\jows1\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\jows1\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.1\\microsoft.extensions.dependencyinjection.5.0.1.nupkg.sha512",
     "C:\\Users\\jows1\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",

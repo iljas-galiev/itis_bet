@@ -138,6 +138,79 @@
         }
       }
     },
+    "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\jows1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\jows1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\Itis-bet.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -169,6 +242,9 @@
               },
               "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj": {
                 "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj"
+              },
+              "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
