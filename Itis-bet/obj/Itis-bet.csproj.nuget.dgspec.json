@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\Itis-bet.csproj": {}
+    "D:\\GitHUB\\itis_bet\\Itis-bet\\Itis-bet.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jows1\\source\\repos\\itis_bet\\BLL\\BLL.csproj": {
+    "D:\\GitHUB\\itis_bet\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jows1\\source\\repos\\itis_bet\\BLL\\BLL.csproj",
+        "projectUniqueName": "D:\\GitHUB\\itis_bet\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\BLL\\BLL.csproj",
-        "packagesPath": "C:\\Users\\jows1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\BLL\\obj\\",
+        "projectPath": "D:\\GitHUB\\itis_bet\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\strel\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHUB\\itis_bet\\BLL\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jows1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\strel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -29,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -40,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -55,24 +54,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj": {
+    "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj",
+        "projectUniqueName": "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\jows1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\obj\\",
+        "projectPath": "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\strel\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHUB\\itis_bet\\DAL\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jows1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\strel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -84,6 +80,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -95,6 +92,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
@@ -138,24 +136,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\Infrastructure.csproj": {
+    "D:\\GitHUB\\itis_bet\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\GitHUB\\itis_bet\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\jows1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\obj\\",
+        "projectPath": "D:\\GitHUB\\itis_bet\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\strel\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHUB\\itis_bet\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jows1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\strel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -167,9 +162,10 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj"
+              "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj"
               }
             }
           }
@@ -182,6 +178,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "MailKit": {
               "target": "Package",
@@ -219,24 +216,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\Itis-bet.csproj": {
+    "D:\\GitHUB\\itis_bet\\Itis-bet\\Itis-bet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\Itis-bet.csproj",
+        "projectUniqueName": "D:\\GitHUB\\itis_bet\\Itis-bet\\Itis-bet.csproj",
         "projectName": "Itis-bet",
-        "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\Itis-bet.csproj",
-        "packagesPath": "C:\\Users\\jows1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\obj\\",
+        "projectPath": "D:\\GitHUB\\itis_bet\\Itis-bet\\Itis-bet.csproj",
+        "packagesPath": "C:\\Users\\strel\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHUB\\itis_bet\\Itis-bet\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jows1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\strel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -248,15 +242,16 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\jows1\\source\\repos\\itis_bet\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\BLL\\BLL.csproj"
+              "D:\\GitHUB\\itis_bet\\BLL\\BLL.csproj": {
+                "projectPath": "D:\\GitHUB\\itis_bet\\BLL\\BLL.csproj"
               },
-              "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj"
+              "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj"
               },
-              "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\Infrastructure.csproj"
+              "D:\\GitHUB\\itis_bet\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\GitHUB\\itis_bet\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -269,6 +264,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -287,7 +283,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -75,7 +75,16 @@ namespace Itis_bet.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
+        [HttpGet]
+        public async Task<IActionResult> GetRegPartial()
+        {
+            return PartialView("RegPartial",new RegisterViewModel());
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetLogPartial()
+        {
+            return PartialView("LogPartial",new LoginViewModel());
+        }
         private IActionResult InvalidLoginRequest(LoginViewModel logVM) =>
             View("Index", new Tuple<LoginViewModel, RegisterViewModel>(logVM, new RegisterViewModel()));
 
