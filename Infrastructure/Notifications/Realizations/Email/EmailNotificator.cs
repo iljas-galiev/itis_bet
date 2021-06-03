@@ -28,7 +28,8 @@ namespace Infrastructure.EmailNotifications
             _notifyAboutSecurity = new Dictionary<SecurityReason, Func<string, Task<bool>>>
             {
                 { SecurityReason.PassportUpdated, base.AboutPassportUpdated},
-                { SecurityReason.ProfileUpdated, base.AboutProfileUpdated}
+                { SecurityReason.ProfileUpdated, base.AboutProfileUpdated},
+                { SecurityReason.PasswordUpdated, base.AboutPasswordUpdated}
             };
 
             _notifyAboutTransaction = new Dictionary<TransactionReason, Func<string, Transactions, Task<bool>>>

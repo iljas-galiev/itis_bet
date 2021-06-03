@@ -6,14 +6,14 @@ namespace BLL.ViewModels
     {
         [Required]
         [Display(Name = "Логин")]
-        [MinLength(3, ErrorMessage = "Минимальная длинна логина 3.")] // Thank google.
+        [MinLength(3, ErrorMessage = "Минимальная длинна логина 3.")] 
         [MaxLength(30, ErrorMessage = "Максимальная длинна логина 30.")]
         public string Login { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
         [MinLength(3, ErrorMessage = "Минимальная длинна email 3.")] // Thank google.
-        [MaxLength(320, ErrorMessage = "Минимальная длинна email 320.")] 
+        [MaxLength(320, ErrorMessage = "Максимальная длинна email 320.")] 
         [Display(Name = "Электронная почта")]
         public string Email { get; set; }
 
