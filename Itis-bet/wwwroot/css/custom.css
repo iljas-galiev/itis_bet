@@ -611,7 +611,7 @@ content > .container{
 }
 @media (min-width: 1200px) {
     .header-container {
-        max-width: 1200px;
+        max-width: 1140px;
     }
 }
 .header-container {
@@ -991,12 +991,7 @@ header button:active, header button:focus {
     border: none;
     background: none;
 }
-login{
-   
-}
-registration{
 
-}
 .log-reg-container {
     margin-top:60px;
     margin-bottom:80px;
@@ -1147,4 +1142,230 @@ registration{
 }
 login.active, registration.active{
     display:block;
+}
+
+.isotope-filters {
+    position: relative;
+}
+
+.isotope-filters-list {
+    position: absolute;
+    z-index: 1;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: -3px 0px 50px -2px rgba(0, 0, 0, 0.09);
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    flex-wrap: wrap;
+    transition: .3s ease-out opacity;
+}
+
+.isotope-filters-list.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.isotope-filters-list-item {
+    width: 50%;
+    position: relative;
+    padding: 5px;
+}
+
+.isotope-filters-list-link {
+    display: block;
+    font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .075em;
+    text-transform: uppercase;
+}
+
+.isotope-filters-list-link, .isotope-filters-list-link:focus, .isotope-filters-list-link:active {
+    color: #151515;
+    opacity: .38;
+}
+
+.isotope-filters-list-link.active, .isotope-filters-list-link:hover {
+    color: #151515;
+    opacity: 1;
+}
+
+.isotope-filters-list-img {
+    display: none;
+    width: 100%;
+    height: 33px;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.isotope-filters-list-img .sprite {
+    display: block;
+    background-image: url(../images/icons.png);
+    background-repeat: no-repeat;
+}
+
+
+.sprite.sprite-sport-icon-01 {
+    background-position: 0 0;
+    width: 27px;
+    height: 30px;
+}
+
+.sprite.sprite-sport-icon-02 {
+    background-position: -27px 0;
+    width: 27px;
+    height: 32px;
+}
+
+.sprite.sprite-sport-icon-03 {
+    background-position: -54px 0;
+    width: 30px;
+    height: 33px;
+}
+
+.sprite.sprite-sport-icon-04 {
+    background-position: -84px 0;
+    width: 28px;
+    height: 27px;
+}
+
+.sprite.sprite-sport-icon-05 {
+    background-position: -112px 0;
+    width: 28px;
+    height: 28px;
+}
+
+.sprite.sprite-sport-icon-06 {
+    background-position: -140px 0;
+    width: 26px;
+    height: 26px;
+}
+
+.sprite.sprite-sport-icon-07 {
+    background-position: -166px 0;
+    width: 25px;
+    height: 25px;
+}
+
+.sprite.sprite-sport-icon-08 {
+    background-position: -191px 0;
+    width: 27px;
+    height: 25px;
+}
+
+.sprite.sprite-sport-icon-09 {
+    background-position: -218px 0;
+    width: 26px;
+    height: 26px;
+}
+
+.sprite.sprite-sport-icon-10 {
+    background-position: -244px 0;
+    width: 33px;
+    height: 20px;
+}
+
+.sprite.sprite-sport-icon-11 {
+    background-position: -277px 0;
+    width: 26px;
+    height: 26px;
+}
+
+* + .isotope-filters-list-text {
+    margin-top: 12px;
+}
+
+@media (min-width: 576px) {
+    .isotope-filters-list {
+        position: static;
+        visibility: visible;
+        opacity: 1;
+        padding: 0;
+        background-color: inherit;
+        box-shadow: none;
+    }
+    .isotope-filters-list-item {
+        width: 20%;
+        padding: 25px 10px 25px;
+    }
+    .isotope-filters-list-item + .isotope-filters-list-item:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        height: 52%;
+        top: 50%;
+        transform: translateY(-50%);
+        border-left: 1px solid #d8d8d8;
+    }
+    .isotope-filters-list-item + .isotope-filters-list-item:nth-child(n + 6) {
+        border-top: 1px solid #d8d8d8;
+    }
+    .isotope-filters-list-item + .isotope-filters-list-item:nth-child(6):before {
+        display: none;
+    }
+    .isotope-filters-list-link {
+        text-align: center;
+    }
+    .isotope-filters-list-img {
+        display: flex;
+    }
+    .isotope-filters-list-text {
+        display: block;
+    }
+    .isotope-filters-list-count {
+        display: block;
+        line-height: 1.2;
+    }
+}
+
+@media (min-width: 1200px) {
+    .isotope-filters-list {
+        display: flex;
+        justify-content: space-between;
+    }
+    .isotope-filters-list-item {
+        width: 10%;
+    }
+    .isotope-filters-list-item + .isotope-filters-list-item:nth-child(n + 6) {
+        border-top: none;
+    }
+    .isotope-filters-list-item + .isotope-filters-list-item:nth-child(6):before {
+        display: block;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .isotope-filters-list + .isotope-filters-info {
+        margin-top: 0;
+    }
+}
+
+.isotope-filters-toggle {
+    display: block;
+}
+
+.isotope-filters-toggle, .isotope-filters-toggle:focus, .isotope-filters-toggle:active {
+    color: #fff;
+    border-color: #64b000;
+    background-color: #64b000;
+}
+
+.isotope-filters-toggle.active, .isotope-filters-toggle:hover {
+    color: #2a2a2a;
+    border-color: #ffd03a;
+    background-color: #ffd03a;
+}
+
+@media (min-width: 576px) {
+    .isotope-filters-toggle {
+        display: none;
+    }
+}
+
+.isotope-sizer {
+    height: 0;
+    margin-top: -1px;
+    margin-bottom: 0;
 }

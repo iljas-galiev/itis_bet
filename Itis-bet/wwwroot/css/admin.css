@@ -139,6 +139,7 @@ header {
 
 content {
     display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
@@ -462,4 +463,8 @@ menu {
 
 .breadcrumb-item + .breadcrumb-item {
     color: #777;
+}
+
+.fas {
+    color: #000;
 }
