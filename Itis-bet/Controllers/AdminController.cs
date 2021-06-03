@@ -20,7 +20,16 @@ namespace Itis_bet.Controllers
         [HttpGet]
         public IActionResult Index() =>
             View();
-
+        [HttpGet]
+        public IActionResult BlogPosts()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Comments()
+        {
+            return View();
+        }
 
     }
 }

@@ -463,3 +463,6 @@ menu {
 .breadcrumb-item + .breadcrumb-item {
     color: #777;
 }
+.main-content-wraper{
+    padding:30px;
+}

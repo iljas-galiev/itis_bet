@@ -43,7 +43,7 @@ namespace Itis_bet.Controllers
                 await _userManager.CreateAsync(CreateUser(regVM.Login, regVM.Email), regVM.Password);
                 await _notify.AboutRegistrationAsync(RegistrationReason.Succeeded, regVM.Email);
 
-                return await Log(new LoginViewModel { Email = regVM.Email, Password = regVM.Password });
+               return await Log(new LoginViewModel { Email = regVM.Email, Password = regVM.Password });
 
             }
             return InvalidRegisterRequest(regVM);
