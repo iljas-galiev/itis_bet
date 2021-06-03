@@ -7,6 +7,7 @@ using DAL.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BLL.ViewModels.AdminModels;
+using Infrastructure.IdentityExtesions;
 
 namespace Itis_bet.Controllers
 {
@@ -25,7 +26,8 @@ namespace Itis_bet.Controllers
         public IActionResult BlogPosts()
         {
             var sportOptionsList = Sport.All.GetOptionsWithAll();
-            var tableItems = _db.Articles.Include(a => a.User).Select(a => new BlogsTableItemVM()
+            var userEmail = User.GetUserEmail();
+            var tableItems = _db.Articles.Include(a => a.User).Where(u=>u.User.Email==userEmail).Select(a => new BlogsTableItemVM()
             {
                 Author = a.User.UserName,
                 Published = a.PublishedAt,
@@ -39,24 +41,27 @@ namespace Itis_bet.Controllers
             };
             return View(model);
         }
-        public IActionResult GetBlogTableItems(string authorName, Sport sport)
+        public IActionResult GetBlogTableItems(Sport sport)
         {
-            var posts = _db.Articles.Select(a=>new BlogsTableItemVM()
+            var userEmail = User.GetUserEmail();
+            var posts = _db.Articles.Where(a=>a.User.Email==userEmail).Select(a=>new BlogsTableItemVM()
             {
                 Author = a.User.UserName,
                 Header = a.Header,
                 Published = a.PublishedAt,
                 Sport = a.Sport.GetString(),
             });
-            if (authorName != null)
-            {
-                posts = posts.Where(p => p.Author.StartsWith(authorName));
-            }
             if(sport != Sport.All)
             {
                 posts = posts.Where(p => p.Sport == sport.GetString());
             }
             return PartialView(posts.AsEnumerable());
+        }
+
+        [HttpGet]
+        public IActionResult CreateBlogPost()
+        {
+            return View();
         }
         [HttpGet]
         public IActionResult Comments()
