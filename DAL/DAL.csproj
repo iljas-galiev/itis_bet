@@ -5,15 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20210531191940_users.cs" />
-    <Compile Remove="Migrations\20210531191940_users.Designer.cs" />
-    <Compile Remove="Migrations\20210602131412_users.cs" />
-    <Compile Remove="Migrations\20210602131412_users.Designer.cs" />
-    <Compile Remove="Migrations\20210602132037_users.cs" />
-    <Compile Remove="Migrations\20210602132037_users.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     
