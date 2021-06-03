@@ -20,10 +20,13 @@
         <div class="navbar-wrap">
             <nav>
                 <div class="navbar-panel navbar-darker">
+
                     <button class="navbar-toggle" id="navbarToggler">
                         <span></span>
                     </button>
+
                     <div class="header-container navbar-panel-inner">
+
                         <div class="navbar-panel-item navbar-panel-item-left">
                             <ul class="list-inline">
                                 <li>
@@ -31,54 +34,71 @@
                                 </li>
                             </ul>
                         </div>
+
                         <div class="navbar-panel-item navbar-panel-item-right" >
                             <div id="headerRight">
+
                                 <ul class="list-inline list-inline-bordered" >
+
                                     <li>
                                         <select class="select-inline-dark select">
                                             <option value="en" selected>en</option>
                                             <option value="ru" selected>ru</option>
                                         </select>
                                     </li>
+
                                     <li>
                                         <a class="badge badge-primary" asp-controller="RegLog" asp-action="Index">Регистрация</a>
                                     </li>
+
                                     <li>
                                         <a class="link link-icon link-icon-left link-classic" id="sign-in-link" onmouseover="coloriseSignInIcon('color-white', 'color-green')" onmouseout="coloriseSignInIcon('color-green', 'color-white')" href="login-page.html">
                                             <span class="fas fa-sign-in-alt fa-icon" id="sign-in-icon"></span>
                                             <span class="link-icon-text" id="sign-in-text">Аккаунт</span>
                                         </a>
                                     </li>
+
                                 </ul>
+
                             </div>
-                            <div class="navbar-collapse-toggle navbar-fixed-element-1 toggle-original" id="navbarCollapseToggler" data-rd-navbar-toggle="navbar-collapse">
-                                <span></span>
-                            </div>
+
                         </div>
                     </div>
 
                 </div>
+
                 <div class="navbar-main" id="headerMain">
+
                     <div class="navbar-main-top" id="navbar-main-top">
                         <div class="navbar-main-container header-container" id="navbar-main-container">
+
                             <div class="navbar-brand">
                                 <a class="brand" href="index.html">
                                     <img class="brand-logo-dark" src="~/images/logo-default-213x82.png" alt="" width="106" height="41">
                                     <img class="brand-logo-light" src="~/images/logo-inverse-213x82.png" alt="" width="106" height="41">
                                 </a>
                             </div>
+
                             <div class="navbar-search toggle-original-elements">
-                                <button class="navbar-search-toggle toggle-original" data-rd-navbar-toggle=".navbar-search"><span></span></button>
+
+                                <button class="navbar-search-toggle toggle-original" data-rd-navbar-toggle=".navbar-search"></button>
+
                                 <form class="search" action="search-results.html" data-search-live="search-results-live" method="GET">
+
                                     <div class="search-wrap">
                                         <input class="navbar-search-form-input form-input" placeholder="Введите запрос" id="navbar-search-form-input" type="text" name="s" autocomplete="off">
                                         <div class="search-results-live" id="search-results-live"></div>
                                     </div>
+
                                     <button class="search-form-submit fas fa-search" type="submit"></button>
+
                                 </form>
+
                             </div>
+
                         </div>
                     </div>
+
                     <div class="navbar-main-bottom navbar-darker" id="fixibleHeader">
                         <div class="navbar-main-container header-container">
 
@@ -103,30 +123,45 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="results.html">Results</a>
                                 </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="contact-us.html">Contact us</a>
                                 </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" asp-controller="Admin" asp-action="Index">Admin</a>
                                 </li>
+
                             </ul>
 
                         </div>
                     </div>
+
                 </div>
                 
             </nav>
         </div>
     </header>
+
+
+
     <content class="container">
+
         @RenderBody()
+
     </content>
 
+
+
     <footer class="border-top footer text-muted">
+
         <div class="container">
             &copy; 2021 - ITIS_Bet - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
+
     </footer>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

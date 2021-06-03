@@ -28,6 +28,7 @@ namespace Itis_bet.Controllers
                 .Where(a => a.Id.Equals(id))
                 .Include(a => a.Comments)
                 .ThenInclude(u => u.User)
+                .ThenInclude(p => p.Profile)
                 .Single());
        
         [HttpGet]
