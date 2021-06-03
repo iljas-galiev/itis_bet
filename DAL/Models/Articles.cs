@@ -40,6 +40,9 @@ namespace DAL.Models
         [NotMapped]
         public bool IsCommented =>
             this.Comments != null && this.Comments.Count != 0;
+
+        public Guid UserId { get; set; }
+        public User User { get; set; }
     }
 }
 

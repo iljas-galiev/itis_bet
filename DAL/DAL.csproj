@@ -17,6 +17,8 @@
     
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.6">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
