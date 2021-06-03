@@ -1,0 +1,52 @@
+﻿@{ 
+    ViewData["Title"] = "Личный кабинет";
+}
+
+<div class="container">
+    <div class="row">
+        @await Html.PartialAsync("_GetPersonalMenu")
+        <div class="col-md-9 col-sm-12 content">
+            <div class="menu-header">
+                <h5>Настройки</h5>
+            </div>
+            <div class="background-white">
+                <div class="main">
+                    <form class="">
+                        <div class="form-wrap">
+                            <input class="form-control" type="text" id="Name" placeholder="Имя" />
+                        </div>
+                        <div class="form-wrap">
+                            <input class="form-control" type="text" id="Surname" placeholder="Фамилия" />
+                        </div>
+                        <div class="form-wrap">
+                            <input class="form-control" type="tel" id="Phone" placeholder="Телефон" />
+                        </div>
+                        <div class="form-wrap">
+                            <input class="form-control" type="email" id="Email" placeholder="Почта" />
+                        </div>
+                        <div class="form-wrap">
+                            <input class="primary-btn" type="submit" value="Сохранить изменения" />
+                        </div>
+
+                    </form>
+
+                    <form class="">
+                        <div class="form-wrap">
+                            <input class="form-control" type="password" id="OldPassword" placeholder="Старый пароль" />
+                        </div>
+                        <div class="form-wrap">
+                            <input class="form-control" type="password" id="NewPassword" placeholder="Новый пароль" />
+                        </div>
+                        <div class="form-wrap">
+                            <input class="form-control" type="password" id="NewPassword2" placeholder="Повторите пароль" />
+                        </div>
+                        <div class="form-wrap">
+                            <input class="primary-btn" type="submit" value="Изменить пароль" />
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
