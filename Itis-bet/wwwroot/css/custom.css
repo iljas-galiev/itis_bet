@@ -1096,7 +1096,7 @@ registration{
     left: -100vw;
     top: -100vh;
     float: left;
-    visibility: hidden;
+    display:none;
 }
     .checkbox-custom + span {
         top: 1px;

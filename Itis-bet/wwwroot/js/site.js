@@ -57,37 +57,44 @@ document.getElementById('navbarCollapseToggler').addEventListener('click', funct
 
     }
 });
-document.getElementById('logRegSwitch').addEventListener('click', function () {
-    if ($('#logRegSwitchCircle').hasClass('switch-pos-right')) {
-        $('#logRegSwitchCircle').removeClass('switch-pos-right')
+function switchLogReg() {
+    let hostUrl = window.location.protocol + '//' + window.location.host + '/';
+    if ($('#logRegSwitch').data("currentpage") == "reg") {
+        $.ajax({
+            url: hostUrl + "RegLog/GetLogPartial",
+            method: "GET",
+            success: function (data) {
+                console.log(hostUrl + "RegLog/GetLogPartial")
+                $('#regLogWraper').empty().append(data);
+            }
+        })
+        return
+
     }
-    else {
-        $('#logRegSwitchCircle').addClass('switch-pos-right')
-    }
-    if ($('login').hasClass('active')) {
-        $('login').removeClass('active');
-        $('registration').addClass('active');
-        $('#regLogHeader').text('Регистрация')
-        $('#regLogSubText').text('Вход')
-    }
-    else {
-        $('registration').removeClass('active');
-        $('login').addClass('active');
-        $('#regLogSubText').text('Регистрация')
-        $('#regLogHeader').text('Вход')
-    }
-});
-function checkCustomCheckBox() {
-    if ($('#rememberMeCheckBox').hasClass('checked')) {
-        $('#hiddenCheckbox').prop('checked', false);
-        $('#rememberMeCheckBox').removeClass('checked')
-        console.log('1')
-    }
-    else {
-        $('#hiddenCheckbox').prop('checked', true);
-        $('#rememberMeCheckBox').addClass('checked');
-        console.log('2')
+    if ($('#logRegSwitch').data("currentpage") == "log") {
+        $.ajax({
+            url: hostUrl + "RegLog/GetRegPartial",
+            method: "GET",
+            success: function (data) {
+                console.log(hostUrl + "RegLog/GetRegPartial")
+                $('#regLogWraper').empty().append(data);
+            }
+        })
+        return
     }
 }
-document.getElementById('rememberMeCheckBox').addEventListener('click', function () { checkCustomCheckBox() });
+function checkCustomCheckBox() {
+    if ($('#rememberMeCheckBox').hasClass('checked')) {
+        $('#hiddenCheckbox').prop('checked', true);
+        $('#rememberMeCheckBox').removeClass('checked')
+        console.log($('#hiddenCheckbox').is(':checked'))
+    }
+    else {
+        $('#hiddenCheckbox').prop('checked', false);      
+        $('#rememberMeCheckBox').addClass('checked');
+        console.log($('#hiddenCheckbox').is(':checked'))
+    }
+}
+/*document.getElementById('rememberMeCheckBox').addEventListener('click', function () { checkCustomCheckBox() });
 document.getElementById('rememberMeText').addEventListener('click', function () { checkCustomCheckBox() });
+*/

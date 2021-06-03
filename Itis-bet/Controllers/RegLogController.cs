@@ -56,7 +56,7 @@ namespace Itis_bet.Controllers
 
                 var user = _userManager.FindByEmailAsync(logVM.Email);
 
-                if (user != null)
+                if (user == null)
                     return RedirectToAction("Reg", "RegLog");
 
                 var res = await SignIn(logVM.Email, logVM.Password, logVM.Remember);
@@ -75,12 +75,21 @@ namespace Itis_bet.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
+        [HttpGet]
+        public async Task<IActionResult> GetRegPartial()
+        {
+            return PartialView("RegPartial",new RegisterViewModel());
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetLogPartial()
+        {
+            return PartialView("LogPartial",new LoginViewModel());
+        }
         private IActionResult InvalidLoginRequest(LoginViewModel logVM) =>
-            View("Index", new Tuple<LoginViewModel, RegisterViewModel>(logVM, new RegisterViewModel()));
+            View("Index", new Tuple<LoginViewModel, RegisterViewModel>(logVM,null));
 
         private IActionResult InvalidRegisterRequest(RegisterViewModel regVM) =>
-            View("Index", new Tuple<LoginViewModel, RegisterViewModel>(new LoginViewModel(), regVM));
+            View("Index", new Tuple<LoginViewModel, RegisterViewModel>(null, regVM));
 
         private async Task<Microsoft.AspNetCore.Identity.SignInResult> SignIn(string email, string password, bool remember) =>
             await _signInManager.PasswordSignInAsync(email, password, remember, false);
