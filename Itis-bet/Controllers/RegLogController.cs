@@ -43,6 +43,7 @@ namespace Itis_bet.Controllers
                 // Smtp exception catched and return false.
                 var validEmail = await _notify.AboutRegistrationAsync(RegistrationReason.Succeeded, regVM.Email);
 
+
                 if (validEmail)
                 {
                     var res = await _userManager.CreateAsync(CreateUser(regVM.Login, regVM.Email, regVM.Phone), regVM.Password);
@@ -50,6 +51,7 @@ namespace Itis_bet.Controllers
                     if (res.Succeeded)
                         return await Log(new LoginViewModel { Email = regVM.Email, Password = regVM.Password });                
                 }
+
 
                 ModelState.AddModelError(string.Empty, "Invalid email address");
             }

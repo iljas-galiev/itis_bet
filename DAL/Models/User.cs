@@ -20,6 +20,7 @@ namespace DAL.Models
 
         public IEnumerable<Comments> Comments { get; set; }
 
+        public IEnumerable<Articles> Articles { get; set; }
     }
 
     public class UserProfile
