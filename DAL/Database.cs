@@ -32,7 +32,7 @@ namespace DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<UserProfile>()
+            modelBuilder.Entity<User>()
                 .Property(profile => profile.CanBet)
                 .HasDefaultValue(true);
         }

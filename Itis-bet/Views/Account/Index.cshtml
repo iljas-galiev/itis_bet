@@ -1,9 +1,11 @@
 ﻿@{ 
     ViewData["Title"] = "Личный кабинет";
 }
+@model Tuple<ProfileViewModel, EditPasswordViewModel>
 
 <div class="container">
     <div class="row">
+
         @await Html.PartialAsync("_GetPersonalMenu")
 
         <div class="col-md-9 col-sm-12 content">
@@ -15,47 +17,19 @@
 
                 <div class="main">
 
-                    <form class="">
+                    <!-- Edit profile here -->
+                    @await Html.PartialAsync("_EditProfilePartial", Model.Item1)
 
-                        <div class="form-wrap">
-                            <input class="form-control" type="text" id="Name" placeholder="Имя" />
-                        </div>
-                        <div class="form-wrap">
-                            <input class="form-control" type="text" id="Surname" placeholder="Фамилия" />
-                        </div>
-                        <div class="form-wrap">
-                            <input class="form-control" type="tel" id="Phone" placeholder="Телефон" />
-                        </div>
-                        <div class="form-wrap">
-                            <input class="form-control" type="email" id="Email" placeholder="Почта" />
-                        </div>
-                        <div class="form-wrap">
-                            <input class="primary-btn" type="submit" value="Сохранить изменения" />
-                        </div>
+                    <!-- Edit passport here -->
+                    @await Html.PartialAsync("_EditPassportPartial", Model.Item2)
 
-                    </form>
-
-
-                    <form class="">
-
-                        <div class="form-wrap">
-                            <input class="form-control" type="password" id="OldPassword" placeholder="Старый пароль" />
-                        </div>
-                        <div class="form-wrap">
-                            <input class="form-control" type="password" id="NewPassword" placeholder="Новый пароль" />
-                        </div>
-                        <div class="form-wrap">
-                            <input class="form-control" type="password" id="NewPassword2" placeholder="Повторите пароль" />
-                        </div>
-                        <div class="form-wrap">
-                            <input class="primary-btn" type="submit" value="Изменить пароль" />
-                        </div>
-
-                    </form>
+                    <!-- Edit password here -->
+                    @await Html.PartialAsync("_EditPasswordPartial", new EditPasswordViewModel())
 
                 </div>
 
             </div>
         </div>
+
     </div>
 </div>

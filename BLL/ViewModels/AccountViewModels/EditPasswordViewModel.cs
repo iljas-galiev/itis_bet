@@ -2,7 +2,7 @@
 
 namespace BLL.ViewModels
 {
-    public class ChangePasswordViewModel
+    public class EditPasswordViewModel
     {
         [Required]
         [DataType(DataType.Password)]

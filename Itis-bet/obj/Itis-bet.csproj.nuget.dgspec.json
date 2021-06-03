@@ -29,7 +29,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
