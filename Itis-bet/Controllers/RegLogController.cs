@@ -33,7 +33,7 @@ namespace Itis_bet.Controllers
         public async Task<IActionResult> Reg(RegisterViewModel regVM){
             if (ModelState.IsValid){
 
-                var user = _userManager.FindByEmailAsync(regVM.Email);
+                var user = _userManager.FindByNameAsync(regVM.Email);
 
                 if(user != null)
                 {

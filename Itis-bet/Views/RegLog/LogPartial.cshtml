@@ -42,14 +42,14 @@
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
             </div>
-
-            <div class="form-wrap">
-                <label asp-for="Remember" , class="sr-only">Remember?</label>
-
-                <div>
-                    <input class="form-control" asp-for="Remember" , type="checkbox" placeholder="Password">
-                    <span asp-validation-for="Remember" class="text-danger"></span>
-                </div>
+            <div class="checkbox-wrap">
+                <label class="checkbox-custom-label" id="checkboxCustomLabel">
+                    <input class="checkbox-custom" id="hiddenCheckbox" type="checkbox" asp-for="Remember"/>
+                    <span id="rememberMeCheckBox" onclick="checkCustomCheckBox()"></span>
+                    <span id="rememberMeText" onclick="checkCustomCheckBox()">
+                        Запомнить меня
+                    </span>
+                </label>
             </div>
 
             <button class="btn primary-btn primary-btn-lg" type="submit">

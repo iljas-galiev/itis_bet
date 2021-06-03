@@ -85,15 +85,16 @@ function switchLogReg() {
 }
 function checkCustomCheckBox() {
     if ($('#rememberMeCheckBox').hasClass('checked')) {
-        $('#hiddenCheckbox').prop('checked', false);
+        $('#hiddenCheckbox').prop('checked', true);
         $('#rememberMeCheckBox').removeClass('checked')
-        console.log('1')
+        console.log($('#hiddenCheckbox').is(':checked'))
     }
     else {
-        $('#hiddenCheckbox').prop('checked', true);
+        $('#hiddenCheckbox').prop('checked', false);      
         $('#rememberMeCheckBox').addClass('checked');
-        console.log('2')
+        console.log($('#hiddenCheckbox').is(':checked'))
     }
 }
-document.getElementById('rememberMeCheckBox').addEventListener('click', function () { checkCustomCheckBox() });
+/*document.getElementById('rememberMeCheckBox').addEventListener('click', function () { checkCustomCheckBox() });
 document.getElementById('rememberMeText').addEventListener('click', function () { checkCustomCheckBox() });
+*/
