@@ -1,122 +1,160 @@
-@model DAL.Models.Articles
+﻿@model DAL.Models.Articles
 
+@{
+    ViewData["Title"] = Model.Header;
+}
 <div class="container">
-<div class="row row-30">
-    <div class="blog-post">
-        <!-- Badge-->
-        <div class="badge badge-secondary">News</div>
+    <div class="row d-flex flex-row-reverse">
 
-        <h3 class="blog-post-title">@Model.Header</h3>
+        @await Html.PartialAsync("_GetArticleMenu")
 
-        <div class="blog-post-header">
+        <div class="col-lg-9 col-md-8 col-sm-12 content">
 
-            <div class="blog-post-author">
-                <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="63" height="63">
-            </div>
+            <!-- Blog Post -->
+            <div class="blog-post">
 
-            <div class="blog-post-meta">
-                <time class="blog-post-time" datetime="2020"><span class="icon mdi mdi-clock"></span>@Model.PublishedAt</time>
-                <div class="blog-post-comment"><span class="icon mdi mdi-comment-outline"></span>@Model.Comments.Count</div>
-                <div class="blog-post-view"><span class="icon fl-justicons-visible6"></span>@{new Random().Next(10, 300);}</div>
-            </div>
-
-        </div>
-
-        <div class="blog-post-author-quote">
-            <p>@Model.Description</p>
-        </div>
-
-        <div class="blog-post-share">
-            <p>Share this post</p>
-            <!-- Sharing here -->
-        </div>
-
-        <div class="blog-post-content">
-            <img src="@Model.Picture" alt="" width="683" height="407" style=" width: auto;">
-            <p>@Model.Content</p>
-            <!-- Quote Default-->
-            <article class="quote-default">
-                <div class="quote-default-text">
-                    <p class="q">This week in sports betting proved to be very unpredictable</p>
+                <div class="badge badge-secondary">
+                    News
                 </div>
-            </article>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate e.</p>
-        </div>
 
-    </div>
+                <h3 class="blog-post-title">
+                    @Model.Description
+                </h3>
 
-    <div class="blog-post-comments">
+                <div class="blog-post-header">
 
-        @if (Model.IsCommented)
-        {
-            <!-- Post Comment-->
-            foreach (var comment in Model.Comments)
-            {
-                <div class="post-comment post-comment-parent">
-
-                    <div class="post-comment-aside">
-                        <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="Sexy-image" width="69" height="69">
+                    <div class="blog-post-author">
+                        <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="63" height="63">
+                        <p class="post-author">Katrin Burns</p>
                     </div>
 
-                    <div class="post-comment-main">
-
-                        <div class="post-comment-header">
-                            <h5 class="author-name">Linda Peterson</h5>
-                            <time class="post-comment-time" datetime="2020">
-                                2 days ago
-                            </time>
-                        </div>
-
-                        <div class="post-comment-text">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nu.</p>
-                        </div>
-
+                    <div class="blog-post-meta">
+                        <time class="blog-post-time" datetime="2020"><span class="icon mdi mdi-clock"></span>@Model.PublishedAt.ToString("MMMM dd, yyyy")</time>
+                        <div class="blog-post-comment"><span class="icon mdi mdi-comment-outline"></span>345</div>
+                        <div class="blog-post-view"><i class="icon far fa-eye"></i>234</div>
                     </div>
 
                 </div>
-            }
-        }
 
-        <div class="blog-post" >
-            @{ 
-                if (User.Identity.IsAuthenticated)
-                {
+                <div class="blog-post-content">
 
-                    <!-- Coments form -->
-                    <div class="comment-box">
+                    <p>@Model.Content</p>
 
-                        <div class="comment-box-aside">
-                            <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="69" height="69">
-                        </div>
+                    <img src="@Model.Picture" alt="" width="763" height="407">
 
-                        <div class="comment-box-main">
-
-                            <h5 class="comment-box-name">@User.Identity.Name</h5>
-
-                            <!-- RD Mailform-->
-                            <form class="rd-mailform comment-box-form" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
-
-                                <div class="form-wrap">
-                                    <label class="form-label rd-input-label" for="comment-message">Your comment</label>
-                                    <textarea class="form-input form-control-has-validation form-control-last-child" id="comment-message" name="message" data-constraints=""></textarea><span class="form-validation"></span>
-                                </div>
-
-                                <div class="form-button">
-                                    <button class="button button-primary" type="submit">Submit</button>
-                                </div>
-
-                            </form>
-
-                        </div>
-
+                    <div class="blog-post-share">
+                        <p>Поделиться новостью</p>
+                        <ul class="share_ul">
+                            <li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
+                        </ul>
                     </div>
-                }
-                else
-                {
-                    <h2>You need to log in, to leave comment.</h2>
-                }
-            }
+
+                </div>
+            </div>
+
+            <!-- Comments Here -->
+            <section class="comments">
+
+                <div class="menu-header">
+
+                    <div class="menu-header-text">
+                        <h5>Комментарии</h5>
+                    </div>
+
+                </div>
+
+
+                <div class="comments-content">
+
+                    <ul class="comments-ul">
+
+
+                        @if (Model.IsCommented)
+                        {
+                            <!-- Post Comment-->
+                            foreach (var comment in Model.Comments)
+                            {
+                                <li class="comment">
+                                    <div class="comment-content">
+
+                                        <div class="comment-avatar">
+                                            <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="63" height="63" />
+                                        </div>
+
+                                        <div class="comment-body">
+                                            <div class="comment-info">
+                                                <div class="commentator-name">
+                                                    <h5>Имя комментатора</h5>
+                                                </div>
+                                                <div class="comment-date">
+                                                    <p>25.05.2021</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="comment-text">
+                                                <p>
+                                                    @comment.Text
+                                                </p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="comment">
+                                <div class="comment-content">
+
+                                    <p>Here is no comments yet, be first!</p>
+
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+
+                    <hr>
+
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+
+                            <div class="comment-content create-comment" id="createComment">
+                                <div class="comment-avatar">
+                                    <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="63" height="63" />
+                                </div>
+                                <div class="comment-body">
+                                    <div class="comment-info">
+                                        <div class="commentator-name">
+                                            <h5>Имя комментатора</h5>
+                                        </div>
+                                    </div>
+
+                                    <form>
+                                        <div class="form-wrap">
+                                            <textarea class="form-control" placeholder="Введите ваш комментарий"></textarea>
+                                        </div>
+                                        <div class="form-wrap">
+                                            <input class="primary-btn" type="submit" value="Отправить комментарий" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="comment-content create-comment" id="createComment">
+                                <p>You need to log in, to leave comment.</p>
+                            </div>
+                        }
+                    }
+                </div>
+            </section>
+
         </div>
     </div>
-</div>
 </div>

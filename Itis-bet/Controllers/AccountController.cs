@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Itis_bet.Controllers
 {
-    [Authorize]
+    // [Authorize]
     public class AccountController : Controller
     {
         private readonly Database _db;
@@ -19,15 +19,16 @@ namespace Itis_bet.Controllers
             _db = db;
 
         [HttpGet]
-        public IActionResult Options() =>
+        public IActionResult Index() =>
             View();
 
         [HttpGet]
-        public IActionResult Balance() =>
-            View();
+        public IActionResult GetPersonalMenu() =>
+            PartialView("_GetPersonalMenu");
 
         [HttpGet]
-        public IActionResult Bets() =>
-            View();
+        public IActionResult GetBlogPostMenu() =>
+            PartialView("_GetBlogPostMenu");
+
     }
 }
