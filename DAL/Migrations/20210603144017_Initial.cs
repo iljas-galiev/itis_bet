@@ -9,20 +9,6 @@ namespace DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Articles",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Text = table.Column<string>(type: "text", nullable: false),
-                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    Picture = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Articles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -41,10 +27,8 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Passport = table.Column<string>(type: "text", nullable: true),
-                    Verificated = table.Column<bool>(type: "boolean", nullable: false),
-                    Avatar = table.Column<string>(type: "text", nullable: true),
-                    Money = table.Column<decimal>(type: "numeric", nullable: false),
+                    ProfileId = table.Column<Guid>(type: "uuid", nullable: false),
+                    PassportId = table.Column<Guid>(type: "uuid", nullable: false),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -101,6 +85,30 @@ namespace DAL.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Articles",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Sport = table.Column<int>(type: "integer", nullable: false),
+                    Header = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
+                    Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    Content = table.Column<string>(type: "text", nullable: false),
+                    PublishedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    Picture = table.Column<string>(type: "text", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Articles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Articles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -191,36 +199,46 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comments",
+                name: "Passports",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    User_Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Article_Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Text = table.Column<string>(type: "text", nullable: false),
-                    ReplyTo = table.Column<Guid>(type: "uuid", nullable: true)
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    Serial = table.Column<string>(type: "text", nullable: true),
+                    Number = table.Column<string>(type: "text", nullable: true),
+                    Issued = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.PrimaryKey("PK_Passports", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_Articles_Article_Id",
-                        column: x => x.Article_Id,
-                        principalTable: "Articles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Comments_AspNetUsers_User_Id",
-                        column: x => x.User_Id,
+                        name: "FK_Passports_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Profiles",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Money = table.Column<long>(type: "bigint", nullable: false),
+                    CanBet = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Profiles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_Comments_ReplyTo",
-                        column: x => x.ReplyTo,
-                        principalTable: "Comments",
+                        name: "FK_Profiles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -228,7 +246,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Match_Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    MatchId = table.Column<Guid>(type: "uuid", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
                     Coef = table.Column<double>(type: "double precision", nullable: false),
                     Status = table.Column<string>(type: "varchar(255)", nullable: false)
@@ -237,9 +255,35 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_Bets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Bets_Matches_Match_Id",
-                        column: x => x.Match_Id,
+                        name: "FK_Bets_Matches_MatchId",
+                        column: x => x.MatchId,
                         principalTable: "Matches",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ArticleId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Text = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_Articles_ArticleId",
+                        column: x => x.ArticleId,
+                        principalTable: "Articles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -249,8 +293,8 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    User_Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Bet_Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    BetId = table.Column<Guid>(type: "uuid", nullable: false),
                     Time = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Money = table.Column<decimal>(type: "numeric", nullable: false),
                     Coef = table.Column<double>(type: "double precision", nullable: false),
@@ -261,14 +305,14 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_UsersBets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UsersBets_AspNetUsers_User_Id",
-                        column: x => x.User_Id,
+                        name: "FK_UsersBets_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UsersBets_Bets_Bet_Id",
-                        column: x => x.Bet_Id,
+                        name: "FK_UsersBets_Bets_BetId",
+                        column: x => x.BetId,
                         principalTable: "Bets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -279,28 +323,34 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    User_Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     Type = table.Column<int>(type: "integer", nullable: false),
                     Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Money = table.Column<decimal>(type: "numeric", nullable: false),
-                    User_Bet_Id = table.Column<Guid>(type: "uuid", nullable: true)
+                    User_Bet_Id = table.Column<Guid>(type: "uuid", nullable: true),
+                    UserBetId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transactions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Transactions_AspNetUsers_User_Id",
-                        column: x => x.User_Id,
+                        name: "FK_Transactions_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Transactions_UsersBets_User_Bet_Id",
-                        column: x => x.User_Bet_Id,
+                        name: "FK_Transactions_UsersBets_UserBetId",
+                        column: x => x.UserBetId,
                         principalTable: "UsersBets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Articles_UserId",
+                table: "Articles",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -340,44 +390,51 @@ namespace DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bets_Match_Id",
+                name: "IX_Bets_MatchId",
                 table: "Bets",
-                column: "Match_Id");
+                column: "MatchId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_Article_Id",
+                name: "IX_Comments_ArticleId",
                 table: "Comments",
-                column: "Article_Id");
+                column: "ArticleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_ReplyTo",
+                name: "IX_Comments_UserId",
                 table: "Comments",
-                column: "ReplyTo");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_User_Id",
-                table: "Comments",
-                column: "User_Id");
+                name: "IX_Passports_UserId",
+                table: "Passports",
+                column: "UserId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_User_Bet_Id",
+                name: "IX_Profiles_UserId",
+                table: "Profiles",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_UserBetId",
                 table: "Transactions",
-                column: "User_Bet_Id");
+                column: "UserBetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_User_Id",
+                name: "IX_Transactions_UserId",
                 table: "Transactions",
-                column: "User_Id");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UsersBets_Bet_Id",
+                name: "IX_UsersBets_BetId",
                 table: "UsersBets",
-                column: "Bet_Id");
+                column: "BetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UsersBets_User_Id",
+                name: "IX_UsersBets_UserId",
                 table: "UsersBets",
-                column: "User_Id");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -399,6 +456,12 @@ namespace DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Passports");
+
+            migrationBuilder.DropTable(
+                name: "Profiles");
 
             migrationBuilder.DropTable(
                 name: "Transactions");

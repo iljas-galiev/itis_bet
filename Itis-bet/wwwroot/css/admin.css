@@ -375,7 +375,6 @@ menu {
 
     .menu-toggler {
         background-color: #3c8dbc;
-        ;
     }
 
     menu {
@@ -462,4 +461,17 @@ menu {
 
 .breadcrumb-item + .breadcrumb-item {
     color: #777;
+}
+.main-content-wraper{
+    padding:30px;
+}
+.box-header{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+}
+.input-group-btn .btn{
+    margin:0px;
+    padding:3px 12px;
 }
