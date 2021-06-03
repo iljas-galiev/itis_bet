@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DAL.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BLL.ViewModels
 {
@@ -29,5 +31,14 @@ namespace BLL.ViewModels
         [Display(Name = "Номер телефона")]
         public string Phone { get; set; }
 
+        public ProfileViewModel() {}
+
+        public override bool Equals(object obj) =>
+            obj is UserProfile model &&
+               Name == model.Name &&
+               LastName == model.LastName;
+
+        public override int GetHashCode() =>
+            HashCode.Combine(Name, LastName, Email, Phone);
     }
 }

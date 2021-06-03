@@ -17,14 +17,17 @@
 
                 <div class="main">
 
-                    <!-- Edit profile here -->
+                    <h2>Edit profile</h2>
                     @await Html.PartialAsync("_EditProfilePartial", Model.Item1)
+                    <hr>
 
-                    <!-- Edit passport here -->
+                    <h2>Edit passport</h2>
                     @await Html.PartialAsync("_EditPassportPartial", Model.Item2)
+                    <hr>
 
-                    <!-- Edit password here -->
+                    <h2>Change password</h2>
                     @await Html.PartialAsync("_EditPasswordPartial", new EditPasswordViewModel())
+                    <hr>
 
                 </div>
 

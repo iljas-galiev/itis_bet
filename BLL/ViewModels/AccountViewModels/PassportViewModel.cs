@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DAL.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BLL.ViewModels
 {
@@ -19,5 +21,16 @@ namespace BLL.ViewModels
         [MaxLength(500, ErrorMessage = "Максимальная длинна поля 500.")]
         public string Issued { get; set; }
 
+        public PassportViewModel() { }
+
+
+        public override int GetHashCode() =>
+            HashCode.Combine(Serial, Number, Issued);
+
+        public override bool Equals(object obj) =>
+            obj is Passport model &&
+                Serial == model.Serial &&
+                Number == model.Number &&
+                Issued == model.Issued;
     }
 }

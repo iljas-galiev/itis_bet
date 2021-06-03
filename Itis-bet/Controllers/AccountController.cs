@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BLL.Extensions;
 using System.Threading.Tasks;
+using Infrastructure.Notifications;
 
 namespace Itis_bet.Controllers
 {
@@ -22,25 +23,25 @@ namespace Itis_bet.Controllers
         private readonly UserManager<User> _user;
         private readonly ProfileService _profile;
         private readonly PassportService _passport;
+        private readonly INotificator<bool> _notify;
 
         public AccountController(Database db, UserManager<User> userManager,
-            ProfileService profile, PassportService passport){
+            ProfileService profile, PassportService passport, INotificator<bool> notify)
+        {
             _db = db;
             _user = userManager;
             _profile = profile;
             _passport = passport;
+            _notify = notify;
         }
 
         [HttpGet]
-        public IActionResult Index(Tuple<ProfileViewModel, PassportViewModel> model)
+        public IActionResult Index()
         {
             var user = _user.WithProfileAndPassport(User.Identity.Name);
 
-            if (model == null)
-                return View(new Tuple<ProfileViewModel, PassportViewModel>(
-                        _profile.ConstructView(user), _passport.ConstructView(user)));
-
-            return View(model);
+            return View(new Tuple<ProfileViewModel, PassportViewModel>(
+                _profile.ConstructView(user), _passport.ConstructView(user)));
         }
 
         [HttpPost]
@@ -52,12 +53,20 @@ namespace Itis_bet.Controllers
 
                 var someChanges = _profile.Update(user, newProfile);
 
-                if(someChanges)
-                    await _db.SaveChangesAsync();
+                if (someChanges)
+                {
+                    var validEmail = await _notify.AboutSecurityAsync(SecurityReason.ProfileUpdated, newProfile.Email);
 
-                return RedirectToAction("Index");
+                    if (validEmail)
+                    {
+                        await _db.SaveChangesAsync();
+                        return RedirectToAction("Index");
+                    }
+
+                    ModelState.AddModelError(string.Empty, "Invalid email address");
+                }
             }
-            return Index(new Tuple<ProfileViewModel, PassportViewModel>(
+            return View("Index", new Tuple<ProfileViewModel, PassportViewModel>(
                 newProfile, _passport.ConstructView(_user.WithPassport(User.Identity.Name))));
         }
 
@@ -71,11 +80,14 @@ namespace Itis_bet.Controllers
                 var someChanges = _passport.Update(user, newPassport);
 
                 if (someChanges)
+                {
                     await _db.SaveChangesAsync();
+                    await _notify.AboutSecurityAsync(SecurityReason.PassportUpdated, user.Email);
+                }
 
                 return RedirectToAction("Index");
             }
-            return Index(new Tuple<ProfileViewModel, PassportViewModel>(
+            return View("Index", new Tuple<ProfileViewModel, PassportViewModel>(
                 _profile.ConstructView(_user.WithProfile(User.Identity.Name)), newPassport));
         }
 
@@ -98,10 +110,18 @@ namespace Itis_bet.Controllers
                     var res = await _user.UpdateAsync(user);
 
                     if (res.Succeeded)
-                        return View("Index");
+                    {
+                        await _notify.AboutSecurityAsync(SecurityReason.PasswordUpdated, user.Email);
+
+                        return View("Index", new Tuple<ProfileViewModel, PassportViewModel>(
+                            _profile.ConstructView(user), _passport.ConstructView(user)));
+                    }
                 }
+                ModelState.AddModelError(string.Empty, "Incorrect current password!");
             }
-            return View("_EditPasswordPartial", new EditPasswordViewModel());
+            return View("Index", new Tuple<ProfileViewModel, PassportViewModel>(
+                _profile.ConstructView(_user.WithProfile(User.Identity.Name)),
+                _passport.ConstructView(_user.WithPassport(User.Identity.Name))));
         }
 
         [HttpGet]

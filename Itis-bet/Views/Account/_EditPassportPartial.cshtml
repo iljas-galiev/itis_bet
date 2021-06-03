@@ -30,7 +30,7 @@
 
             <div>
                 <input class="form-control" id="Issued" asp-for="Issued" type="text" placeholder="Issued by"
-                        value="@{ if (Model.Issued != default) { @Model.Issued } }">>
+                        value="@{ if (Model.Issued != default) { @Model.Issued } }">
                 <span asp-validation-for="Issued" class="text-danger"></span>
             </div>
         </div>

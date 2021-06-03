@@ -21,7 +21,7 @@ namespace BLL.Services
 
                 passportView.Serial = DefaultIfNull(passport.Serial);
                 passportView.Number = DefaultIfNull(passport.Number);
-                passport.Issued = DefaultIfNull(passport.Issued);
+                passportView.Issued = DefaultIfNull(passport.Issued);
             }
 
             return passportView;
@@ -29,7 +29,7 @@ namespace BLL.Services
 
         public bool Update(User user, PassportViewModel passport)
         {
-            if (IsEmpty(passport))
+            if (IsEmpty(passport) || passport.Equals(user.Passport))
                 return false;
 
             var newPassport = new Passport();
@@ -48,5 +48,6 @@ namespace BLL.Services
 
         private bool IsEmpty(PassportViewModel passport) =>
             passport.Issued == null & passport.Number == null & passport.Serial == null;
+
     }
 }

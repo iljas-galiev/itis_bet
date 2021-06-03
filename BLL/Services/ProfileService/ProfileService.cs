@@ -32,7 +32,7 @@ namespace BLL.Services
 
         public bool Update(User user, ProfileViewModel profile)
         {
-            if (IsEmpty(profile))
+            if (IsEmpty(profile) || IsEquals(user, profile))
                 return false;
 
             var newProfile = new UserProfile();
@@ -54,5 +54,10 @@ namespace BLL.Services
         private bool IsEmpty(ProfileViewModel profile) =>
             profile.Name == null & profile.LastName == null &
             profile.Email == null & profile.Phone == null;
+
+        private bool IsEquals(User user, ProfileViewModel profile) =>
+            profile.Equals(user.Profile) &&
+            user.Email.Equals(profile.Email) &&
+            user.PhoneNumber.Equals(profile.Phone);
     }
 }
