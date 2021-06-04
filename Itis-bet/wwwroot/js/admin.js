@@ -17,3 +17,14 @@
         content.addClass(className);
     }
 } 
+function getTableItems() {
+    let sport = $('#sport-selector').val()
+    let hostUrl = window.location.protocol + '//' + window.location.host + '/';
+    $.ajax({
+        url: hostUrl + "Admin/GetBlogTableItems?sport=" + sport,
+        method: "GET",
+        success: function (data) {
+            $("#table").empty().append(data);
+        }
+    })
+}

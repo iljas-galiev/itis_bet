@@ -13,7 +13,7 @@
                     <a class="btn btn-primary" asp-action="CreateBlogPost">Create Post</a>
                     <div class="input-group input-group-sm hidden-xs">
                         <p>Filter blogs</p>
-                        <select id="sport-selector" class="input-group" asp-for="Sport" asp-items="Model.Sports">
+                        <select id="sport-selector" onchange="getTableItems()" class="input-group" asp-for="Sport" asp-items="Model.Sports">
                         </select>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
-                    <tbody>
+                    <tbody id="table">
                         <tr>
                             <th>Author</th>
                             <th>Date</th>

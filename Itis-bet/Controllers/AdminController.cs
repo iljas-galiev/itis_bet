@@ -59,11 +59,12 @@ namespace Itis_bet.Controllers
                 Published = a.PublishedAt,
                 Sport = a.Sport.GetString(),
             });
-            if(sport != Sport.All)
+            var enPosts = posts.AsEnumerable();
+            if (sport != Sport.All)
             {
-                posts = posts.Where(p => p.Sport == sport.GetString());
+                enPosts = enPosts.Where(p => p.Sport == sport.GetString());
             }
-            return PartialView(posts.AsEnumerable());
+            return PartialView(enPosts);
         }
 
         [HttpGet]
