@@ -19,6 +19,7 @@ namespace Infrastructure.Notifications
     {
         public Task<TResult> AboutPassportUpdated(string email);
         public Task<TResult> AboutProfileUpdated(string email);
+        public Task<TResult> AboutPasswordUpdated(string email);
     }
 
     public interface ITransactionsNotificator<TResult>

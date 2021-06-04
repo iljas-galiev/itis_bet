@@ -139,6 +139,7 @@ header {
 
 content {
     display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
@@ -462,6 +463,17 @@ menu {
 .breadcrumb-item + .breadcrumb-item {
     color: #777;
 }
+
+td .fas {
+    color: #000;
+}
+td a, th a {
+    color: #007bff;
+}
+td a:hover, th a:hover {
+    color: #0458b8;
+}
+
 .main-content-wraper{
     padding:30px;
 }
@@ -475,6 +487,7 @@ menu {
     margin:0px;
     padding:3px 12px;
 }
+
 .box-header{
     display:flex;
     flex-direction:column;
@@ -506,3 +519,4 @@ menu {
 .main-content-wraper{
     height:calc(100vh - 50px);
 }
+

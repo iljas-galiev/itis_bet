@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5 {
 .menu a {
     color: #151515;
 }
-.menu a:focus, a:active, a:hover{
+.menu a:focus{
     color: #64b000!important;
 }
 .menu ul {
@@ -611,7 +611,7 @@ content > .container{
 }
 @media (min-width: 1200px) {
     .header-container {
-        max-width: 1200px;
+        max-width: 1140px;
     }
 }
 .header-container {
@@ -991,12 +991,7 @@ header button:active, header button:focus {
     border: none;
     background: none;
 }
-login{
-   
-}
-registration{
 
-}
 .log-reg-container {
     margin-top:60px;
     margin-bottom:80px;
