@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using WebSocketManager;
 
-namespace Chat
+namespace Infrastructure.Chat
 {
     public class ChatHandler : WebSocketHandler
     {
-        public ChatHandler(WebSocketConnectionManager maneger) : base(maneger) { }
+        private readonly ChatManager _chatManager;
+        public ChatHandler(WebSocketConnectionManager manager, ChatManager chatManager) : base(manager)
+        {
+            _chatManager = chatManager;
+        }
 
         public async Task SendMessage(string socketId, string message) =>
             await InvokeClientMethodToAllAsync("SendMessage", socketId, message);
