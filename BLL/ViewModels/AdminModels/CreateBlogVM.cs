@@ -8,7 +8,7 @@ using System.Text;
 
 namespace BLL.ViewModels.AdminModels
 {
-    public class CreateBlogVM
+    public class CreateBlogVm
     {
         [Required]
         public Sport Sport { get; set; }
