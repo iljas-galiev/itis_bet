@@ -487,3 +487,36 @@ td a:hover, th a:hover {
     margin:0px;
     padding:3px 12px;
 }
+
+.box-header{
+    display:flex;
+    flex-direction:column;
+    align-items:start;
+    justify-content:center;
+}
+.box-tools{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    width:100%;
+    margin-bottom:10px;
+}
+.btn-ptimary {
+    background-color: #3c8dbc;
+    border-color: #367fa9;
+}
+.input-group{
+    display:flex;
+    align-items:center;
+    flex-direction:row;
+    width:auto;
+
+}
+.input-group p {
+    padding:0px 10px;
+    margin:0px;
+}
+.main-content-wraper{
+    height:calc(100vh - 50px);
+}
+

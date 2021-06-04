@@ -7,6 +7,10 @@ using DAL.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BLL.ViewModels.AdminModels;
+using Infrastructure.IdentityExtesions;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using System.Threading.Tasks;
 
 namespace Itis_bet.Controllers
 {
@@ -14,9 +18,14 @@ namespace Itis_bet.Controllers
     public class AdminController : Controller
     {
         private readonly Database _db;
+        private IWebHostEnvironment _appEnvironment;
 
-        public AdminController(Database db) =>
+        public AdminController(Database db, IWebHostEnvironment appEnvironment)
+        {
             _db = db;
+            _appEnvironment = appEnvironment;
+        }
+            
 
         [HttpGet]
         public IActionResult Index() =>
@@ -25,7 +34,8 @@ namespace Itis_bet.Controllers
         public IActionResult BlogPosts()
         {
             var sportOptionsList = Sport.All.GetOptionsWithAll();
-            var tableItems = _db.Articles.Include(a => a.User).Select(a => new BlogsTableItemVM()
+            var userEmail = User.GetUserEmail();
+            var tableItems = _db.Articles.Include(a => a.User).Where(u=>u.User.Email==userEmail).Select(a => new BlogsTableItemVM()
             {
                 Author = a.User.UserName,
                 Published = a.PublishedAt,
@@ -39,24 +49,64 @@ namespace Itis_bet.Controllers
             };
             return View(model);
         }
-        public IActionResult GetBlogTableItems(string authorName, Sport sport)
+        public IActionResult GetBlogTableItems(Sport sport)
         {
-            var posts = _db.Articles.Select(a=>new BlogsTableItemVM()
+            var userEmail = User.GetUserEmail();
+            var posts = _db.Articles.Where(a=>a.User.Email==userEmail).Select(a=>new BlogsTableItemVM()
             {
                 Author = a.User.UserName,
                 Header = a.Header,
                 Published = a.PublishedAt,
                 Sport = a.Sport.GetString(),
             });
-            if (authorName != null)
+            var enPosts = posts.AsEnumerable();
+            if (sport != Sport.All)
             {
-                posts = posts.Where(p => p.Author.StartsWith(authorName));
+                enPosts = enPosts.Where(p => p.Sport == sport.GetString());
             }
-            if(sport != Sport.All)
+            return PartialView(enPosts);
+        }
+
+        [HttpGet]
+        public IActionResult CreateBlogPost()
+        {
+            var model = new CreateBlogVM()
             {
-                posts = posts.Where(p => p.Sport == sport.GetString());
+                Sports = Sport.All.GetOptionsWithoutAll(),
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateBlogPost(CreateBlogVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Sports = Sport.All.GetOptionsWithoutAll();
+                return View(model);
             }
-            return PartialView(posts.AsEnumerable());
+            if (model.Picture != null)
+            {
+                // путь к папке Files
+                string path = "/images/Articles/" + model.Picture.FileName;
+                // сохраняем файл в папку Files в каталоге wwwroot
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                    await model.Picture.CopyToAsync(fileStream);
+                }
+                var article = new Articles
+                {
+                    Description = model.Description,
+                    Content = model.Content,
+                    Sport = model.Sport,
+                    Header = model.Header,
+                    Picture = path,
+                    PublishedAt = DateTime.Now,
+                    UserId = User.GetUserId(),
+                };
+                _db.Articles.Add(article);
+                await _db.SaveChangesAsync();
+            }
+            return RedirectToAction("BlogPosts");
         }
         [HttpGet]
         public IActionResult Comments()

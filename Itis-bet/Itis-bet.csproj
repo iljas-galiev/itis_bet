@@ -19,5 +19,9 @@
       <ProjectReference Include="..\DAL\DAL.csproj" />
       <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\images\Articles\" />
+    </ItemGroup>
     
 </Project>
