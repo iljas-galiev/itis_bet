@@ -36,10 +36,10 @@
                             </ul>
                         </div>
 
-                        <div class="navbar-panel-item navbar-panel-item-right" >
+                        <div class="navbar-panel-item navbar-panel-item-right">
                             <div id="headerRight">
 
-                                <ul class="list-inline list-inline-bordered" >
+                                <ul class="list-inline list-inline-bordered">
 
                                     <li>
                                         <select class="select-inline-dark select">
@@ -55,10 +55,10 @@
                                     <li>
 
 
-                                        <a class="link link-icon link-icon-left link-classic" id="sign-in-link" 
-                                           asp-action="Index" asp-controller="Account" 
-                                               onmouseover="coloriseSignInIcon('color-white', 'color-green')" 
-                                                    onmouseout="coloriseSignInIcon('color-green', 'color-white')">
+                                        <a class="link link-icon link-icon-left link-classic" id="sign-in-link"
+                                           asp-action="Index" asp-controller="Account"
+                                           onmouseover="coloriseSignInIcon('color-white', 'color-green')"
+                                           onmouseout="coloriseSignInIcon('color-green', 'color-white')">
 
                                             <span class="fas fa-sign-in-alt fa-icon" id="sign-in-icon"></span>
                                             <span class="link-icon-text" id="sign-in-text">Аккаунт</span>
@@ -143,7 +143,7 @@
                     </div>
 
                 </div>
-                
+
             </nav>
         </div>
     </header>
@@ -171,6 +171,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="~/js/WebSocketManeger.js"></script>
+    <script language="JavaScript" type="text/javascript" src="~/js/chat.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

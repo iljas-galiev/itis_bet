@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using WebSocketManager;
 
 namespace Itis_bet
 {
@@ -24,21 +26,19 @@ namespace Itis_bet
             services.AddHttpContextAccessor();
 
             services.ConfigureDataAccess(Configuration);
-            services.ConfigureInfrastructure(Configuration);
             services.ConfigureBusinessLogic(Configuration);
-
+            services.ConfigureInfrastructure(Configuration);
 
             services.AddControllersWithViews();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider provider)
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
 
             app.UseRouting();
             
