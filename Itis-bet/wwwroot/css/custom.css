@@ -903,7 +903,7 @@ input, button {
         flex-direction:column;
         position:fixed;
         width:300px;
-        top:56px;
+        top:46px;
         bottom:0;
         z-index:2000;
         background-color:#383838;
@@ -1142,4 +1142,10 @@ registration{
 }
 login.active, registration.active{
     display:block;
+}
+.main-container{
+    margin-top: 40px;
+}
+.blog-post{
+    margin-top:20px;
 }
