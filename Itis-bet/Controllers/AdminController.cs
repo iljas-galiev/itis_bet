@@ -7,6 +7,7 @@ using DAL.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BLL.ViewModels.AdminModels;
+using Infrastructure;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
@@ -108,10 +109,35 @@ namespace Itis_bet.Controllers
             }
             return RedirectToAction("BlogPosts");
         }
+
         [HttpGet]
-        public IActionResult Comments()
+        public IActionResult Comments(string articleId)
         {
-            return View();
+            var model = _db.Comments
+                .Include(c => c.Article)
+                .Include(a => a.User)
+                .Select(c => c);
+            if(articleId != null)
+            {
+                Guid guid;
+                
+                if(Guid.TryParse(articleId, out guid))
+                    model = model.Where(c => c.ArticleId == guid);
+
+            }
+               
+            return View(model.AsEnumerable());
+        }
+        public IActionResult DeleteComment(Guid articleId, Guid commentId)
+        {
+            var article = _db.Articles
+                .Include(a => a.Comments)
+                .FirstOrDefault(a => a.Id == articleId);
+            var comment = article.Comments.FirstOrDefault(c => c.Id == commentId);
+            _db.Comments.Remove(comment);
+            _db.SaveChanges();
+            return RedirectToAction("Comments");
+ 
         }
 
     }

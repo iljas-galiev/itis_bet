@@ -1047,7 +1047,6 @@ input, button {
         padding-right: 0px;
         margin-right: -10px;
     }
-
     .navbar-main.active {
         display: flex;
         flex-direction: column;
@@ -1057,6 +1056,7 @@ input, button {
         bottom: 0;
         z-index: 2000;
         background-color: #383838;
+
     }
 
     .navbar-panel {
@@ -1346,4 +1346,10 @@ login.active, registration.active {
 .vk-btn:hover {
     color:#fff;
     opacity: .88;
+}
+.main-container{
+    margin-top: 40px;
+}
+.blog-post{
+    margin-top:20px;
 }
