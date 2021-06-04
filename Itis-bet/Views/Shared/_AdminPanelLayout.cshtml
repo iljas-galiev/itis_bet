@@ -65,19 +65,19 @@
                         </a>
                     </li>
                     <li class="nav-menu-list-item">
-                        <a asp-controller="MatchAdmin" class="nav-menu-link">
+                        <a asp-controller="MatchAdmin" asp-action="Index" class="nav-menu-link">
                             <i class="fas fa-list-ul"></i>
                             <span class="nav-menu-link-span">Матчи</span>
                         </a>
                     </li>
                     <li class="nav-menu-list-item">
-                        <a asp-controller="BetAdmin" class="nav-menu-link">
+                        <a asp-controller="BetAdmin" asp-action="Index" class="nav-menu-link">
                             <i class="fas fa-money-bill-wave"></i>
                             <span class="nav-menu-link-span">Ставки</span>
                         </a>
                     </li>
                     <li class="nav-menu-list-item">
-                        <a asp-controller="FinanceAdmin" class="nav-menu-link">
+                        <a asp-controller="FinanceAdmin" asp-action="Index" class="nav-menu-link">
                             <i class="fas fa-wallet"></i>
                             <span class="nav-menu-link-span">Финансы</span>
                         </a>
@@ -90,7 +90,7 @@
                         </a>
                     </li>
                     <li class="nav-menu-list-item @(ViewData["Title"].ToString()=="Comments"? "active" : "")">
-                        <a asp-action="Comments" class="nav-menu-link">
+                        <a asp-action="Comments"  asp-controller="Admin" class="nav-menu-link">
                             <i class="far fa-comments"></i>
                             <span class="nav-menu-link-span">Comments</span>
 
