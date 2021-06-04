@@ -7,10 +7,10 @@ using DAL.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BLL.ViewModels.AdminModels;
-using Infrastructure.IdentityExtesions;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
+using Infrastructure;
 
 namespace Itis_bet.Controllers
 {
@@ -70,14 +70,14 @@ namespace Itis_bet.Controllers
         [HttpGet]
         public IActionResult CreateBlogPost()
         {
-            var model = new CreateBlogVM()
+            var model = new CreateBlogVm()
             {
                 Sports = Sport.All.GetOptionsWithoutAll(),
             };
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateBlogPost(CreateBlogVM model)
+        public async Task<IActionResult> CreateBlogPost(CreateBlogVm model)
         {
             if (!ModelState.IsValid)
             {

@@ -29,10 +29,12 @@ namespace Itis_bet
 
 
             services.AddControllersWithViews();
+            services.AddSession();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 

@@ -32,6 +32,8 @@ namespace Itis_bet.Controllers
 
             var user = _db.Users.Find(new Guid(userId));
 
+            if(!user.CanBet)
+                return Json(new {status = "Error", message = "Access denied. Please, fill your passport data"});
             if(user.Money < sum)
                 return Json(new {status = "Error", message = "Lack of balance"});
 
