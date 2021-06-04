@@ -7400,43 +7400,37 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jows1\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/Users/tiffka/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\Itis-bet.csproj",
+      "projectUniqueName": "/Users/tiffka/RiderProjects/bet_app/Itis-bet/Itis-bet.csproj",
       "projectName": "Itis-bet",
-      "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\Itis-bet.csproj",
-      "packagesPath": "C:\\Users\\jows1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Itis-bet\\obj\\",
+      "projectPath": "/Users/tiffka/RiderProjects/bet_app/Itis-bet/Itis-bet.csproj",
+      "packagesPath": "/Users/tiffka/.nuget/packages/",
+      "outputPath": "/Users/tiffka/RiderProjects/bet_app/Itis-bet/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\jows1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/tiffka/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\jows1\\source\\repos\\itis_bet\\BLL\\BLL.csproj": {
-              "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\BLL\\BLL.csproj"
+            "/Users/tiffka/RiderProjects/bet_app/BLL/BLL.csproj": {
+              "projectPath": "/Users/tiffka/RiderProjects/bet_app/BLL/BLL.csproj"
             },
-            "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\DAL\\DAL.csproj"
+            "/Users/tiffka/RiderProjects/bet_app/DAL/DAL.csproj": {
+              "projectPath": "/Users/tiffka/RiderProjects/bet_app/DAL/DAL.csproj"
             },
-            "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\jows1\\source\\repos\\itis_bet\\Infrastructure\\Infrastructure.csproj"
+            "/Users/tiffka/RiderProjects/bet_app/Infrastructure/Infrastructure.csproj": {
+              "projectPath": "/Users/tiffka/RiderProjects/bet_app/Infrastructure/Infrastructure.csproj"
             }
           }
         }
@@ -7479,7 +7473,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.406/RuntimeIdentifierGraph.json"
       }
     }
   }

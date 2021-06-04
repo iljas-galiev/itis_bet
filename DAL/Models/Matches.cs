@@ -48,5 +48,7 @@ namespace DAL.Models
 
         [Column(TypeName = "varchar(255)")]
         public string Result { get; set; }
+
+        public ICollection<Bets> Bets { get; set; }
     }
 }

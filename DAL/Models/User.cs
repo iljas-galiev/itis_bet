@@ -17,11 +17,11 @@ namespace DAL.Models
 
         public Guid  PassportId { get; set; }
         public Passport Passport { get; set; }
+        public decimal Money { get; set; }
 
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public bool CanBet { get; set; }
-        public uint Money { get; set; }
 
         public IEnumerable<Comments> Comments { get; set; }
 
