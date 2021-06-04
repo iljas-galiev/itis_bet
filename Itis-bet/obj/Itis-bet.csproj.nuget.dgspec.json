@@ -1,32 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "/Users/tiffka/RiderProjects/bet_app/Itis-bet/Itis-bet.csproj": {}
+    "D:\\GitHUB\\itis_bet\\Itis-bet\\Itis-bet.csproj": {}
   },
   "projects": {
-    "/Users/tiffka/RiderProjects/bet_app/BLL/BLL.csproj": {
+    "D:\\GitHUB\\itis_bet\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/tiffka/RiderProjects/bet_app/BLL/BLL.csproj",
+        "projectUniqueName": "D:\\GitHUB\\itis_bet\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "/Users/tiffka/RiderProjects/bet_app/BLL/BLL.csproj",
-        "packagesPath": "/Users/tiffka/.nuget/packages/",
-        "outputPath": "/Users/tiffka/RiderProjects/bet_app/BLL/obj/",
+        "projectPath": "D:\\GitHUB\\itis_bet\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\strel\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHUB\\itis_bet\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/tiffka/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\strel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "/Users/tiffka/RiderProjects/bet_app/DAL/DAL.csproj": {
-                "projectPath": "/Users/tiffka/RiderProjects/bet_app/DAL/DAL.csproj"
+              "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj"
               }
             }
           }
@@ -39,6 +42,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Mvc.ViewFeatures": {
               "target": "Package",
@@ -70,30 +74,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.406/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/tiffka/RiderProjects/bet_app/DAL/DAL.csproj": {
+    "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/tiffka/RiderProjects/bet_app/DAL/DAL.csproj",
+        "projectUniqueName": "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "/Users/tiffka/RiderProjects/bet_app/DAL/DAL.csproj",
-        "packagesPath": "/Users/tiffka/.nuget/packages/",
-        "outputPath": "/Users/tiffka/RiderProjects/bet_app/DAL/obj/",
+        "projectPath": "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\strel\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHUB\\itis_bet\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/tiffka/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\strel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -105,6 +112,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
@@ -152,33 +160,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.406/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/tiffka/RiderProjects/bet_app/Infrastructure/Infrastructure.csproj": {
+    "D:\\GitHUB\\itis_bet\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/tiffka/RiderProjects/bet_app/Infrastructure/Infrastructure.csproj",
+        "projectUniqueName": "D:\\GitHUB\\itis_bet\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "/Users/tiffka/RiderProjects/bet_app/Infrastructure/Infrastructure.csproj",
-        "packagesPath": "/Users/tiffka/.nuget/packages/",
-        "outputPath": "/Users/tiffka/RiderProjects/bet_app/Infrastructure/obj/",
+        "projectPath": "D:\\GitHUB\\itis_bet\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\strel\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHUB\\itis_bet\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/tiffka/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\strel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "/Users/tiffka/RiderProjects/bet_app/DAL/DAL.csproj": {
-                "projectPath": "/Users/tiffka/RiderProjects/bet_app/DAL/DAL.csproj"
+              "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj"
               }
             }
           }
@@ -191,6 +202,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "MailKit": {
               "target": "Package",
@@ -238,39 +250,42 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.406/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/tiffka/RiderProjects/bet_app/Itis-bet/Itis-bet.csproj": {
+    "D:\\GitHUB\\itis_bet\\Itis-bet\\Itis-bet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/tiffka/RiderProjects/bet_app/Itis-bet/Itis-bet.csproj",
+        "projectUniqueName": "D:\\GitHUB\\itis_bet\\Itis-bet\\Itis-bet.csproj",
         "projectName": "Itis-bet",
-        "projectPath": "/Users/tiffka/RiderProjects/bet_app/Itis-bet/Itis-bet.csproj",
-        "packagesPath": "/Users/tiffka/.nuget/packages/",
-        "outputPath": "/Users/tiffka/RiderProjects/bet_app/Itis-bet/obj/",
+        "projectPath": "D:\\GitHUB\\itis_bet\\Itis-bet\\Itis-bet.csproj",
+        "packagesPath": "C:\\Users\\strel\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHUB\\itis_bet\\Itis-bet\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/tiffka/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\strel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "/Users/tiffka/RiderProjects/bet_app/BLL/BLL.csproj": {
-                "projectPath": "/Users/tiffka/RiderProjects/bet_app/BLL/BLL.csproj"
+              "D:\\GitHUB\\itis_bet\\BLL\\BLL.csproj": {
+                "projectPath": "D:\\GitHUB\\itis_bet\\BLL\\BLL.csproj"
               },
-              "/Users/tiffka/RiderProjects/bet_app/DAL/DAL.csproj": {
-                "projectPath": "/Users/tiffka/RiderProjects/bet_app/DAL/DAL.csproj"
+              "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\GitHUB\\itis_bet\\DAL\\DAL.csproj"
               },
-              "/Users/tiffka/RiderProjects/bet_app/Infrastructure/Infrastructure.csproj": {
-                "projectPath": "/Users/tiffka/RiderProjects/bet_app/Infrastructure/Infrastructure.csproj"
+              "D:\\GitHUB\\itis_bet\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\GitHUB\\itis_bet\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -283,6 +298,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -313,7 +329,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.406/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

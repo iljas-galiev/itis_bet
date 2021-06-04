@@ -36,12 +36,12 @@
                                         </time>
 
                                         <div class="post-corporate-view">
-                                            <span class="icon fl-justicons-visible6"> </span>@(new Random().Next(10, 300))
+                                            <i class="icon far fa-eye"></i>@(new Random().Next(10, 300))
                                         </div>
 
                                     </div>
 
-                                    <h4 class="post-corporate-title">
+                                    <h4 class="post-corporate-title menu" >
                                         <a asp-controller="Article" , asp-action="Read" asp-route-id="@post.Id">
                                             @post.Header
                                         </a>
@@ -59,7 +59,7 @@
                                 </a>
 
                                 <!-- Footer -->
-                                <div class="post-corporate-footer">
+                                <div class="post-corporate-footer menu">
                                     <div class="post-corporate-comment"><span class="icon mdi mdi-comment-outline"></span><a href="#">@post.Comments.Count Comments</a></div>
                                     <div class="post-corporate-share">
                                         <!-- Sharing here -->
@@ -99,7 +99,7 @@
                         <!--Block Categories-->
                         <div class="block-categories">
 
-                            <ul class="list-marked list-marked-categories">
+                            <ul class="list-marked list-marked-categories menu">
                                 <li><a asp-action="BySport" asp-route-sport="1">Football</a></li>
                                 <li><a asp-action="BySport" asp-route-sport="2">Bascetball</a></li>
                             </ul>
