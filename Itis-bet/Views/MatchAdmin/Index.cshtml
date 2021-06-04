@@ -2,16 +2,26 @@
     ViewBag.Title = "Матчи";
     Layout = "_AdminPanelLayout";
 }
+
 @model IEnumerable<DAL.Models.Matches>
 
 <div class="mb-2 mt-2">
     <a class="btn btn-success" asp-controller="MatchAdmin" asp-action="Create">Добавить</a>
 </div>
 
+<div class="mb-2 mt-2">
+    @using (Html.BeginForm())
+    {
+        <p>
+            Find by title: @Html.TextBox("search")
+            <input type="submit" value="Search" /></p>
+    }
+</div>
+
 <table class="table table-bordered">
     <thead>
     <th>ID</th>
-    <th>Тайтл</th>
+    <th>@Html.ActionLink("Тайтл", "Index", new { sortOrder = ViewBag.TitleSortParam })</th>
     <th>Турнир</th>
     <th>Команда 1</th>
     <th>Команда 2</th>
@@ -47,3 +57,13 @@
     }
     </tbody>
 </table>
+
+<ul class="pagination">
+
+@{
+    for (int i = 1; i <= Convert.ToInt32(ViewData["pageCount"]); i++)
+    {
+        <li class="page-item"><a class="page-link" asp-route-sortOrder="@ViewData["sortOrder"]" asp-route-search="@ViewData["search"]" asp-route-page="@i">@i</a></li>
+    }
+}
+</ul>

@@ -465,6 +465,13 @@ menu {
     color: #777;
 }
 
-.fas {
+td .fas {
     color: #000;
 }
+td a, th a {
+    color: #007bff;
+}
+td a:hover, th a:hover {
+    color: #0458b8;
+}
+

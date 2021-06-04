@@ -229,7 +229,7 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Match_Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "integer", nullable: false),
                     Coef = table.Column<double>(type: "double precision", nullable: false),
                     Status = table.Column<string>(type: "varchar(255)", nullable: false)
                 },

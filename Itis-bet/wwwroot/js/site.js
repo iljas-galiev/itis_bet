@@ -1,24 +1,88 @@
 ﻿$(document).ready(function () {
     $('.select').select2({
-        placeholder:"asds",
+        placeholder: "asds",
+    });
+
+
+    $('.sport-table-wager-button').on('click', function () {
+        var teamName = $(this).data('team-name'),
+            confrontation = $(this).data('confrontation'),
+            vager = $(this).data('wager-count'),
+            score = $(this).data('score');
+            matchId = $(this).data('match');
+
+        $('.modal-sport-error').hide()
+        $('.modal-sport-wager').html(teamName);
+        $('.modal-sport-wager-count').html(vager);
+        $('#bet-match').val(matchId);
+        $('.modal-sport-confrontation').html(confrontation);
+        $('.modal-sport-live-count').html('[' + score + ']');
+        $('#bet-sum').val(10);
+        $('.modal-sport-win #possible-win').html("$" + parseFloat($('#bet-sum').val()) * parseFloat($('.modal-sport-wager-count').text()));
+
+    })
+
+
+    $('#bet-sum').on("keyup change", function (e) {
+        var sum = $(this).val();
+        if (!sum) $('.modal-sport-win').hide();
+        else {
+            $('.modal-sport-win').show();
+            $('.modal-sport-win #possible-win').html("$" + parseFloat(sum) * parseFloat($('.modal-sport-wager-count').text()));
+        }
+    });
+
+    $('.modal-sport-place').click(function (e) {
+        e.preventDefault();
+
+        var sum = $('#bet-sum').val();
+        if (!sum) {
+            $('#bet-sum').addClass('is-invalid');
+            return;
+        }
+        $('#bet-sum').removeClass('is-invalid');
+        $('.modal-sport-error').hide()
+        $.ajax({
+            method: "post",
+            url: "/Bet",
+            data: {
+                id: $('#bet-match').val(),
+                sum: sum,
+                bet: $('.modal-sport-wager').text()
+            },
+            dataType: 'json',
+            beforeSend: function () {
+                $('.modal-sport-place').prop('disabled', true).text('Loading...');
+
+            },
+            complete: function () {
+                $('.modal-sport-place').prop('disabled', false).text('Place bet');
+            },
+            success: function (data) {
+                if (data.status == 'success') $('.modal').modal('hide')
+                else {
+                    $('.modal-sport-error').show().text( data.message)
+                }
+            }
+        });
     });
 
 });
+
 function coloriseSignInIcon(iconClass, textClass) {
     $('#sign-in-icon').removeClass(textClass);
     $('#sign-in-text').removeClass(iconClass);
     $('#sign-in-icon').addClass(iconClass);
     $('#sign-in-text').addClass(textClass);
 }
+
 window.addEventListener('scroll', function () {
     elem = this.document.getElementById('fixibleHeader');
     y = elem.getBoundingClientRect().top;
-    console.log(y)
-    console.log(pageYOffset)
-    if (y == 0 & pageYOffset < 130) {
+    if (y == 0 && pageYOffset < 130) {
         $('#fixibleHeader').removeClass('header-fixed')
     }
-    if (y <= 0 & this.pageYOffset>130) {
+    if (y <= 0 && this.pageYOffset > 130) {
         $('#fixibleHeader').addClass('header-fixed')
     }
 });
@@ -29,8 +93,7 @@ document.getElementById('navbarToggler').addEventListener('click', function () {
         $('#navbar-main-container').removeClass('active');
         $('#navbar-main-top').removeClass('active');
         $('#fixibleHeader').removeClass('active');
-    }
-    else {
+    } else {
         $('#navbarCollapseToggler').removeClass('active');
         $('#headerRight').removeClass('active');
         $('#navbarToggler').addClass('active');
@@ -44,9 +107,8 @@ document.getElementById('navbarCollapseToggler').addEventListener('click', funct
     if ($('#navbarCollapseToggler').hasClass('active')) {
         $('#navbarCollapseToggler').removeClass('active');
         $('#headerRight').removeClass('active');
-        
-    }
-    else {
+
+    } else {
         $('#navbarToggler').removeClass('active');
         $('#headerMain').removeClass('active');
         $('#navbar-main-container').removeClass('active');
@@ -57,6 +119,7 @@ document.getElementById('navbarCollapseToggler').addEventListener('click', funct
 
     }
 });
+
 function switchLogReg() {
     let hostUrl = window.location.protocol + '//' + window.location.host + '/';
     if ($('#logRegSwitch').data("currentpage") == "reg") {
@@ -83,18 +146,19 @@ function switchLogReg() {
         return
     }
 }
+
 function checkCustomCheckBox() {
     if ($('#rememberMeCheckBox').hasClass('checked')) {
         $('#hiddenCheckbox').prop('checked', true);
         $('#rememberMeCheckBox').removeClass('checked')
         console.log($('#hiddenCheckbox').is(':checked'))
-    }
-    else {
-        $('#hiddenCheckbox').prop('checked', false);      
+    } else {
+        $('#hiddenCheckbox').prop('checked', false);
         $('#rememberMeCheckBox').addClass('checked');
         console.log($('#hiddenCheckbox').is(':checked'))
     }
 }
+
 /*document.getElementById('rememberMeCheckBox').addEventListener('click', function () { checkCustomCheckBox() });
 document.getElementById('rememberMeText').addEventListener('click', function () { checkCustomCheckBox() });
 */

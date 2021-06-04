@@ -9,5 +9,10 @@ namespace DAL.Models.Enums
     {
         Football = 1,
         Basketball = 2,
+        Tennis = 3,
+        Volleyball = 5,
+        Badminton = 6,
+        Baseball = 7,
+        Cycling = 9,
     }
 }

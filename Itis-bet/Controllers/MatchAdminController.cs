@@ -14,9 +14,42 @@ namespace Itis_bet.Controllers
             _db = db;
 
         // GET
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, string sortOrder = "", string search = "")
         {
-            return View(_db.Matches.ToList());
+            var pageSize = 5;
+
+            var matches = from m in _db.Matches select m;
+
+            switch (sortOrder)
+            {
+                case "title":
+                    matches = matches.OrderBy(s => s.Title);
+                    break;
+                case "title_desc":
+                    matches = matches.OrderByDescending(s => s.Title);
+                    break;
+                default:
+                    matches = matches.OrderBy(s => s.Id);
+                    break;
+            }
+            ViewBag.TitleSortParam = sortOrder == "title" ? "title_desc" : "title";
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                matches = matches.Where(a => a.Title.ToLower().Contains(search.ToLower()));
+            }
+
+
+            ViewData["s"] = search;
+            ViewData["sortOrder"] = sortOrder;
+            ViewData["page"] = page;
+            ViewData["pageSize"] = pageSize;
+            ViewData["pageCount"] = Math.Floor((double) (matches.Count() / pageSize))+1;
+
+            matches = matches.Skip((page - 1) * pageSize).Take(pageSize);
+
+
+            return View(matches.ToList());
         }
 
         [HttpGet]
@@ -41,13 +74,13 @@ namespace Itis_bet.Controllers
         [HttpGet]
         public IActionResult Edit(Guid id)
         {
-            var match = _db.Matches
+            var model = _db.Matches
                 .SingleOrDefault(a => a.Id.Equals(id));
 
-            if (match == null)
+            if (model == null)
                 return RedirectToAction("Index");
 
-            return View("Edit", match);
+            return View("Edit", model);
         }
 
         [HttpPost]
@@ -60,19 +93,18 @@ namespace Itis_bet.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View("Edit", _db.Matches
-                .Single(a => a.Id.Equals(id)));
+            return View("Edit", model);
         }
 
         [HttpGet]
         public IActionResult Remove(Guid id)
         {
-            var match = _db.Matches.FirstOrDefault(r => r.Id.Equals(id));
+            var model = _db.Matches.FirstOrDefault(r => r.Id.Equals(id));
 
-            if (match == null)
+            if (model == null)
                 return RedirectToAction("Index");
 
-            _db.Matches.Remove(match);
+            _db.Matches.Remove(model);
             _db.SaveChanges();
 
             return RedirectToAction("Index");

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-widthw, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/admin.css" />
@@ -65,14 +65,32 @@
                         </a>
                     </li>
                     <li class="nav-menu-list-item">
+                        <a asp-controller="MatchAdmin" class="nav-menu-link">
+                            <i class="fas fa-list-ul"></i>
+                            <span class="nav-menu-link-span">Матчи</span>
+                        </a>
+                    </li>
+                    <li class="nav-menu-list-item">
+                        <a asp-controller="BetAdmin" class="nav-menu-link">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span class="nav-menu-link-span">Ставки</span>
+                        </a>
+                    </li>
+                    <li class="nav-menu-list-item">
+                        <a asp-controller="FinanceAdmin" class="nav-menu-link">
+                            <i class="fas fa-wallet"></i>
+                            <span class="nav-menu-link-span">Финансы</span>
+                        </a>
+                    </li>
+                    <li class="nav-menu-list-item">
                         <a href="#" class="nav-menu-link">
-                            <i class="far fa-newspaper"></i>
+                            <i class="fas fa-newspaper"></i>
                             <span class="nav-menu-link-span">Статьи</span>
                         </a>
                     </li>
                     <li class="nav-menu-list-item">
                         <a href="#" class="nav-menu-link">
-                            <i class="far fa-comments"></i>
+                            <i class="fas fa-comments"></i>
                             <span class="nav-menu-link-span">Комментарии</span>
                         </a>
                     </li>
