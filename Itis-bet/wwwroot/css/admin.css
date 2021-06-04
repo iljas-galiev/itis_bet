@@ -376,7 +376,6 @@ menu {
 
     .menu-toggler {
         background-color: #3c8dbc;
-        ;
     }
 
     menu {
@@ -475,3 +474,16 @@ td a:hover, th a:hover {
     color: #0458b8;
 }
 
+.main-content-wraper{
+    padding:30px;
+}
+.box-header{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+}
+.input-group-btn .btn{
+    margin:0px;
+    padding:3px 12px;
+}

@@ -54,10 +54,19 @@ namespace Itis_bet.Controllers
                     return InvalidRegisterRequest(regVM);
                 }
 
-                await _userManager.CreateAsync(CreateUser(regVM.Login, regVM.Email), regVM.Password);
-                await _notify.AboutRegistrationAsync(RegistrationReason.Succeeded, regVM.Email);
+                // Smtp exception catched and return false.
+                var validEmail = await _notify.AboutRegistrationAsync(RegistrationReason.Succeeded, regVM.Email);
 
-                return await Log(new LoginViewModel {Email = regVM.Email, Password = regVM.Password});
+
+                if (validEmail)
+                {
+                    var res = await _userManager.CreateAsync(CreateUser(regVM.Login, regVM.Email, regVM.Phone), regVM.Password);
+
+                    if (res.Succeeded)
+                        return await Log(new LoginViewModel { Email = regVM.Email, Password = regVM.Password });                
+                }
+
+                ModelState.AddModelError(string.Empty, "Invalid email address");
             }
 
             return InvalidRegisterRequest(regVM);
@@ -71,7 +80,7 @@ namespace Itis_bet.Controllers
                 var user = await _userManager.FindByEmailAsync(logVM.Email);
 
                 if (user == null)
-                    return RedirectToAction("Reg", "RegLog");
+                    return RedirectToAction("Reg");
 
                 var res = await SignIn(user.UserName, logVM.Password, logVM.Remember);
 
@@ -109,10 +118,12 @@ namespace Itis_bet.Controllers
             bool remember) =>
             await _signInManager.PasswordSignInAsync(userName, password, remember, false);
 
-        private User CreateUser(string name, string email) => new User {Email = email, UserName = name};
 
         const int VK_CLIENT_ID = 7782410;
         const string VK_CLIENT_SECRET = "8YEm5WQQytMQs5PyaeQl";
+
+        private User CreateUser(string name, string email, string phone) => new User { Email = email, UserName = name, PhoneNumber = phone };
+
 
         [HttpGet]
         public IActionResult VkAuth()

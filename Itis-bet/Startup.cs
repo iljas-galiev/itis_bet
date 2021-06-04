@@ -1,15 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BLL;
 using DAL;
-using DAL.Models;
 using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +25,7 @@ namespace Itis_bet
 
             services.ConfigureDataAccess(Configuration);
             services.ConfigureInfrastructure(Configuration);
+            services.ConfigureBusinessLogic(Configuration);
 
 
             services.AddControllersWithViews();

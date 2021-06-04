@@ -5,20 +5,21 @@ namespace Infrastructure.Notifications
 {
     public enum RegistrationReason
     {
-        Succeeded,
+        Succeeded
     }
 
     public enum SecurityReason
     {
         PassportUpdated,
-        ProfileUpdated,
+        PasswordUpdated,
+        ProfileUpdated
     }
 
     public enum BetReason
     {
         Applyed,
         Winned,
-        Loosed,
+        Loosed
     }
 
     public enum TransactionReason

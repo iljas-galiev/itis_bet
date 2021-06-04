@@ -19,8 +19,13 @@ namespace DAL.Models
         public Passport Passport { get; set; }
         public decimal Money { get; set; }
 
+
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public bool CanBet { get; set; }
+
         public IEnumerable<Comments> Comments { get; set; }
 
+        public IEnumerable<Articles> Articles { get; set; }
     }
 
     public class UserProfile
@@ -31,10 +36,9 @@ namespace DAL.Models
         [ForeignKey("UserId")]
         public User User { get; set; }
 
-        public uint Money { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public bool CanBet { get; set; }
     }
 
     public class Passport
@@ -44,9 +48,6 @@ namespace DAL.Models
         public Guid UserId { get; set; }
         [ForeignKey("UserId")]
         public User User { get; set; }
-
-        public string Name { get; set; }
-        public string LastName { get; set; }
 
         public string Serial { get; set; }
         public string Number { get; set; }

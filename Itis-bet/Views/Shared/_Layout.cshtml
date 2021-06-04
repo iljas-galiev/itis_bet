@@ -53,9 +53,16 @@
                                     </li>
 
                                     <li>
-                                        <a class="link link-icon link-icon-left link-classic" id="sign-in-link" onmouseover="coloriseSignInIcon('color-white', 'color-green')" onmouseout="coloriseSignInIcon('color-green', 'color-white')" asp-controller="Account">
+
+
+                                        <a class="link link-icon link-icon-left link-classic" id="sign-in-link" 
+                                           asp-action="Index" asp-controller="Account" 
+                                               onmouseover="coloriseSignInIcon('color-white', 'color-green')" 
+                                                    onmouseout="coloriseSignInIcon('color-green', 'color-white')">
+
                                             <span class="fas fa-sign-in-alt fa-icon" id="sign-in-icon"></span>
                                             <span class="link-icon-text" id="sign-in-text">Аккаунт</span>
+
                                         </a>
                                     </li>
 

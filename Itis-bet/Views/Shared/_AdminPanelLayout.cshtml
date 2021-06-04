@@ -58,12 +58,13 @@
                     <span>Управление контентом</span>
                 </div>
                 <ul class="nav-menu-list">
-                    <li class="nav-menu-list-item active">
+                    <li class="nav-menu-list-item @(ViewData["Title"].ToString()=="Users"? "active" : "")">
                         <a href="#" class="nav-menu-link">
                             <i class="fas fa-users"></i>
-                            <span class="nav-menu-link-span">Пользователи</span>
+                            <span class="nav-menu-link-span">Users</span>
                         </a>
                     </li>
+<<<<<<< HEAD
                     <li class="nav-menu-list-item">
                         <a asp-controller="MatchAdmin" class="nav-menu-link">
                             <i class="fas fa-list-ul"></i>
@@ -82,16 +83,18 @@
                             <span class="nav-menu-link-span">Финансы</span>
                         </a>
                     </li>
-                    <li class="nav-menu-list-item">
-                        <a href="#" class="nav-menu-link">
-                            <i class="fas fa-newspaper"></i>
-                            <span class="nav-menu-link-span">Статьи</span>
+
+                    <li class="nav-menu-list-item @(ViewData["Title"].ToString()=="Blogs"? "active" : "")">
+                        <a asp-action="BlogPosts" class="nav-menu-link">
+                            <i class="far fa-newspaper"></i>
+                            <span class="nav-menu-link-span">Blogs</span>
                         </a>
                     </li>
-                    <li class="nav-menu-list-item">
-                        <a href="#" class="nav-menu-link">
-                            <i class="fas fa-comments"></i>
-                            <span class="nav-menu-link-span">Комментарии</span>
+                    <li class="nav-menu-list-item @(ViewData["Title"].ToString()=="Comments"? "active" : "")">
+                        <a asp-action="Comments" class="nav-menu-link">
+                            <i class="far fa-comments"></i>
+                            <span class="nav-menu-link-span">Comments</span>
+
                         </a>
                     </li>
                 </ul>
@@ -105,17 +108,12 @@
                     <li class="breadcrumb-item">@ViewData["Title"]</li>
                 </ol>
             </div>
+            <div class="main-content-wraper">
+                @RenderBody()
+            </div>
         </section>
     </content>
-    <content class="container">
-        @RenderBody()
-    </content>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - ITIS_Bet - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
