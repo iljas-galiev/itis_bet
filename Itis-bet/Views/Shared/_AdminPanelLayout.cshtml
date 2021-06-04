@@ -59,7 +59,7 @@
                 </div>
                 <ul class="nav-menu-list">
                     <li class="nav-menu-list-item @(ViewData["Title"].ToString()=="Users"? "active" : "")">
-                        <a href="#" class="nav-menu-link">
+                        <a asp-controller="Admin" asp-action="Users" class="nav-menu-link">
                             <i class="fas fa-users"></i>
                             <span class="nav-menu-link-span">Users</span>
                         </a>

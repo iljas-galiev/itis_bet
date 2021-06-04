@@ -88,7 +88,15 @@ namespace Itis_bet.Controllers
                 var res = await SignIn(user.UserName, logVM.Password, logVM.Remember);
 
                 if (res.Succeeded)
+                {
+                    var claims = _db.UserClaims
+                        .Where(c => c.UserId == user.Id)
+                        .Select(c=>new System.Security.Claims.Claim(c.ClaimType,c.ClaimValue))
+                        .AsEnumerable();
+                    User.Claims.ToList().AddRange(claims);
                     return RedirectToAction("Index", "Account");
+
+                }
                 else
                     ModelState.AddModelError(string.Empty, "Incorrect login or password.");
             }
@@ -96,7 +104,7 @@ namespace Itis_bet.Controllers
             return InvalidLoginRequest(logVM);
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
@@ -118,8 +126,12 @@ namespace Itis_bet.Controllers
             View("Index", new Tuple<LoginViewModel, RegisterViewModel>(null, regVM));
 
         private async Task<Microsoft.AspNetCore.Identity.SignInResult> SignIn(string userName, string password,
-            bool remember) =>
-            await _signInManager.PasswordSignInAsync(userName, password, remember, false);
+            bool remember)
+        {
+
+           return  await _signInManager.PasswordSignInAsync(userName, password, remember, false);
+        }
+        
 
         private async void SignInVK(User user)
         {
