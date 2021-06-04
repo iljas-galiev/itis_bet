@@ -11,5 +11,9 @@ namespace Infrastructure.IdentityExtesions
         {
             return principal.Claims.FirstOrDefault(c => c.Type.EndsWith("emailaddress"))?.Value;
         }
+        public static Guid GetUserId(this ClaimsPrincipal principal)
+        {
+            return Guid.Parse(principal.Claims.FirstOrDefault(c => c.Type.EndsWith("nameidentifier"))?.Value);
+        }
     }
 }

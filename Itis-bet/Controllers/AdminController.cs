@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BLL.ViewModels.AdminModels;
 using Infrastructure.IdentityExtesions;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using System.Threading.Tasks;
 
 namespace Itis_bet.Controllers
 {
@@ -15,9 +18,14 @@ namespace Itis_bet.Controllers
     public class AdminController : Controller
     {
         private readonly Database _db;
+        private IWebHostEnvironment _appEnvironment;
 
-        public AdminController(Database db) =>
+        public AdminController(Database db, IWebHostEnvironment appEnvironment)
+        {
             _db = db;
+            _appEnvironment = appEnvironment;
+        }
+            
 
         [HttpGet]
         public IActionResult Index() =>
@@ -61,7 +69,43 @@ namespace Itis_bet.Controllers
         [HttpGet]
         public IActionResult CreateBlogPost()
         {
-            return View();
+            var model = new CreateBlogVM()
+            {
+                Sports = Sport.All.GetOptionsWithoutAll(),
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateBlogPost(CreateBlogVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Sports = Sport.All.GetOptionsWithoutAll();
+                return View(model);
+            }
+            if (model.Picture != null)
+            {
+                // путь к папке Files
+                string path = "/images/Articles/" + model.Picture.FileName;
+                // сохраняем файл в папку Files в каталоге wwwroot
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                    await model.Picture.CopyToAsync(fileStream);
+                }
+                var article = new Articles
+                {
+                    Description = model.Description,
+                    Content = model.Content,
+                    Sport = model.Sport,
+                    Header = model.Header,
+                    Picture = path,
+                    PublishedAt = DateTime.Now,
+                    UserId = User.GetUserId(),
+                };
+                _db.Articles.Add(article);
+                await _db.SaveChangesAsync();
+            }
+            return RedirectToAction("BlogPosts");
         }
         [HttpGet]
         public IActionResult Comments()
