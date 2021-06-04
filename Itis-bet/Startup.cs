@@ -33,6 +33,7 @@ namespace Itis_bet
 
 
             services.AddControllersWithViews();
+
             services.AddAuthorization(opts => {
                 opts.AddPolicy("HasAccessToAdminPanel", policy => {
                     policy.RequireClaim(ClaimTypes.Role, "Admin","Editor");
@@ -55,10 +56,14 @@ namespace Itis_bet
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/RegLog/Register");
                     options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Home/Index");
                 });
+
+            services.AddSession();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
