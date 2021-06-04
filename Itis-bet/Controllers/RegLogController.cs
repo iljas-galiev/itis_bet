@@ -5,11 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using BLL.ViewModels;
 using DAL;
 using Infrastructure.Notifications;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json.Linq;
 
 namespace Itis_bet.Controllers
@@ -118,6 +121,10 @@ namespace Itis_bet.Controllers
             bool remember) =>
             await _signInManager.PasswordSignInAsync(userName, password, remember, false);
 
+        private async void SignInVK(User user)
+        {
+            await _signInManager.SignInAsync(user, true);
+        }
 
         const int VK_CLIENT_ID = 7782410;
         const string VK_CLIENT_SECRET = "8YEm5WQQytMQs5PyaeQl";
@@ -133,19 +140,35 @@ namespace Itis_bet.Controllers
         }
 
         [HttpGet]
-        public IActionResult Vk(string code)
+        public async Task<IActionResult> Vk(string code = "")
         {
+            if (code == "") return Redirect("/");
+
+
             string url =
-                $"https://oauth.vk.com/access_token?client_id={VK_CLIENT_ID}&client_secret={VK_CLIENT_SECRET}&redirect_uri=https://localhost:5001&code={code}";
+                $"https://oauth.vk.com/access_token?client_id={VK_CLIENT_ID}&client_secret={VK_CLIENT_SECRET}&redirect_uri=https://localhost:5001/reglog/vk&code={code}";
+
+            try
+            {
+                var response = GET(url);
+                JObject result = JObject.Parse(response);
+
+                var user = _db.Users.SingleOrDefault(u => u.Email.Equals(result.GetValue("email").ToString()));
+                if (user == null)
+                {
+                    return Redirect("/Reglog");
+                }
+
+                await _signInManager.SignInAsync(user, true);
+
+                return Redirect("/");
+            }
+            catch (Exception e)
+            {
+                return Redirect("/");
+            }
 
 
-            var response = GET(url);
-            JObject result = JObject.Parse(response);
-
-            var user = _db.Users.Where(u => u.Email.Equals(result.GetValue("email").ToString()));
-
-
-            return Redirect("/");
         }
 
         private static string GET(string Url)
