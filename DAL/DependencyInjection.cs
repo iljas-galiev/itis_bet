@@ -31,7 +31,7 @@ namespace DAL
 
             services.ConfigureApplicationCookie(options =>
             {
-                options.LoginPath = "/RegLog";
+                options.LoginPath = "/RegLog/Login";
             });
 
             return services;

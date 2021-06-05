@@ -17,13 +17,13 @@ namespace Infrastructure.EmailNotifications
             _sender = sender;
 
         public async Task<bool> AboutBetApplyed(string email, UsersBets bet) =>
-           await SendNotify(email, $"Your bet from {ToPretty(bet.Time)} on {bet.Bet.Match.Team1} vs {bet.Bet.Match.Team2} for ${bet.Money} x{bet.Coef} has been applyed!");
+           await SendNotify(email, $"Your bet from {ToPretty(bet.Time)} on {bet.Bet.Match.Team1} vs {bet.Bet.Match.Team2} for ${bet.Money} x{bet.Coef} ({bet.Bet.Description}) has been applyed!");
 
         public async Task<bool> AboutBetLoosed(string email, UsersBets bet) =>
-           await SendNotify(email, $"Your bet from {ToPretty(bet.Time)} on {bet.Bet.Match.Team1} vs {bet.Bet.Match.Team2} for ${bet.Money} x{bet.Coef} has been loosed!");
+           await SendNotify(email, $"Your bet from {ToPretty(bet.Time)} on {bet.Bet.Match.Team1} vs {bet.Bet.Match.Team2} for ${bet.Money} x{bet.Coef} ({bet.Bet.Description})  has been loosed!");
 
         public async Task<bool> AboutBetWinned(string email, UsersBets bet) =>
-           await SendNotify(email, $"Your bet from {ToPretty(bet.Time)}  on {bet.Bet.Match.Team1} vs {bet.Bet.Match.Team2} for ${bet.Money} x{bet.Coef} has been winned!");
+           await SendNotify(email, $"Your bet from {ToPretty(bet.Time)}  on {bet.Bet.Match.Team1} vs {bet.Bet.Match.Team2} for ${bet.Money} x{bet.Coef} ({bet.Bet.Description})  has been winned!");
 
         public async Task<bool> AboutPassportUpdated(string email) =>
            await SendNotify(email, $"Your passport has been updated!");

@@ -34,13 +34,27 @@ namespace Itis_bet.Controllers
             _db = db;
         }
 
+
         [HttpGet]
         public IActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
                 return Redirect("/");
 
+            ViewBag.Login = false;
+
             return View(new Tuple<LoginViewModel, RegisterViewModel>(
+                new LoginViewModel(), new RegisterViewModel()));
+        }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            if (User.Identity.IsAuthenticated)
+                return Redirect("/");
+
+            ViewBag.Login = true;
+
+            return View("Index",new Tuple<LoginViewModel, RegisterViewModel>(
                 new LoginViewModel(), new RegisterViewModel()));
         }
 
@@ -63,10 +77,11 @@ namespace Itis_bet.Controllers
 
                 if (validEmail)
                 {
-                    var res = await _userManager.CreateAsync(CreateUser(regVM.Login, regVM.Email, regVM.Phone), regVM.Password);
+                    var res = await _userManager.CreateAsync(CreateUser(regVM.Login, regVM.Email, regVM.Phone),
+                        regVM.Password);
 
                     if (res.Succeeded)
-                        return await Log(new LoginViewModel { Email = regVM.Email, Password = regVM.Password });                
+                        return await Log(new LoginViewModel {Email = regVM.Email, Password = regVM.Password});
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid email address");
@@ -91,11 +106,10 @@ namespace Itis_bet.Controllers
                 {
                     var claims = _db.UserClaims
                         .Where(c => c.UserId == user.Id)
-                        .Select(c=>new System.Security.Claims.Claim(c.ClaimType,c.ClaimValue))
+                        .Select(c => new System.Security.Claims.Claim(c.ClaimType, c.ClaimValue))
                         .AsEnumerable();
                     User.Claims.ToList().AddRange(claims);
                     return RedirectToAction("Index", "Account");
-
                 }
                 else
                     ModelState.AddModelError(string.Empty, "Incorrect login or password.");
@@ -128,10 +142,9 @@ namespace Itis_bet.Controllers
         private async Task<Microsoft.AspNetCore.Identity.SignInResult> SignIn(string userName, string password,
             bool remember)
         {
-
-           return  await _signInManager.PasswordSignInAsync(userName, password, remember, false);
+            return await _signInManager.PasswordSignInAsync(userName, password, remember, false);
         }
-        
+
 
         private async void SignInVK(User user)
         {
@@ -141,7 +154,8 @@ namespace Itis_bet.Controllers
         const int VK_CLIENT_ID = 7782410;
         const string VK_CLIENT_SECRET = "8YEm5WQQytMQs5PyaeQl";
 
-        private User CreateUser(string name, string email, string phone) => new User { Email = email, UserName = name, PhoneNumber = phone };
+        private User CreateUser(string name, string email, string phone) =>
+            new User {Email = email, UserName = name, PhoneNumber = phone};
 
 
         [HttpGet]
@@ -168,19 +182,17 @@ namespace Itis_bet.Controllers
                 var user = _db.Users.SingleOrDefault(u => u.Email.Equals(result.GetValue("email").ToString()));
                 if (user == null)
                 {
-                    return Redirect("/Reglog");
+                    return Redirect("/Reglog?vk=2");
                 }
 
                 await _signInManager.SignInAsync(user, true);
 
-                return Redirect("/");
+                return Redirect("/?vk=1");
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return Redirect("/");
+                return Redirect("/?vk=3");
             }
-
-
         }
 
         private static string GET(string Url)

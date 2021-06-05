@@ -1,11 +1,8 @@
 ﻿using BLL.ViewModels;
 using DAL;
 using DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace BLL.Services
+namespace BLL.Services.PassportService
 {
     public class PassportService : ServiceBase
     {

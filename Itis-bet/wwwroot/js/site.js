@@ -3,13 +3,44 @@
         placeholder: "asds",
     });
 
+    var url_string = window.location.href; //window.location.href
+    var url = new URL(url_string);
+    var c = url.searchParams.get("vk");
+    if(c=="1") {
+        $.notify({
+            // options
+            message: 'Success!'
+        }, {
+            // settings
+            type: 'success'
+        });
+    }
+    if(c=="2") {
+        $.notify({
+            // options
+            message: 'Account doesn\'t exist!'
+        }, {
+            // settings
+            type: 'danger'
+        });
+    }
+    if(c=="3") {
+        $.notify({
+            // options
+            message: 'Error occured, try againg later!'
+        }, {
+            // settings
+            type: 'danger'
+        });
+    }
+
 
     $('.sport-table-wager-button').on('click', function () {
         var teamName = $(this).data('team-name'),
             confrontation = $(this).data('confrontation'),
             vager = $(this).data('wager-count'),
             score = $(this).data('score');
-            matchId = $(this).data('match');
+        matchId = $(this).data('match');
 
         $('.modal-sport-error').hide()
         $('.modal-sport-wager').html(teamName);
@@ -59,9 +90,17 @@
                 $('.modal-sport-place').prop('disabled', false).text('Place bet');
             },
             success: function (data) {
-                if (data.status == 'success') $('.modal').modal('hide')
-                else {
-                    $('.modal-sport-error').show().text( data.message)
+                if (data.status == 'success') {
+                    $('.modal').modal('hide')
+                    $.notify({
+                        // options
+                        message: 'Your bet applied!'
+                    }, {
+                        // settings
+                        type: 'success'
+                    });
+                } else {
+                    $('.modal-sport-error').show().text(data.message)
                 }
             }
         });

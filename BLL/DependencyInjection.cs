@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BLL.Services;
+using BLL.Services.PassportService;
 
 namespace BLL
 {
