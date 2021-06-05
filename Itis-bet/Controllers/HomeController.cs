@@ -16,12 +16,15 @@ namespace ITIS_Bet.Controllers
         public HomeController(Database db) =>
             _db = db;
 
-        public IActionResult Index(string sport = null)
+        public IActionResult Index(string sport = null, string search = null)
         {
             var matches = _db.Matches.Where(a =>
                 a.Status.Equals(MatchStatus.Active) || a.Status.Equals(MatchStatus.Waiting));
 
             if (sport != null) matches = matches.Where(a => a.Sport.Equals((Sport) Enum.Parse(typeof(Sport), sport)));
+            if (search != null) matches = matches.Where(a => a.Title.ToLower().Contains(search.ToLower()));
+
+            ViewData["search"] = search;
 
             matches = matches.Include(a=>a.Bets.OrderBy(b=>b.Description));
 

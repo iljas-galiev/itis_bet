@@ -94,7 +94,7 @@
                                 <form class="search" action="/" data-search-live="search-results-live" method="GET">
 
                                     <div class="search-wrap">
-                                        <input class="navbar-search-form-input form-input" placeholder="Введите запрос" id="navbar-search-form-input" type="text" name="s" autocomplete="off">
+                                        <input class="navbar-search-form-input form-input" placeholder="Введите запрос" id="navbar-search-form-input" type="text" name="search" value="@(ViewData["search"] ?? "")" autocomplete="off">
                                         <div class="search-results-live" id="search-results-live"></div>
                                     </div>
 

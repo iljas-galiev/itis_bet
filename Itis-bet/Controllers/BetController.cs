@@ -1,9 +1,11 @@
 using System;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using DAL;
 using DAL.Models;
 using DAL.Models.Enums;
+using Infrastructure.Notifications;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,14 +17,16 @@ namespace Itis_bet.Controllers
     public class BetController : Controller
     {
         private readonly Database _db;
+        private readonly INotificator<bool> _notify;
 
-        public BetController(Database db)
+        public BetController(Database db, INotificator<bool> notify)
         {
             _db = db;
+            _notify = notify;
         }
 
         [HttpPost]
-        public IActionResult Index(Guid id, decimal sum, string bet)
+        public async Task<IActionResult> Index(Guid id, decimal sum, string bet)
         {
             if (!User.Identity.IsAuthenticated)
                 return Json(new {status = "Error", message = "Need auth"});
@@ -61,6 +65,9 @@ namespace Itis_bet.Controllers
             model.Status = UserBetPaymentStatus.Waiting;
             _db.UsersBets.Add(model);
             _db.SaveChanges();
+
+            await _notify.AboutBetAsync(BetReason.Applyed, user.Email, model);
+
 
             return Json(new {status = "success", betId = model.Id});
         }

@@ -73,77 +73,84 @@
         <div class="row isotope row-30" style="position: relative;">
             <!-- Football-->
             @{
-                foreach (var sportTournament in Model)
+                if (Model.Any())
                 {
-                    <div class="col-lg-12">
-                        <!-- Heading Component-->
-                        <article class="heading-component">
-                            <div class="heading-component-inner">
-                                <h5 class="heading-component-title">
-                                    @sportTournament.Key
-                                </h5>
-                            </div>
-                        </article>
+                    foreach (var sportTournament in Model)
+                    {
+                        <div class="col-lg-12">
+                            <!-- Heading Component-->
+                            <article class="heading-component">
+                                <div class="heading-component-inner">
+                                    <h5 class="heading-component-title">
+                                        @sportTournament.Key
+                                    </h5>
+                                </div>
+                            </article>
 
 
-                        @foreach (var tournamentMatch in sportTournament.Value)
-                        {
-                            <div class="sport-table-header">
-                                <p>@tournamentMatch.Key</p>
-                            </div>
-                            foreach (var match in tournamentMatch.Value)
+                            @foreach (var tournamentMatch in sportTournament.Value)
                             {
-                                <div class="sport-table">
-                                    <div class="sport-table-tr">
-                                        <div class="row sport-row align-items-center row-15">
-                                            <div class="col-sm-2 col-md-1 col-lg-1">
-                                                <div class="sport-table-status">
-                                                    <span class="sport-status-@(match.Status.Equals(MatchStatus.Active) ? "active" : "default")"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-9 col-md-4 col-lg-3">
-                                                <div class="sport-table-title">
-                                                    <div class="sport-table-title-item sport-table-title-item-left">
-                                                        <span class="sport-table-title-team">@match.Team1</span>
-                                                        <span class="sport-table-title-team">@match.Team2</span>
+                                <div class="sport-table-header">
+                                    <p>@tournamentMatch.Key</p>
+                                </div>
+                                foreach (var match in tournamentMatch.Value)
+                                {
+                                    <div class="sport-table">
+                                        <div class="sport-table-tr">
+                                            <div class="row sport-row align-items-center row-15">
+                                                <div class="col-sm-2 col-md-1 col-lg-1">
+                                                    <div class="sport-table-status">
+                                                        <span class="sport-status-@(match.Status.Equals(MatchStatus.Active) ? "active" : "default")"></span>
                                                     </div>
-                                                    <div class="sport-table-title-item sport-table-title-item-right">
+                                                </div>
+                                                <div class="col-sm-9 col-md-4 col-lg-3">
+                                                    <div class="sport-table-title">
+                                                        <div class="sport-table-title-item sport-table-title-item-left">
+                                                            <span class="sport-table-title-team">@match.Team1</span>
+                                                            <span class="sport-table-title-team">@match.Team2</span>
+                                                        </div>
+                                                        <div class="sport-table-title-item sport-table-title-item-right">
+                                                            @{
+                                                                string[] results = match.Result.Split(':');
+                                                            }
+                                                            <span class="sport-table-title-score">
+                                                                <span>@results[0]</span>
+                                                            </span>
+                                                            <!--span.sport-table-title-team= obj.team[1][0]-->
+                                                            <span class="sport-table-title-score">
+                                                                <span>@results[1]</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-10 col-md-6 col-lg-7">
+                                                    <div class="sport-table-wager">
                                                         @{
-                                                            string[] results = match.Result.Split(':');
+                                                            foreach (var bet in match.Bets)
+                                                            {
+                                                                <a class="sport-table-wager-button" href="#" data-toggle="modal" data-target="#sportModal" data-match="@match.Id" data-team-name="@bet.Description" data-confrontation="@match.Team1 vs @match.Team2" data-wager-count="@bet.Coef" data-score="@match.Result">
+                                                                    <span>@bet.Description</span><span class="sport-table-wager-button-count">@bet.Coef</span>
+                                                                </a>
+                                                            }
                                                         }
-                                                        <span class="sport-table-title-score">
-                                                            <span>@results[0]</span>
-                                                        </span>
-                                                        <!--span.sport-table-title-team= obj.team[1][0]-->
-                                                        <span class="sport-table-title-score">
-                                                            <span>@results[1]</span>
-                                                        </span>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-10 col-md-6 col-lg-7">
-                                                <div class="sport-table-wager">
-                                                    @{
-                                                        foreach (var bet in match.Bets)
-                                                        {
-                                                            <a class="sport-table-wager-button" href="#" data-toggle="modal" data-target="#sportModal" data-match="@match.Id" data-team-name="@bet.Description" data-confrontation="@match.Team1 vs @match.Team2" data-wager-count="@bet.Coef" data-score="@match.Result">
-                                                                <span>@bet.Description</span><span class="sport-table-wager-button-count">@bet.Coef</span>
-                                                            </a>
-                                                        }
-                                                    }
+
+                                                <div class="col-sm-2 col-md-1 col-lg-1">
+
                                                 </div>
-                                            </div>
-
-                                            <div class="col-sm-2 col-md-1 col-lg-1">
-
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             }
-                        }
 
-                    </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <h3 class="text-center text-danger">No results</h3>
                 }
             }
         </div>

@@ -146,6 +146,9 @@ namespace Itis_bet.Controllers
         {
             var userId = new Guid(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
+            var user = _db.Users.Find(userId);
+            ViewBag.Balance = user.Money;
+
             return View(_db.Transactions
                 .OrderByDescending(b=>b.Date)
                 .Include(b=>b.UserBet)
