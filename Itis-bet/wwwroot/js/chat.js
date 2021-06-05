@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
     var connection = new WebSocketManager.Connection(
-        "ws://" + window.location.host + "/chat");
+        "wss://" + window.location.host + "/chat");
 
     connection.enableLogging = true;
 
