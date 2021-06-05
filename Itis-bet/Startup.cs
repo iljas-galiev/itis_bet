@@ -54,7 +54,7 @@ namespace Itis_bet
                 .AddCookie(options =>
                 {
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/RegLog/Register");
-                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Home/Index");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/AccessDenied");
                 });
 
             services.AddSession();
