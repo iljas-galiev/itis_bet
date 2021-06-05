@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = Model.Header;
 }
+@using Infrastructure
 <div class="container">
     <div class="row d-flex flex-row-reverse">
 
@@ -25,12 +26,12 @@
 
                     <div class="blog-post-author">
                         <img class="img-circle" src="~/images/user-3-63x63.jpg" alt="" width="63" height="63">
-                        <p class="post-author">Katrin Burns</p>
+                        <p class="post-author">@Model.User.UserName</p>
                     </div>
 
                     <div class="blog-post-meta">
                         <time class="blog-post-time" datetime="2020"><span class="icon mdi mdi-clock"></span>@Model.PublishedAt.ToString("MMMM dd, yyyy")</time>
-                        <div class="blog-post-comment"><span class="icon mdi mdi-comment-outline"></span>345</div>
+                        <div class="blog-post-comment"><span class="icon mdi mdi-comment-outline"></span>@Model.Comments.Count</div>
                         <div class="blog-post-view"><i class="icon far fa-eye"></i>234</div>
                     </div>
 
@@ -84,10 +85,7 @@
                                         <div class="comment-body">
                                             <div class="comment-info">
                                                 <div class="commentator-name">
-                                                    <h5>Имя комментатора</h5>
-                                                </div>
-                                                <div class="comment-date">
-                                                    <p>25.05.2021</p>
+                                                    <h5>@comment.User.UserName</h5>
                                                 </div>
                                             </div>
 
@@ -129,17 +127,19 @@
                                 <div class="comment-body">
                                     <div class="comment-info">
                                         <div class="commentator-name">
-                                            <h5>Имя комментатора</h5>
+                                            <h5>@User.Identity.Name</h5>
                                         </div>
                                     </div>
 
-                                    <form>
+                                    <form asp-action="CreateComment" method="post">
                                         <div class="form-wrap">
-                                            <textarea class="form-control" placeholder="Введите ваш комментарий"></textarea>
+                                            <textarea class="form-control" name="text" placeholder="Введите ваш комментарий"></textarea>
                                         </div>
                                         <div class="form-wrap">
                                             <input class="primary-btn" type="submit" value="Отправить комментарий" />
                                         </div>
+                                        <input type="hidden" name="articleId" value="@Model.Id" />
+                                        <input type="hidden" name="userId" value="@Model.UserId" />
                                     </form>
                                 </div>
                             </div>

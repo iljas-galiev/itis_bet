@@ -17,13 +17,13 @@ namespace Infrastructure.EmailNotifications
             _sender = sender;
 
         public async Task<bool> AboutBetApplyed(string email, UsersBets bet) =>
-           await SendNotify(email, $"Your bet from {ToPretty(bet.Time)} has been applyed!");
+           await SendNotify(email, $"Your bet from {ToPretty(bet.Time)} on {bet.Bet.Match.Team1} vs {bet.Bet.Match.Team2} for ${bet.Money} x{bet.Coef} ({bet.Bet.Description}) has been applyed!");
 
         public async Task<bool> AboutBetLoosed(string email, UsersBets bet) =>
-           await SendNotify(email, $"Your bet from {ToPretty(bet.Time)} has been loosed!");
+           await SendNotify(email, $"Your bet from {ToPretty(bet.Time)} on {bet.Bet.Match.Team1} vs {bet.Bet.Match.Team2} for ${bet.Money} x{bet.Coef} ({bet.Bet.Description})  has been loosed!");
 
         public async Task<bool> AboutBetWinned(string email, UsersBets bet) =>
-           await SendNotify(email, $"Your bet from {ToPretty(bet.Time)} has been winned!");
+           await SendNotify(email, $"Your bet from {ToPretty(bet.Time)}  on {bet.Bet.Match.Team1} vs {bet.Bet.Match.Team2} for ${bet.Money} x{bet.Coef} ({bet.Bet.Description})  has been winned!");
 
         public async Task<bool> AboutPassportUpdated(string email) =>
            await SendNotify(email, $"Your passport has been updated!");
@@ -38,7 +38,7 @@ namespace Infrastructure.EmailNotifications
            await SendNotify(email, $"Dear {email}, thank you for registration!");
 
         public async Task<bool> AboutTransactionPassed(string email, Transactions transaction) =>
-           await SendNotify(email, $"Your transaction from {ToPretty(transaction.Date)} has been passed!");
+           await SendNotify(email, $"Your {transaction.Type} transaction from {ToPretty(transaction.Date)} for ${transaction.Money} has been passed!");
 
         private async Task<bool> SendNotify(string email, string message) =>
             await _sender.SendEmailAsync(email, "Notification", message);

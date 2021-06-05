@@ -5,11 +5,13 @@ using BLL.ViewModels;
 using DAL;
 using DAL.Models;
 using DAL.Models.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Itis_bet.Controllers
 {
+    [Authorize(Policy = "HasAccessToAdminPanel")]
     public class BetAdminController : Controller
     {
         private Database _db;
@@ -24,6 +26,7 @@ namespace Itis_bet.Controllers
 
             var bets = from b in _db.Bets select b;
             bets = bets.Include(b => b.Match);
+            bets = bets.OrderByDescending(b => b.Match.Date);
             bets = bets.Skip((page - 1) * pageSize).Take(pageSize);
 
 
@@ -95,6 +98,15 @@ namespace Itis_bet.Controllers
             _db.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult UserBets()
+        {
+            var model = _db.UsersBets.Include(b=>b.Bet).Include(b=>b.Bet.Match).ToList();
+
+
+            return View(model);
         }
     }
 }

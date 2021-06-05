@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using BLL.Services;
 using BLL.ViewModels;
 using DAL;
@@ -12,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BLL.Extensions;
 using System.Threading.Tasks;
+using BLL.Services.PassportService;
 using Infrastructure.Notifications;
 
 namespace Itis_bet.Controllers
@@ -132,5 +134,32 @@ namespace Itis_bet.Controllers
         public IActionResult GetBlogPostMenu() =>
             PartialView("_GetBlogPostMenu");
 
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Bets()
+        {
+            var userId = new Guid(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            return View(_db.UsersBets.OrderByDescending(b=>b.Time).Include(b=>b.Bet).Include(b=>b.Bet.Match).Where(b=>b.UserId.Equals(userId)).ToList());
+        }
+        [HttpGet]
+        public IActionResult Balance()
+        {
+            var userId = new Guid(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            var user = _db.Users.Find(userId);
+            ViewBag.Balance = user.Money;
+
+            return View(_db.Transactions
+                .OrderByDescending(b=>b.Date)
+                .Where(b=>b.UserId.Equals(userId))
+                .ToList()
+            );
+        }
     }
 }

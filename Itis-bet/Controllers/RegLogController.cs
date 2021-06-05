@@ -5,11 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using BLL.ViewModels;
 using DAL;
 using Infrastructure.Notifications;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json.Linq;
 
 namespace Itis_bet.Controllers
@@ -31,13 +34,27 @@ namespace Itis_bet.Controllers
             _db = db;
         }
 
+
         [HttpGet]
         public IActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
                 return Redirect("/");
 
+            ViewBag.Login = false;
+
             return View(new Tuple<LoginViewModel, RegisterViewModel>(
+                new LoginViewModel(), new RegisterViewModel()));
+        }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            if (User.Identity.IsAuthenticated)
+                return Redirect("/");
+
+            ViewBag.Login = true;
+
+            return View("Index",new Tuple<LoginViewModel, RegisterViewModel>(
                 new LoginViewModel(), new RegisterViewModel()));
         }
 
@@ -60,10 +77,11 @@ namespace Itis_bet.Controllers
 
                 if (validEmail)
                 {
-                    var res = await _userManager.CreateAsync(CreateUser(regVM.Login, regVM.Email, regVM.Phone), regVM.Password);
+                    var res = await _userManager.CreateAsync(CreateUser(regVM.Login, regVM.Email, regVM.Phone),
+                        regVM.Password);
 
                     if (res.Succeeded)
-                        return await Log(new LoginViewModel { Email = regVM.Email, Password = regVM.Password });                
+                        return await Log(new LoginViewModel {Email = regVM.Email, Password = regVM.Password});
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid email address");
@@ -85,7 +103,14 @@ namespace Itis_bet.Controllers
                 var res = await SignIn(user.UserName, logVM.Password, logVM.Remember);
 
                 if (res.Succeeded)
+                {
+                    var claims = _db.UserClaims
+                        .Where(c => c.UserId == user.Id)
+                        .Select(c => new System.Security.Claims.Claim(c.ClaimType, c.ClaimValue))
+                        .AsEnumerable();
+                    User.Claims.ToList().AddRange(claims);
                     return RedirectToAction("Index", "Account");
+                }
                 else
                     ModelState.AddModelError(string.Empty, "Incorrect login or password.");
             }
@@ -93,7 +118,7 @@ namespace Itis_bet.Controllers
             return InvalidLoginRequest(logVM);
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
@@ -115,37 +140,59 @@ namespace Itis_bet.Controllers
             View("Index", new Tuple<LoginViewModel, RegisterViewModel>(null, regVM));
 
         private async Task<Microsoft.AspNetCore.Identity.SignInResult> SignIn(string userName, string password,
-            bool remember) =>
-            await _signInManager.PasswordSignInAsync(userName, password, remember, false);
+            bool remember)
+        {
+            return await _signInManager.PasswordSignInAsync(userName, password, remember, false);
+        }
 
+
+        private async void SignInVK(User user)
+        {
+            await _signInManager.SignInAsync(user, true);
+        }
 
         const int VK_CLIENT_ID = 7782410;
         const string VK_CLIENT_SECRET = "8YEm5WQQytMQs5PyaeQl";
 
-        private User CreateUser(string name, string email, string phone) => new User { Email = email, UserName = name, PhoneNumber = phone };
+        private User CreateUser(string name, string email, string phone) =>
+            new User {Email = email, UserName = name, PhoneNumber = phone};
 
 
         [HttpGet]
         public IActionResult VkAuth()
         {
             return Redirect(
-                $"https://oauth.vk.com/authorize?client_id={VK_CLIENT_ID}&display=page&redirect_uri=https://localhost:5001/reglog/vk&scope=email&response_type=code&v=5.131");
+                $"https://oauth.vk.com/authorize?client_id={VK_CLIENT_ID}&display=page&redirect_uri=https://itis-bet.herokuapp.com/reglog/vk&scope=email&response_type=code&v=5.131");
         }
 
         [HttpGet]
-        public IActionResult Vk(string code)
+        public async Task<IActionResult> Vk(string code = "")
         {
+            if (code == "") return Redirect("/");
+
+
             string url =
-                $"https://oauth.vk.com/access_token?client_id={VK_CLIENT_ID}&client_secret={VK_CLIENT_SECRET}&redirect_uri=https://localhost:5001&code={code}";
+                $"https://oauth.vk.com/access_token?client_id={VK_CLIENT_ID}&client_secret={VK_CLIENT_SECRET}&redirect_uri=https://itis-bet.herokuapp.com/reglog/vk&code={code}";
 
+            try
+            {
+                var response = GET(url);
+                JObject result = JObject.Parse(response);
 
-            var response = GET(url);
-            JObject result = JObject.Parse(response);
+                var user = _db.Users.SingleOrDefault(u => u.Email.Equals(result.GetValue("email").ToString()));
+                if (user == null)
+                {
+                    return Redirect("/Reglog?vk=2");
+                }
 
-            var user = _db.Users.Where(u => u.Email.Equals(result.GetValue("email").ToString()));
+                await _signInManager.SignInAsync(user, true);
 
-
-            return Redirect("/");
+                return Redirect("/?vk=1");
+            }
+            catch (Exception)
+            {
+                return Redirect("/?vk=3");
+            }
         }
 
         private static string GET(string Url)
