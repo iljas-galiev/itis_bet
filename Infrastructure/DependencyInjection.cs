@@ -4,7 +4,6 @@ using Infrastructure.EmailNotifications;
 using Infrastructure.Notifications;
 using Microsoft.AspNetCore.Builder;
 using WebSocketManager;
-using System;
 using Chat;
 
 namespace Infrastructure
