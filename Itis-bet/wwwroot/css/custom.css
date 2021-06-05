@@ -1052,7 +1052,7 @@ input, button {
         flex-direction: column;
         position: fixed;
         width: 300px;
-        top: 56px;
+        top: 46px;
         bottom: 0;
         z-index: 2000;
         background-color: #383838;
