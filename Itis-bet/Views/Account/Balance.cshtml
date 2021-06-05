@@ -1,7 +1,7 @@
 @using DAL.Models.Enums
 @model IEnumerable<DAL.Models.Transactions>
 @{
-    ViewBag.Title = "Bets";
+    ViewBag.Title = "Balance";
     Layout = "_Layout";
 }
 
@@ -14,6 +14,12 @@
 
             <div class="menu-header">
                 <h5>@ViewBag.Title</h5>
+            </div>
+            <div class="mb-3 h6">
+                Balance: <span class="text-@(ViewBag.Balance >= 0 ? "success" : "danger")">$@ViewBag.Balance</span>
+            </div>
+            <div class="mb-3 h6">
+                For
             </div>
             <table class="table table-bordered-light table-light">
                 <thead>
@@ -30,9 +36,9 @@
                         {
                             <tr>
                                 <td>@transaction.Date</td>
-                                <td>@transaction.UserBet.Bet.Id</td>
+                                <td>@transaction.Type</td>
                                 <td>$@transaction.Money</td>
-                                <td>$@transaction.Type</td>
+                                <td>@(transaction.User_Bet_Id!=null ? transaction.UserBet.Bet.Id.ToString() : "")</td>
                             </tr>
                         }
                     }
