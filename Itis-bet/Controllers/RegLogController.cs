@@ -162,7 +162,7 @@ namespace Itis_bet.Controllers
         public IActionResult VkAuth()
         {
             return Redirect(
-                $"https://oauth.vk.com/authorize?client_id={VK_CLIENT_ID}&display=page&redirect_uri=https://localhost:5001/reglog/vk&scope=email&response_type=code&v=5.131");
+                $"https://oauth.vk.com/authorize?client_id={VK_CLIENT_ID}&display=page&redirect_uri=https://itis-bet.herokuapp.com/reglog/vk&scope=email&response_type=code&v=5.131");
         }
 
         [HttpGet]
@@ -172,7 +172,7 @@ namespace Itis_bet.Controllers
 
 
             string url =
-                $"https://oauth.vk.com/access_token?client_id={VK_CLIENT_ID}&client_secret={VK_CLIENT_SECRET}&redirect_uri=https://localhost:5001/reglog/vk&code={code}";
+                $"https://oauth.vk.com/access_token?client_id={VK_CLIENT_ID}&client_secret={VK_CLIENT_SECRET}&redirect_uri=https://itis-bet.herokuapp.com/reglog/vk&code={code}";
 
             try
             {
