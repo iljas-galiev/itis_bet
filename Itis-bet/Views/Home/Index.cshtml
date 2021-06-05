@@ -26,13 +26,13 @@
                         </span><span class="matches-filters-list-text">All sports</span>
                     </a>
                 </li>
-                <lwi class="matches-filters-list-item">
+                <li class="matches-filters-list-item">
                     <a class="matches-filters-list-link  @(ViewData["sport"].Equals("Football") ? "active" : "")" asp-route-sport="@Sport.Football">
                         <span class="matches-filters-list-img">
                             <span class="sprite sprite-sport-icon-07"></span>
                         </span><span class="matches-filters-list-text">Football</span>
                     </a>
-                </lwi>
+                </li>
                 <li class="matches-filters-list-item">
                     <a class="matches-filters-list-link  @(ViewData["sport"].Equals("Tennis") ? "active" : "")" asp-route-sport="@Sport.Tennis">
                         <span class="matches-filters-list-img">
@@ -165,6 +165,9 @@
             }
         </div>
     </div>
+
+    @await Html.PartialAsync("_ChatPartial")
+
 </div>
 <div class="modal modal-sport fade" id="sportModal" tabindex="-1" role="dialog" aria-labelledby="sportModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -195,6 +198,7 @@
                             <input type="text" class="form-control" name="sum" id="bet-sum" value="10">
                         </div>
                     </div>
+
                 </div>
                 <div class="modal-sport-win">
                     Possible win: <span id="possible-win"></span>
@@ -207,3 +211,8 @@
         </div>
     </div>
 </div>
+
+
+
+<!--<script data-main="scripts/main" src="https://rawgit.com/radu-matei/websocket-manager/master/src/WebSocketManager.Client.TS/dist/WebSocketManager.js"></script>-->
+

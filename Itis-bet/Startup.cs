@@ -31,8 +31,8 @@ namespace Itis_bet
             services.AddHttpContextAccessor();
 
             services.ConfigureDataAccess(Configuration);
-            services.ConfigureInfrastructure(Configuration);
             services.ConfigureBusinessLogic(Configuration);
+            services.ConfigureInfrastructure(Configuration);
 
             services.Configure<MongoDatabaseSettings>(
                 Configuration.GetSection(nameof(MongoDatabaseSettings)));
@@ -71,7 +71,7 @@ namespace Itis_bet
 
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider provider)
         {
             app.UseSession();
             if (env.IsDevelopment())
@@ -80,12 +80,13 @@ namespace Itis_bet
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-
             app.UseRouting();
-            
+
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
+            app.ConfigureChat(provider);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
