@@ -5,11 +5,13 @@ using DAL;
 using DAL.Models;
 using DAL.Models.Enums;
 using Infrastructure.Notifications;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Itis_bet.Controllers
 {
+    [Authorize(Policy = "HasAccessToAdminPanel")]
     public class MatchAdminController : Controller
     {
         private Database _db;
@@ -207,7 +209,6 @@ namespace Itis_bet.Controllers
 
             var tours = new List<string>() {"Чемпионат мира", "Чемпионат вселенной", "Чемпионат итиса"};
 
-            int index = 0;
             foreach (var tour in tours)
             {
                 for (int j = 1; j < 8; j++)

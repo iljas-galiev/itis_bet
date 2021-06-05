@@ -5,11 +5,13 @@ using BLL.ViewModels;
 using DAL;
 using DAL.Models;
 using DAL.Models.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Itis_bet.Controllers
 {
+    [Authorize(Policy = "HasAccessToAdminPanel")]
     public class BetAdminController : Controller
     {
         private Database _db;
