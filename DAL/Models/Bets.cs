@@ -19,7 +19,7 @@ namespace DAL.Models
 
 
         [Required]
-        public string Description { get; set; }
+        public MatchResult Description { get; set; }
 
         public double Coef { get; set; }
 

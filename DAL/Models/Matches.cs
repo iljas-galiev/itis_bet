@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL.Validators;
 
 namespace DAL.Models
 {
@@ -47,6 +48,9 @@ namespace DAL.Models
 
 
         [Column(TypeName = "varchar(255)")]
+        [MatchResultValidator(ErrorMessage = "Result is incorrect")]
         public string Result { get; set; }
+
+        public ICollection<Bets> Bets { get; set; }
     }
 }

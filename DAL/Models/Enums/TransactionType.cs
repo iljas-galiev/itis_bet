@@ -11,6 +11,5 @@ namespace DAL.Models.Enums
         Replenishment = 1,
         //Снятие 
         Withdrawal = 2,
-        Transfer = 3,
     }
 }

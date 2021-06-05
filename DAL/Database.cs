@@ -20,7 +20,8 @@ namespace DAL
         public DbSet<Passport> Passports { get; set; }
         
         public Database(DbContextOptions<Database> options)
-            : base(options) { }
+            : base(options) {
+        }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,7 +33,7 @@ namespace DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<UserProfile>()
+            modelBuilder.Entity<User>()
                 .Property(profile => profile.CanBet)
                 .HasDefaultValue(true);
         }

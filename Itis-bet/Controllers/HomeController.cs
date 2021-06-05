@@ -1,51 +1,60 @@
-﻿using DAL.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
+using BLL.Services;
 using DAL;
+using DAL.Models;
+using DAL.Models.Enums;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ITIS_Bet.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly  Database _dbContext;
+        private readonly Database _db;
 
-        public HomeController(Database context, ILogger<HomeController> logger)
+        private readonly MongoService _service;
+        public HomeController(Database db, MongoService service)
         {
-            _dbContext = context;
-            _logger = logger;
-        }
-
-
-        public IActionResult Index()
-        {
-            return View();
+            _db = db;
+            _service = service;
         }
 
-        public IActionResult Privacy()
+        public IActionResult Index(string sport = null, string search = null)
         {
-            return View();
+            var matches = _db.Matches.Where(a =>
+                a.Status.Equals(MatchStatus.Active) || a.Status.Equals(MatchStatus.Waiting));
+
+            if (sport != null) matches = matches.Where(a => a.Sport.Equals((Sport) Enum.Parse(typeof(Sport), sport)));
+            if (search != null) matches = matches.Where(a => a.Title.ToLower().Contains(search.ToLower()));
+
+            ViewData["search"] = search;
+
+            matches = matches.Include(a=>a.Bets.OrderBy(b=>b.Description));
+
+
+            var map = new Dictionary<Sport, Dictionary<string, List<Matches>>>();
+            foreach (var match in matches)
+            {
+                if (!map.ContainsKey(match.Sport))
+                    map.Add(match.Sport, new Dictionary<string, List<Matches>>());
+
+                if (!map[match.Sport].ContainsKey(match.Tournament))
+                    map[match.Sport].Add(match.Tournament, new List<Matches>());
+
+                map[match.Sport][match.Tournament].Add(match);
+            }
+
+            if (sport == null) ViewData["sport"] = "";
+            else
+                ViewData["sport"] = sport;
+
+            ViewBag.Banners = _service.Get();
+
+            return View(map);
         }
-        public IActionResult Personal()
-        {
-            return View();
-        }
-        public IActionResult GetPersonalMenu()
-        {
-            return PartialView("_GetPersonalMenu");
-        }
-        public IActionResult BlogPost()
-        {
-            return View();
-        }
-        public IActionResult GetBlogPostMenu()
-        {
-            return PartialView("_GetBlogPostMenu");
-        }
+
+        public IActionResult Privacy() => View();
     }
 }
