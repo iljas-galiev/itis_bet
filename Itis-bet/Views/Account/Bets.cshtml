@@ -17,6 +17,7 @@
 
             <table class="table table-bordered-light table-light">
                 <thead>
+                <th>ID</th>
                 <th>Date</th>
                 <th>Match</th>
                 <th>Bet</th>
@@ -30,6 +31,7 @@
                         foreach (var bet in Model)
                         {
                             <tr>
+                                <td>@bet.Bet.Id</td>
                                 <td>@bet.Time</td>
                                 <td>@bet.Bet.Match.Team1 vs @bet.Bet.Match.Team2</td>
                                 <td>@bet.Bet.Description x @bet.Coef</td>

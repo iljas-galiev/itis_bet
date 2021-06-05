@@ -19,7 +19,7 @@
                 Balance: <span class="text-@(ViewBag.Balance >= 0 ? "success" : "danger")">$@ViewBag.Balance</span>
             </div>
             <div class="mb-3 h6">
-                For
+                For deposits and withdrawals from your account, please contact telegram <a href="https://telegram.com">@@S-Bet_bot</a>
             </div>
             <table class="table table-bordered-light table-light">
                 <thead>
@@ -38,7 +38,7 @@
                                 <td>@transaction.Date</td>
                                 <td>@transaction.Type</td>
                                 <td>$@transaction.Money</td>
-                                <td>@(transaction.User_Bet_Id!=null ? transaction.UserBet.Bet.Id.ToString() : "")</td>
+                                <td>@transaction.User_Bet_Id</td>
                             </tr>
                         }
                     }

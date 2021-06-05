@@ -15,8 +15,6 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
-using Infrastructure;
-
 
 namespace Itis_bet.Controllers
 {

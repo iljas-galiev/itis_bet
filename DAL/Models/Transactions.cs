@@ -29,6 +29,7 @@ namespace DAL.Models
         public decimal Money { get; set; }
 
         public Guid? User_Bet_Id { get; set; }
+
         public UsersBets UserBet { get; set; }
     } 
 }

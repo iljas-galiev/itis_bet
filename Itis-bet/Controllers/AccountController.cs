@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BLL.Extensions;
 using System.Threading.Tasks;
+using BLL.Services.PassportService;
 using Infrastructure.Notifications;
 
 namespace Itis_bet.Controllers
@@ -135,6 +136,11 @@ namespace Itis_bet.Controllers
 
 
         [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+        [HttpGet]
         public IActionResult Bets()
         {
             var userId = new Guid(User.FindFirstValue(ClaimTypes.NameIdentifier));
@@ -151,8 +157,6 @@ namespace Itis_bet.Controllers
 
             return View(_db.Transactions
                 .OrderByDescending(b=>b.Date)
-                .Include(b=>b.UserBet)
-                .Include(b=>b.UserBet.Bet)
                 .Where(b=>b.UserId.Equals(userId))
                 .ToList()
             );

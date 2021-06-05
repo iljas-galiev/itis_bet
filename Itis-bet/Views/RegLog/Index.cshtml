@@ -2,7 +2,7 @@
 
 <div class="log-reg-container" id="regLogWraper">
 
-    @if (Model.Item2 != null)
+    @if (Model.Item2 != null && !ViewBag.Login)
     {
         @await Html.PartialAsync("RegPartial", Model.Item2)
     }
