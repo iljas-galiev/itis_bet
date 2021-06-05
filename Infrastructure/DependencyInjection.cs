@@ -4,7 +4,8 @@ using Infrastructure.EmailNotifications;
 using Infrastructure.Notifications;
 using Microsoft.AspNetCore.Builder;
 using WebSocketManager;
-using Chat;
+using System;
+using Infrastructure.Chat;
 
 namespace Infrastructure
 {
@@ -16,15 +17,18 @@ namespace Infrastructure
             services.AddSingleton<EmailSender>();
             services.AddSingleton<INotificator<bool>, EmailNotificator>();
 
+
+            services.AddTransient<ChatHandler>();
             services.AddWebSocketManager();
+            services.AddSingleton<ChatManager>();
 
             return services;
         }
 
-        public static void ConfigureChat(this IApplicationBuilder app)
+        public static void ConfigureChat(this IApplicationBuilder app, IServiceProvider provider)
         {
             app.UseWebSockets();
-            app.MapWebSocketManager("/chat", new ChatHandler(new WebSocketConnectionManager()));
+            app.MapWebSocketManager("/chat", provider.GetService<ChatHandler>()); // Dependency Injection
         }
     }
 }

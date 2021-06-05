@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using Infrastructure.Chat;
 using WebSocketManager;
 
 namespace Itis_bet
@@ -32,7 +33,7 @@ namespace Itis_bet
             services.AddControllersWithViews();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider provider)
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
@@ -41,10 +42,12 @@ namespace Itis_bet
             app.UseStaticFiles();
 
             app.UseRouting();
-            
+
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
+            app.ConfigureChat(provider);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
