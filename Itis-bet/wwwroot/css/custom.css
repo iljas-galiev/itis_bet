@@ -1343,7 +1343,17 @@ login.active, registration.active {
     border-radius: 4px;
     color: #fff;
 }
-.vk-btn:hover {
+.vk-btn-share{
+    padding: 5px 7px;
+    margin: 0;
+    font-size: 12px;
+    text-align: center;
+    background-color: #5181b8;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+}
+.vk-btn:hover, .vk-btn-share:hover {
     color:#fff;
     opacity: .88;
 }

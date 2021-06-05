@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Security.Claims;
+using BLL.MongoSettings;
+using BLL.Services;
+using Microsoft.Extensions.Options;
 
 namespace Itis_bet
 {
@@ -31,6 +34,13 @@ namespace Itis_bet
             services.ConfigureInfrastructure(Configuration);
             services.ConfigureBusinessLogic(Configuration);
 
+            services.Configure<MongoDatabaseSettings>(
+                Configuration.GetSection(nameof(MongoDatabaseSettings)));
+
+            services.AddSingleton<IMongoDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<MongoDatabaseSettings>>().Value);
+
+            services.AddSingleton<MongoService>();
 
             services.AddControllersWithViews();
 

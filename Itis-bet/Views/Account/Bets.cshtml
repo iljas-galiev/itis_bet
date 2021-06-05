@@ -5,6 +5,7 @@
     Layout = "_Layout";
 }
 
+<script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"></script>
 <div class="container mt-5">
     <div class="row">
 
@@ -45,6 +46,7 @@
                                                 break;
                                             case UserBetResult.Won:
                                                 <span class="text-success">Won $@(bet.Money * (decimal) bet.Coef)</span>
+                                                <a target="_blank" class="vk-btn-share" href="https://vk.com/share.php?url=https%3A%2F%2Fitis-bet.herokuapp.com%2F&comment=I won $@(bet.Money * (decimal) bet.Coef)">Share VK</a>
                                                 break;
                                             default:
                                                 <span class="text-primary">Waiting</span>

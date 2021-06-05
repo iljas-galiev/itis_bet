@@ -4,6 +4,16 @@
 @using DAL.Models.Enums
 @model Dictionary<DAL.Models.Enums.Sport, Dictionary<string, List<DAL.Models.Matches>>>
 
+<div class="section banners">
+    @{
+        foreach (var banner in ViewBag.Banners)
+        {
+            <div class="banner">
+                <img src="@banner.Image" alt="">
+            </div>
+        }
+    }
+</div>
 <div class="row row-30">
     <!-- Isotope Filters-->
     <div class="col-lg-12">

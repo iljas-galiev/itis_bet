@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 
 namespace DAL
 {
@@ -15,7 +17,6 @@ namespace DAL
         {
             services.AddDbContext<Database>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("ITISBet")));
-
 
 
             services.AddIdentity<User, IdentityRole<Guid>>(opts => {

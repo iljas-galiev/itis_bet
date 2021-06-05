@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BLL.Services;
 using DAL;
 using DAL.Models;
 using DAL.Models.Enums;
@@ -13,8 +14,12 @@ namespace ITIS_Bet.Controllers
     {
         private readonly Database _db;
 
-        public HomeController(Database db) =>
+        private readonly MongoService _service;
+        public HomeController(Database db, MongoService service)
+        {
             _db = db;
+            _service = service;
+        }
 
         public IActionResult Index(string sport = null, string search = null)
         {
@@ -45,6 +50,7 @@ namespace ITIS_Bet.Controllers
             else
                 ViewData["sport"] = sport;
 
+            ViewBag.Banners = _service.Get();
 
             return View(map);
         }
