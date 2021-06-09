@@ -74,7 +74,6 @@ namespace Itis_bet.Controllers
                 // Smtp exception catched and return false.
                 var validEmail = await _notify.AboutRegistrationAsync(RegistrationReason.Succeeded, regVM.Email);
 
-
                 if (validEmail)
                 {
                     var res = await _userManager.CreateAsync(CreateUser(regVM.Login, regVM.Email, regVM.Phone),
@@ -82,11 +81,14 @@ namespace Itis_bet.Controllers
 
                     if (res.Succeeded)
                         return await Log(new LoginViewModel {Email = regVM.Email, Password = regVM.Password});
-                }
+                    else
+                        ModelState.AddModelError(string.Empty, $"Login \"{regVM.Login}\" is already in use. \n" +
+                            $"Plesae choose another login.");
 
+                    return InvalidRegisterRequest(regVM);
+                }
                 ModelState.AddModelError(string.Empty, "Invalid email address");
             }
-
             return InvalidRegisterRequest(regVM);
         }
 
@@ -114,7 +116,6 @@ namespace Itis_bet.Controllers
                 else
                     ModelState.AddModelError(string.Empty, "Incorrect login or password.");
             }
-
             return InvalidLoginRequest(logVM);
         }
 
@@ -134,16 +135,16 @@ namespace Itis_bet.Controllers
             PartialView("LogPartial", new LoginViewModel());
 
         private IActionResult InvalidLoginRequest(LoginViewModel logVM) =>
+        
             View("Index", new Tuple<LoginViewModel, RegisterViewModel>(logVM, null));
 
         private IActionResult InvalidRegisterRequest(RegisterViewModel regVM) =>
             View("Index", new Tuple<LoginViewModel, RegisterViewModel>(null, regVM));
 
-        private async Task<Microsoft.AspNetCore.Identity.SignInResult> SignIn(string userName, string password,
-            bool remember)
-        {
-            return await _signInManager.PasswordSignInAsync(userName, password, remember, false);
-        }
+        private async Task<Microsoft.AspNetCore.Identity.SignInResult> SignIn(string userName, 
+            string password, bool remember) => 
+                await _signInManager.PasswordSignInAsync(userName, password, remember, false);
+        
 
 
         private async void SignInVK(User user)
