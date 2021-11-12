@@ -46,7 +46,7 @@ namespace Itis_bet
 
             services.AddAuthorization(opts => {
                 opts.AddPolicy("HasAccessToAdminPanel", policy => {
-                    policy.RequireClaim(ClaimTypes.Role, "Admin","Editor");
+                    policy.RequireClaim(ClaimTypes.Role, "Admin", "Editor");
                 });
                 opts.AddPolicy("Editor", policy => {
                     policy.RequireClaim(ClaimTypes.Role, "Editor");

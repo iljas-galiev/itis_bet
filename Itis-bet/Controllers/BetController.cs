@@ -17,12 +17,11 @@ namespace Itis_bet.Controllers
     public class BetController : Controller
     {
         private readonly Database _db;
-        private readonly INotificator<bool> _notify;
+        // private readonly INotificator<bool> _notify;
 
-        public BetController(Database db, INotificator<bool> notify)
+        public BetController(Database db)
         {
             _db = db;
-            _notify = notify;
         }
 
         [HttpPost]
@@ -66,7 +65,7 @@ namespace Itis_bet.Controllers
             _db.UsersBets.Add(model);
             _db.SaveChanges();
 
-            await _notify.AboutBetAsync(BetReason.Applyed, user.Email, model);
+            //await _notify.AboutBetAsync(BetReason.Applyed, user.Email, model);
 
 
             return Json(new {status = "success", betId = model.Id});

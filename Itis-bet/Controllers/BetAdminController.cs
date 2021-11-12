@@ -103,7 +103,7 @@ namespace Itis_bet.Controllers
         [HttpGet]
         public IActionResult UserBets()
         {
-            var model = _db.UsersBets.Include(b=>b.Bet).Include(b=>b.Bet.Match).ToList();
+            var model = _db.UsersBets.Include(b => b.User).Include(b=>b.Bet).Include(b=>b.Bet.Match).ToList();
 
 
             return View(model);

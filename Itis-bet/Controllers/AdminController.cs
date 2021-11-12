@@ -33,11 +33,11 @@ namespace Itis_bet.Controllers
             _signInManager = signInManager;
             _userManager = manager;
         }
-            
 
         [HttpGet]
         public IActionResult Index() =>
             View();
+
         [Authorize(Policy = "Editor")]
         [HttpGet]
         public IActionResult BlogPosts()
@@ -58,6 +58,7 @@ namespace Itis_bet.Controllers
             };
             return View(model);
         }
+
         public IActionResult GetBlogTableItems(Sport sport)
         {
             var userEmail = User.GetUserEmail();
@@ -75,6 +76,7 @@ namespace Itis_bet.Controllers
             }
             return PartialView(enPosts);
         }
+
         [Authorize(Policy = "Editor")]
         [HttpGet]
         public IActionResult CreateBlogPost()
@@ -85,6 +87,7 @@ namespace Itis_bet.Controllers
             };
             return View(model);
         }
+
         [Authorize(Policy = "Editor")]
         [HttpPost]
         public async Task<IActionResult> CreateBlogPost(CreateBlogVm model)
@@ -118,6 +121,7 @@ namespace Itis_bet.Controllers
             }
             return RedirectToAction("BlogPosts");
         }
+
         [Authorize(Policy = "Editor")]
         [HttpGet]
         public IActionResult Comments(string articleId)
@@ -148,6 +152,7 @@ namespace Itis_bet.Controllers
             return RedirectToAction("Comments");
  
         }
+
         [Authorize(Policy = "Admin")]
         [HttpGet]
         public IActionResult Users(string userId)
@@ -165,12 +170,14 @@ namespace Itis_bet.Controllers
 
             return View(model.AsEnumerable());
         }
+
         [HttpGet]
         public IActionResult ViewUser(Guid userId)
         {
             var user = _db.Users.FirstOrDefault(u => u.Id == userId);
             return View("User",user);
         }
+
         [Authorize(Policy = "Admin")]
         [HttpPost]
         public async Task<IActionResult> SetClaim(Guid userId,string value)
@@ -187,6 +194,7 @@ namespace Itis_bet.Controllers
             await _userManager.UpdateSecurityStampAsync(user);
             return RedirectToAction("Users");
         }
+
         [Authorize(Policy = "Admin")]
         [HttpPost]
         public async Task<IActionResult> RemoveClaim(Guid userId, string value)

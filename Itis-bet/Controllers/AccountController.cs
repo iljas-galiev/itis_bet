@@ -57,15 +57,8 @@ namespace Itis_bet.Controllers
 
                 if (someChanges)
                 {
-                    var validEmail = await _notify.AboutSecurityAsync(SecurityReason.ProfileUpdated, newProfile.Email);
-
-                    if (validEmail)
-                    {
-                        await _db.SaveChangesAsync();
-                        return RedirectToAction("Index");
-                    }
-
-                    ModelState.AddModelError(string.Empty, "Invalid email address");
+                    await _db.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
             }
             return View("Index", new Tuple<ProfileViewModel, PassportViewModel>(
@@ -83,8 +76,9 @@ namespace Itis_bet.Controllers
 
                 if (someChanges)
                 {
+                    user.CanBet = true;
                     await _db.SaveChangesAsync();
-                    await _notify.AboutSecurityAsync(SecurityReason.PassportUpdated, user.Email);
+                    // await _notify.AboutSecurityAsync(SecurityReason.PassportUpdated, user.Email);
                 }
 
                 return RedirectToAction("Index");

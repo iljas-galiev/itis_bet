@@ -22,14 +22,12 @@ namespace Itis_bet.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly INotificator<bool> _notify;
+        //private readonly INotificator<bool> _notify;
         private readonly Database _db;
 
-        public RegLogController(UserManager<User> manager, Database db, SignInManager<User> signInManager,
-            INotificator<bool> notify)
+        public RegLogController(UserManager<User> manager, Database db, SignInManager<User> signInManager)
         {
             _signInManager = signInManager;
-            _notify = notify;
             _userManager = manager;
             _db = db;
         }
@@ -71,23 +69,16 @@ namespace Itis_bet.Controllers
                     return InvalidRegisterRequest(regVM);
                 }
 
-                // Smtp exception catched and return false.
-                var validEmail = await _notify.AboutRegistrationAsync(RegistrationReason.Succeeded, regVM.Email);
-
-                if (validEmail)
-                {
-                    var res = await _userManager.CreateAsync(CreateUser(regVM.Login, regVM.Email, regVM.Phone),
+                var res = await _userManager.CreateAsync(CreateUser(regVM.Login, regVM.Email, regVM.Phone),
                         regVM.Password);
 
-                    if (res.Succeeded)
-                        return await Log(new LoginViewModel {Email = regVM.Email, Password = regVM.Password});
-                    else
-                        ModelState.AddModelError(string.Empty, $"Login \"{regVM.Login}\" is already in use. \n" +
-                            $"Plesae choose another login.");
+                if (res.Succeeded)
+                    return await Log(new LoginViewModel { Email = regVM.Email, Password = regVM.Password });
+                else
+                    ModelState.AddModelError(string.Empty, $"Login \"{regVM.Login}\" is already in use. \n" +
+                        $"Plesae choose another login.");
 
-                    return InvalidRegisterRequest(regVM);
-                }
-                ModelState.AddModelError(string.Empty, "Invalid email address");
+                return InvalidRegisterRequest(regVM);
             }
             return InvalidRegisterRequest(regVM);
         }

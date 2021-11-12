@@ -20,7 +20,7 @@ namespace DAL
         public DbSet<Passport> Passports { get; set; }
         
         public Database(DbContextOptions<Database> options)
-            : base(options) {
+            : base(options) {            
         }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
